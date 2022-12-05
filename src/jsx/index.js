@@ -18,6 +18,8 @@ import DashboardDark from "./components/Dashboard/DashboardDark";
 import Project from "./components/Dashboard/Project";
 import Products from "./components/Dashboard/Products";
 import Payments from "./components/Dashboard/Payments";
+import Suppliers from "./components/Dashboard/Suppliers";
+import Inventory from "./components/Dashboard/Inventory";
 import Kanban from "./components/Dashboard/Kanban";
 import Task from "./components/Dashboard/Task";
 import DashboardCalendar from "./components/Dashboard/DashboardCalendar";
@@ -128,6 +130,8 @@ const Markup = () => {
     { url: "project", component: Project },
     { url: "products", component: Products },
     { url: "payments", component: Payments },
+    { url: "suppliers", component: Suppliers },
+    { url: "inventory", component: Inventory },
     { url: "kanban", component: Kanban },
     { url: "task", component: Task },
 	{ url: "calendar", component: DashboardCalendar },

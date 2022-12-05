@@ -24865,6 +24865,18 @@ table.dataTable.display tbody td {
   font-size: 0.813rem !important;
   padding: 0.625rem 1rem; }
 
+#payments_data .edit_paid.btn-xxs {
+  padding: 0.1rem 0.9375rem; }
+
+#payments_data table.dataTable tbody tr {
+  border-bottom: 1px solid #eee; }
+
+#payments_data table.dataTable thead th,
+#payments_data table.dataTable tbody td,
+#inventory_data table.dataTable thead th,
+#inventory_data table.dataTable tbody td {
+  vertical-align: top; }
+
 .fooicon {
   font-size: 1.25rem;
   color: #6e6e6e; }
@@ -25637,8 +25649,8 @@ table.dataTable.display tbody td {
           text-align: center;
           margin: auto; }
   .image-placeholder .avatar-preview {
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 200px;
     position: relative;
     border-radius: 100%;
     border: 6px solid #F8F8F8;
@@ -25665,6 +25677,22 @@ table.dataTable.display tbody td {
   flex-basis: unset;
   padding-right: 15px;
   padding-left: 15px; }
+
+.edit_product_form .image-placeholder {
+  max-width: 200px; }
+
+.edit_product_form .image-placeholder .avatar-edit {
+  right: 20px;
+  top: 20px; }
+
+.edit_product_form .card--form_element {
+  height: auto; }
+
+.edit_product_form .border_primary {
+  border: 1px solid #886CC0; }
+
+.edit_product_form .border_primary .card-header {
+  border-bottom: 1px solid #886CC0; }
 
 .project-page .project .nav-tabs {
   border: 0; }
@@ -25756,14 +25784,14 @@ table.dataTable.display tbody td {
 .contacts-search {
   width: 19.75rem; }
   .contacts-search .form-control {
-    border-color: #EEEEEE;
+    border-color: #bcbcbc;
     border-right: 0;
     background: transparent;
     border-top-left-radius: 3.125rem;
     border-bottom-left-radius: 3.125rem;
     height: 60px; }
   .contacts-search .input-group-text {
-    border-color: #EEEEEE;
+    border-color: #bcbcbc;
     background: transparent;
     border-left: 0;
     height: 60px;

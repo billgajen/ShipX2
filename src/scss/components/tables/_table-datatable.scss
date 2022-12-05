@@ -263,3 +263,16 @@ table.dataTable.display tbody td {
 		}
 	}
 }
+
+#payments_data .edit_paid.btn-xxs {
+	padding: 0.1rem 0.9375rem;
+}
+#payments_data table.dataTable tbody tr {
+	border-bottom: 1px solid #eee;
+}
+#payments_data table.dataTable thead th,
+#payments_data table.dataTable tbody td,
+#inventory_data table.dataTable thead th,
+#inventory_data table.dataTable tbody td{
+	vertical-align: top;
+}

@@ -16,21 +16,21 @@ import cust55 from './../../../../images/customers/55.jpg';
 const PendingBlog =()=>{
 	return(
 		<>
-			<Link to={"#"} className="btn bgl-warning text-warning fs-18 font-w600">PENDING</Link>
+			<Link to={"#"} className="btn btn-sm btn-warning fs-18 font-w600 btn-rounded">PENDING<i class="fas fa-chevron-right ms-2"></i></Link>
 		</>
 	)
 }
 const ProgressBlog =() =>{
 	return(
 		<>
-			<Link to={"#"} className=" btn bg-progress fs-18 font-w600 text-nowrap text-bg-progress">ON PROGRESS</Link>
+			<Link to={"#"} className=" btn btn-sm bg-progress fs-18 font-w600 text-nowrap btn-rounded">ON PROGRESS<i class="fas fa-chevron-right ms-2"></i></Link>
 		</>
 	)
 }
 const CloseBlog =()=>{
 	return(
 		<>
-			<Link to={"#"} className=" btn bgl-success fs-18 font-w600 text-nowrap text-success">CLOSED</Link>
+			<Link to={"#"} className=" btn btn-sm bgl-success fs-18 font-w600 text-nowrap btn-rounded">CLOSED<i class="fas fa-chevron-right ms-2"></i></Link>
 		</>
 	)
 }
@@ -199,7 +199,7 @@ const ProgressTab = () => {
 						<div className="row">
 							<div className="col-xl-3  col-lg-6 col-sm-12 align-items-center product-details">
 								<div className="media-body">
-									<span className="text-primary d-block fs-18 font-w500 mb-1">#{item.bpOrderID}</span>
+									<span className="text-primary d-block fs-18 font-w600 mb-1">#{item.bpOrderID}</span>
 									<span className="d-block mb-2 fs-14"><i className="fas fa-calendar me-2"></i>Ordered on {item.orderDate}</span>
 									<div className="d-flex project-image mb-3">
 										<img src={item.productThumb} alt="" />
@@ -276,7 +276,7 @@ const ProgressTab = () => {
 								</div>
 								<span className="d-block fs-12 font-w500">Delivered to IND9,1151 S GRAHAM RD,GREENWOOD,IN,46143-7830,US</span>
 							</div>
-							<div className="col-xl-12  col-lg-6 col-sm-4 mb-sm-3 mb-3 text-end">
+							<div className="col-xl-12  col-lg-6 col-sm-4 text-end">
 								<div className="d-flex justify-content-end project-btn">
 									{item.status}
 								</div>	
@@ -298,7 +298,7 @@ const PendingTab = () => {
 						<div className="row">
 							<div className="col-xl-3  col-lg-6 col-sm-12 align-items-center product-details">
 								<div className="media-body">
-									<span className="text-primary d-block fs-18 font-w500 mb-1">#{item.bpOrderID}</span>
+									<span className="text-primary d-block fs-18 font-w600 mb-1">#{item.bpOrderID}</span>
 									<span className="d-block mb-2 fs-14"><i className="fas fa-calendar me-2"></i>Ordered on {item.orderDate}</span>
 									<div className="d-flex project-image mb-3">
 										<img src={item.productThumb} alt="" />
@@ -375,7 +375,7 @@ const PendingTab = () => {
 								</div>
 								<span className="d-block fs-12 font-w500">Delivered to IND9,1151 S GRAHAM RD,GREENWOOD,IN,46143-7830,US</span>
 							</div>
-							<div className="col-xl-12  col-lg-6 col-sm-4 mb-sm-3 mb-3 text-end">
+							<div className="col-xl-12  col-lg-6 col-sm-4 text-end">
 								<div className="d-flex justify-content-end project-btn">
 									{item.status}
 								</div>	
@@ -396,7 +396,7 @@ const CloseTab = () => {
 						<div className="row">
 							<div className="col-xl-3  col-lg-6 col-sm-12 align-items-center product-details">
 								<div className="media-body">
-									<span className="text-primary d-block fs-18 font-w500 mb-1">#{item.bpOrderID}</span>
+									<span className="text-primary d-block fs-18 font-w600 mb-1">#{item.bpOrderID}</span>
 									<span className="d-block mb-2 fs-14"><i className="fas fa-calendar me-2"></i>Ordered on {item.orderDate}</span>
 									<div className="d-flex project-image mb-3">
 										<img src={item.productThumb} alt="" />
@@ -473,7 +473,7 @@ const CloseTab = () => {
 								</div>
 								<span className="d-block fs-12 font-w500">Delivered to IND9,1151 S GRAHAM RD,GREENWOOD,IN,46143-7830,US</span>
 							</div>
-							<div className="col-xl-12  col-lg-6 col-sm-4 mb-sm-3 mb-3 text-end">
+							<div className="col-xl-12  col-lg-6 col-sm-4 text-end">
 								<div className="d-flex justify-content-end project-btn">
 									{item.status}
 								</div>	

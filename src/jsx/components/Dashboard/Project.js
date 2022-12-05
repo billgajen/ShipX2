@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';	
 import {Dropdown, Nav,Tab} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
+import swal from "sweetalert";
+import {nanoid} from 'nanoid';
 
 ///Import
 import {
@@ -11,11 +14,72 @@ from './Project/Project';
 	
 import amazonLogo from './../../../images/freight/amazon.png';
 
-const Project = () =>{
+const Orders = () =>{
+	
+	const [addCard, setAddCard] = useState(false);
+
+	//Add Order 
+    const [addFormData, setAddFormData ] = useState({
+		productId:'',
+		bpOrderID: '',
+		orderUnits: '',
+		shippingMode: '',
+		destination: '',
+    }); 
+    // Add Product function
+    const handleAddFormChange = (event) => {
+        event.preventDefault();    
+        const fieldName = event.target.getAttribute('name');
+        const fieldValue = event.target.value;
+        const newFormData = {...addFormData};
+        newFormData[fieldName] = fieldValue;
+        setAddFormData(newFormData);
+    };
+    
+     //Add Submit data
+    const handleAddFormSubmit = (event)=> {
+        event.preventDefault();
+        var error = false;
+		var errorMsg = '';
+        if(addFormData.name === ""){
+            error = true;
+			errorMsg = 'Please fill Name';
+        }else if(addFormData.productSKU === ""){
+            error = true;
+			errorMsg = 'Please fill profile.';
+        }
+		else if(addFormData.productThumb === ""){
+            error = true;
+			errorMsg = 'Please attached image';
+        }
+        if(!error){
+            const newProduct = {
+                id: nanoid(),
+				productId: addFormData.productId,
+				bpOrderID: addFormData.bpOrderID,
+				orderUnits: addFormData.orderUnits,
+				shippingMode: addFormData.shippingMode,
+				destination: addFormData.destination,
+
+            };
+            setAddCard(false);
+            swal('Good job!', 'Successfully Added', "success");
+            addFormData.name = addFormData.productSKU = addFormData.productThumb  = '';         
+            
+        }else{
+			swal('Oops', errorMsg, "error");
+		}
+    }; 
+	
+
 	return(
 		<>
 			<Tab.Container defaultActiveKey="AllStatus">
 				<div className="project-page d-flex justify-content-between align-items-center flex-wrap">
+					<div className="input-group search po-search contacts-search mb-4">
+						<input type="text" className="form-control" placeholder="Search here..." />
+						<span className="input-group-text"><Link to={"#"}><i className="flaticon-381-search-2"></i></Link></span>
+					</div>
 					<div className="project mb-4">
 						<Nav as="ul" className="nav nav-tabs" role="tablist">
 							<Nav.Item as="li" className="nav-item">
@@ -33,7 +97,46 @@ const Project = () =>{
 						</Nav>
 					</div>
 					<div className="mb-4">
-						<Link to={"#"} className="btn btn-primary btn-rounded fs-18">+ New Order</Link>
+						<Link to={"#"} className="btn btn-primary btn-rounded fs-18" onClick={()=> setAddCard(true)}>+ New Order</Link>
+						<Modal className="modal fade"  show={addCard} onHide={setAddCard} size="lg">
+							<form >
+								<div className="modal-header">
+									<h4 className="modal-title fs-20">Create New Order</h4>
+									<button type="button" className="btn-close" onClick={()=> setAddCard(false)}></button>
+								</div>
+								<div className="modal-body">
+									<i className="flaticon-cancel-12 close"></i>
+									<div className="add-contact-box">
+										<div className="add-contact-content">
+											 <div className="form-group mb-3">
+												<label className="text-black font-w500">Name</label>
+												<div className="contact-name">
+													<input type="text"  className="form-control" autoComplete="off"
+														name="productName" required="required"
+														onChange={handleAddFormChange}
+														placeholder="name"
+													/>
+												</div>
+											</div>
+											<div className="form-group mb-3">
+												<label className="text-black font-w500">SKU</label>
+												<div className="contact-name">
+													<input type="text"  className="form-control"  autoComplete="off"
+														name="productSKU" required="required"
+														onChange={handleAddFormChange}
+														placeholder="SKU"
+													/>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className="modal-footer">
+									<button type="submit" className="btn btn-primary" onClick={handleAddFormSubmit}>Add</button>  
+									<button type="button" onClick={()=> setAddCard(false)} className="btn btn-danger"> <i className="flaticon-delete-1"></i> Discard</button>      
+								</div>
+							</form>
+						</Modal>
 					</div>
 				</div>	
 				<div className="row">
@@ -46,7 +149,7 @@ const Project = () =>{
 											<div className="row">
 												<div className="col-xl-3  col-lg-6 col-sm-12 align-items-center product-details">
 													<div className="media-body">
-														<span className="text-primary d-block fs-18 font-w500 mb-1">#{item.bpOrderID}</span>
+														<span className="text-primary d-block fs-18 font-w600 mb-1">#{item.bpOrderID}</span>
 														<span className="d-block mb-2 fs-14"><i className="fas fa-calendar me-2"></i>Ordered on {item.orderDate}</span>
 														<div className="d-flex project-image mb-3">
 															<img src={item.productThumb} alt="" />
@@ -123,10 +226,13 @@ const Project = () =>{
 													</div>
 													<span className="d-block fs-12 font-w500">Delivered to IND9,1151 S GRAHAM RD,GREENWOOD,IN,46143-7830,US</span>
 												</div>
-												<div className="col-xl-12  col-lg-6 col-sm-4 mb-sm-3 mb-3 text-end">
-													<div className="d-flex justify-content-end project-btn">
-														{item.status}
-													</div>	
+												<div className="col-xl-12  col-lg-6 col-sm-4 text-end">
+													<div className="d-flex justify-content-end align-items-center flex-wrap">
+														<div className="me-2"><a className="badge badge-outline-primary badge-circle"><i className="fs-22 fas fa-file-pdf"></i></a></div>
+														<div className="d-flex justify-content-end project-btn">
+															{item.status}
+														</div>	
+													</div>
 												</div>
 											</div>	
 										</div>	
@@ -170,4 +276,4 @@ const Project = () =>{
 		</>
 	)
 }
-export default Project;
+export default Orders;

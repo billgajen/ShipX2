@@ -1,36 +1,99 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {Dropdown, Modal} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import swal from "sweetalert";
 import {nanoid} from 'nanoid';
+
 
 import product1 from './../../../images/product/4.jpg';
 import user from './../../../images/pic1.jpg';
 import pic1 from './../../../images/pic1.jpg';
-import pic2 from './../../../images/pic2.jpg';
 import pic3 from './../../../images/pic3.jpg';
 import pic4 from './../../../images/pic4.jpg';
-import pic5 from './../../../images/pic5.jpg';
-import pic6 from './../../../images/pic6.jpg';
-//import pic7 from './../../../images/contacts/1.jpg';
-import pic8 from './../../../images/contacts/2.jpg';
-import pic9 from './../../../images/contacts/3.jpg';
-import pic10 from './../../../images/contacts/4.jpg';
-import pic11 from './../../../images/contacts/5.jpg';
 
 const productBlog = [
-	{id:1 , image: product1, name:'Womens Vintage Retro Bodycon Ladies', profile: 'BL003 DRESS01',},
-	{id:2 , image: pic2, name:'Gretchen Aminoff', profile: 'Redblue Studios.',},
-	{id:3 , image: pic3, name:'Davis Siphron', profile: 'Beep Beep Inc.',},
-	{id:4 , image: pic4, name:'Zaire Lubin', profile: 'Redblue Studios',},
-	{id:5 , image: pic5, name:'Jakob Gouse', profile: 'Highspeed Inc.',},
-	{id:6 , image: pic6, name:'Gretchen Aminoff', profile: 'Beep Beep Inc.',},
-	{id:7 , image: pic3, name:'Davis Siphron', profile: 'Redblue Studios.',},
-	{id:8 , image: pic8, name:'Zaire Lubin', profile: 'Highspeed Inc.',},
-	{id:9 , image: pic9, name:'Jakob Gouse', profile: 'Beep Beep Inc.',},
-	{id:10 , image: pic10, name:'Davis Siphron', profile: 'Redblue Studios.',},
-	{id:11 , image: pic11, name:'Gretchen Aminoff', profile: 'Highspeed Inc.',},
-	{id:12 , image: pic5,  name:'Zaire Lubin', profile: 'Beep Beep Inc.',},
+
+	{
+		id:1, 
+		productThumb: product1,
+		productName: 'Womens Vintage Retro Bodycon Ladies',
+		productSKU: 'BL003 DRESS01',
+		productASIN: 'B09ABC2327',
+		productManufacturingCost: '2.1',
+		productWidth: '123',
+		productHeight: '321',
+		productLength: '231',
+		productWeight: '0.8',
+		productSize: 'S',
+		shippingModeAirCost: '4',
+		shippingModeSeaCost: '2.1',
+		shippingModeLandCost: '1.4',
+		productManufacturingDays: '7',
+		fastestShippingDays: '7',
+		shippingHandlingDays: '2',
+		myWarehouseStock: '2000',
+	},
+	{
+		id:2, 
+		productThumb: pic1,
+		productName: 'Yellow Retro Bodycon Ladies',
+		productSKU: 'BL003 DRESS02',
+		productASIN: 'B09ABC2328',
+		productManufacturingCost: '2.1',
+		productWidth: '123',
+		productHeight: '321',
+		productLength: '231',
+		productWeight: '0.8',
+		productSize: 'S',
+		shippingModeAirCost: '4',
+		shippingModeSeaCost: '2.1',
+		shippingModeLandCost: '1.4',
+		productManufacturingDays: '7',
+		fastestShippingDays: '7',
+		shippingHandlingDays: '2',
+		myWarehouseStock: '2000',
+	},
+	{
+		id:3, 
+		productThumb: pic3,
+		productName: 'White Retro Bodycon Ladies',
+		productSKU: 'BL003 DRESS03',
+		productASIN: 'B09ABC2329',
+		productManufacturingCost: '2.1',
+		productWidth: '123',
+		productHeight: '321',
+		productLength: '231',
+		productWeight: '0.8',
+		productSize: 'S',
+		shippingModeAirCost: '4',
+		shippingModeSeaCost: '2.1',
+		shippingModeLandCost: '1.4',
+		productManufacturingDays: '7',
+		fastestShippingDays: '7',
+		shippingHandlingDays: '2',
+		myWarehouseStock: '2000',
+	},
+	{
+		id:4, 
+		productThumb: pic4,
+		productName: 'Mens Vintage Retro Bodycon Ladies',
+		productSKU: 'BL003 SHIRT04',
+		productASIN: 'B09ABC2330',
+		productManufacturingCost: '2.1',
+		productWidth: '123',
+		productHeight: '321',
+		productLength: '231',
+		productWeight: '0.8',
+		productSize: 'S',
+		shippingModeAirCost: '4',
+		shippingModeSeaCost: '2.1',
+		shippingModeLandCost: '1.4',
+		productManufacturingDays: '7',
+		fastestShippingDays: '7',
+		shippingHandlingDays: '2',
+		myWarehouseStock: '2000',
+	},
+
 ];
 
 const Products = () =>{
@@ -50,16 +113,30 @@ const Products = () =>{
         setFile(e.target.files[0]);
 		setTimeout(function(){
 			var src = document.getElementById("saveImageFile").getAttribute("src");
-			addFormData.image = src; 
+			addFormData.productThumb = src; 
 		}, 200);
     }
 	
 	
 	//Add data 
     const [addFormData, setAddFormData ] = useState({
-        name:'',
-        profile:'',
-		image:'',
+		productName:'',
+		productSKU:'',
+		productThumb:'',
+		productASIN:'',
+		productWidth: '',
+		productHeight: '',
+		productLength: '',
+		productWeight: '',
+		productSize: '',
+		productManufacturingCost: '',
+		shippingModeAirCost: '',
+		shippingModeSeaCost: '',
+		shippingModeLandCost: '',
+		productManufacturingDays: '',
+		fastestShippingDays: '',
+		shippingHandlingDays: '',
+		myWarehouseStock: '',
     }); 
     
     // Add Product function
@@ -80,26 +157,41 @@ const Products = () =>{
         if(addFormData.name === ""){
             error = true;
 			errorMsg = 'Please fill Name';
-        }else if(addFormData.profile === ""){
+        }else if(addFormData.productSKU === ""){
             error = true;
 			errorMsg = 'Please fill profile.';
         }
-		else if(addFormData.image === ""){
+		else if(addFormData.productThumb === ""){
             error = true;
 			errorMsg = 'Please attached image';
         }
         if(!error){
             const newProduct = {
                 id: nanoid(),
-                name: addFormData.name,
-                profile:  addFormData.profile,
-				image: addFormData.image,
+				productName: addFormData.productName,
+				productSKU: addFormData.productSKU,
+				productThumb: addFormData.productThumb,
+				productASIN: addFormData.productASIN,
+				productWidth: addFormData.productWidth,
+				productHeight: addFormData.productHeight,
+				productLength: addFormData.productLength,
+				productWeight: addFormData.productWeight,
+				productSize: addFormData.productSize,
+				productManufacturingCost: addFormData.productManufacturingCost,
+				shippingModeAirCost: addFormData.shippingModeAirCost,
+				shippingModeSeaCost: addFormData.shippingModeSeaCost,
+				shippingModeLandCost: addFormData.shippingModeLandCost,
+				productManufacturingDays: addFormData.productManufacturingDays,
+				fastestShippingDays: addFormData.fastestShippingDays,
+				shippingHandlingDays: addFormData.shippingHandlingDays,
+				myWarehouseStock: addFormData.myWarehouseStock,
+
             };
             const newProducts = [...products, newProduct];
             setProducts(newProducts);
             setAddCard(false);
             swal('Good job!', 'Successfully Added', "success");
-            addFormData.name = addFormData.profile = addFormData.image  = '';         
+            addFormData.name = addFormData.productSKU = addFormData.productThumb  = '';         
             
         }else{
 			swal('Oops', errorMsg, "error");
@@ -117,9 +209,23 @@ const Products = () =>{
         event.preventDefault();
         setEditProductId(product.id);
         const formValues = {
-            name: product.name,
-            profile: product.profile,
-			image: product.image,
+			productName: product.productName,
+			productSKU: product.productSKU,
+			productThumb: product.productThumb,
+			productASIN: product.productASIN,
+			productWidth: product.productWidth,
+			productHeight: product.productHeight,
+			productLength: product.productLength,
+			productWeight: product.productWeight,
+			productSize: product.productSize,
+			productManufacturingCost: product.productManufacturingCost,
+			shippingModeAirCost: product.shippingModeAirCost,
+			shippingModeSeaCost: product.shippingModeSeaCost,
+			shippingModeLandCost: product.shippingModeLandCost,
+			productManufacturingDays: product.productManufacturingDays,
+			fastestShippingDays: product.fastestShippingDays,
+			shippingHandlingDays: product.shippingHandlingDays,
+			myWarehouseStock: product.myWarehouseStock,
         }
         setEditFormData(formValues);
         setEditModal(true);
@@ -128,9 +234,23 @@ const Products = () =>{
     
     // edit  data  
     const [editFormData, setEditFormData] = useState({
-        name:'',
-        profile:'',
-		image:'',
+		productName:'',
+		productSKU:'',
+		productThumb:'',
+		productASIN:'',
+		productWidth: '',
+		productHeight: '',
+		productLength: '',
+		productWeight: '',
+		productSize: '',
+		productManufacturingCost: '',
+		shippingModeAirCost: '',
+		shippingModeSeaCost: '',
+		shippingModeLandCost: '',
+		productManufacturingDays: '',
+		fastestShippingDays: '',
+		shippingHandlingDays: '',
+		myWarehouseStock: '',
     })
     
     //update data function
@@ -148,9 +268,23 @@ const Products = () =>{
         event.preventDefault();
         const editedProduct = {
             id: editProductId,
-            name: editFormData.name,
-            profile: editFormData.profile,
-			image: editFormData.image,
+			productName: editFormData.productName,
+			productSKU: editFormData.productSKU,
+			productThumb: editFormData.productThumb,
+			productASIN: editFormData.productASIN,
+			productWidth: editFormData.productWidth,
+			productHeight: editFormData.productHeight,
+			productLength: editFormData.productLength,
+			productWeight: editFormData.productWeight,
+			productSize: editFormData.productSize,
+			productManufacturingCost: editFormData.productManufacturingCost,
+			shippingModeAirCost: editFormData.shippingModeAirCost,
+			shippingModeSeaCost: editFormData.shippingModeSeaCost,
+			shippingModeLandCost: editFormData.shippingModeLandCost,
+			productManufacturingDays: editFormData.productManufacturingDays,
+			fastestShippingDays: editFormData.fastestShippingDays,
+			shippingHandlingDays: editFormData.shippingHandlingDays,
+			myWarehouseStock: editFormData.myWarehouseStock,
         }
         const newProducts = [...products];
         const index = products.findIndex((product)=> product.id === editProductId);
@@ -198,19 +332,19 @@ const Products = () =>{
 											<label className="text-black font-w500">Name</label>
 											<div className="contact-name">
 												<input type="text"  className="form-control" autoComplete="off"
-													name="name" required="required"
+													name="productName" required="required"
 													onChange={handleAddFormChange}
 													placeholder="name"
 												/>
 											</div>
 										</div>
 										<div className="form-group mb-3">
-											<label className="text-black font-w500">Profile</label>
+											<label className="text-black font-w500">SKU</label>
 											<div className="contact-name">
 												<input type="text"  className="form-control"  autoComplete="off"
-													name="profile" required="required"
+													name="productSKU" required="required"
 													onChange={handleAddFormChange}
-													placeholder="profile"
+													placeholder="SKU"
 												/>
 											</div>
 										</div>
@@ -223,34 +357,319 @@ const Products = () =>{
 							</div>
 						</form>
 					</Modal>
-					<Modal className="modal fade"  show={editModal} onHide={setEditModal} >
+					<Modal className="modal fade"  show={editModal} onHide={setEditModal} size="xl">
 						<form>
 							<div className="modal-header">
-								<h4 className="modal-title fs-20">Edit Task</h4>
+								<h4 className="modal-title fs-20">Edit Product</h4>
 								<button type="button" className="btn-close" onClick={()=> setEditModal(false)} data-dismiss="modal"></button>
 							</div>
 							<div className="modal-body">
 								<i className="flaticon-cancel-12 close" data-dismiss="modal"></i>
-								<div className="add-contact-box">
+								<div className="add-contact-box edit_product_form">
 									<div className="add-contact-content">
-										<div className="form-group mb-3">
-											<label className="text-black font-w500">Name</label>
-											<div className="contact-name">
-												<input type="text"  className="form-control"  autoComplete="off"
-													name="name" required="required"
-													value={editFormData.name}
-													onChange={handleEditFormChange}
-												/>
+										<div className="row">
+											<div className="col-sm-6">
+												<div className="image-placeholder mb-4">	
+													<div className="avatar-edit">
+														<input type="file" onChange={fileHandler} id="imageUpload" 
+															onClick={(event) => setFile(event.target.value)}
+														/> 					
+														<label htmlFor="imageUpload" name=''  ></label>
+													</div>
+													<div className="avatar-preview">
+														<div id="imagePreview">
+															<img id="saveImageFile" src={file? URL.createObjectURL(file) : user} 
+																alt={file? file.name : null}
+															/>
+														</div>
+													</div>
+												</div> 
+												<div className="form-group mb-3 input-primary">
+													<label className="text-black font-w500">Name</label>
+													<div className="contact-name">
+														<input type="text"  className="form-control"  autoComplete="off"
+															name="productName" required="required"
+															value={editFormData.productName}
+															onChange={handleEditFormChange}
+														/>
+													</div>
+												</div>
+												<div className="form-group mb-3 input-primary">
+													<label className="text-black font-w500">SKU</label>
+													<div className="contact-name">
+														<input type="text" className="form-control"  autoComplete="off"
+															name="productSKU" required="required"
+															value={editFormData.productSKU}
+															onChange={handleEditFormChange}
+														/>
+													</div>
+												</div>
+												<div className="form-group mb-3 input-primary">
+													<label className="text-black font-w500">ASIN</label>
+													<div className="contact-name">
+														<input type="text" className="form-control"  autoComplete="off"
+															name="productASIN"
+															value={editFormData.productASIN}
+															onChange={handleEditFormChange}
+														/>
+													</div>
+												</div>
+												<div class="text-white bg-primary card card--form_element">
+													<div class="card-header">
+														<div class="text-white card-title h5">Dimensions & Weight</div>
+													</div>
+													<div class="mb-0 card-body">
+														<div className="row">
+															<div className="form-group col-md-4 mb-3">
+																<label className="text-white font-w500">Width</label>
+																<div className="contact-name">
+																	<div className="input-group input-white">
+																		<input type="text" className="form-control"  autoComplete="off"
+																			name="productWidth"
+																			value={editFormData.productWidth}
+																			onChange={handleEditFormChange}
+																		/><span class="input-group-text">cm</span>
+																	</div>
+																</div>
+															</div>
+															<div className="form-group col-md-4 mb-3">
+																<label className="text-white font-w500">Height</label>
+																<div className="contact-name">
+																	<div className="input-group input-white">
+																	<input type="text" className="form-control"  autoComplete="off"
+																		name="productHeight"
+																		value={editFormData.productHeight}
+																		onChange={handleEditFormChange}
+																	/><span class="input-group-text">cm</span>
+																	</div>
+																</div>
+															</div>
+															<div className="form-group col-md-4 mb-3">
+																<label className="text-white font-w500">Length</label>
+																<div className="contact-name">
+																	<div className="input-group input-white">
+																	<input type="text" className="form-control"  autoComplete="off"
+																		name="productLength"
+																		value={editFormData.productLength}
+																		onChange={handleEditFormChange}
+																	/><span class="input-group-text">cm</span>
+																	</div>
+																</div>
+															</div>
+															<div className="form-group col-md-4 mb-3">
+																<label className="text-white font-w500">Weight</label>
+																<div className="contact-name">
+																	<div className="input-group input-white">
+																		<input type="text" className="form-control"  autoComplete="off"
+																			name="productWeight"
+																			value={editFormData.productWeight}
+																			onChange={handleEditFormChange}
+																		/><span class="input-group-text">lbs</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="text-white bg-primary card card--form_element">
+													<div class="card-header">
+														<div class="text-white card-title h5">Manufacturing</div>
+													</div>
+													<div class="mb-0 card-body">
+														<div className="row">
+															<div className="form-group col-md-6 mb-4">
+																<label className="text-white font-w500">Cost per unit</label>
+																<div className="contact-name">
+																	<div className="input-group input-white">
+																		<span class="input-group-text">$</span>
+																		<input type="text" className="form-control"  autoComplete="off"
+																			name="productManufacturingCost"
+																			value={editFormData.productManufacturingCost}
+																			onChange={handleEditFormChange}
+																		/>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
 											</div>
-										</div>
-										<div className="form-group mb-3">
-											<label className="text-black font-w500">Profile</label>
-											<div className="contact-name">
-												<input type="text" className="form-control"  autoComplete="off"
-													name="profile" required="required"
-													value={editFormData.profile}
-													onChange={handleEditFormChange}
-												/>
+											<div className="col-sm-6">
+												<div class="text-white bg-primary card card--form_element">
+													<div class="card-header">
+														<div class="text-white card-title h5">Shipping Cost</div>
+													</div>
+													<div class="mb-0 card-body">
+														<div className="row">
+															<div className="form-group col-md-4 mb-4">
+																<label className="text-blawhiteck font-w500">Air</label>
+																<div className="contact-name">
+																	<div className="input-group input-white">
+																		<span class="input-group-text">$</span>
+																		<input type="text" className="form-control"  autoComplete="off"
+																			name="shippingModeAirCost"
+																			value={editFormData.shippingModeAirCost}
+																			onChange={handleEditFormChange}
+																		/>
+																	</div>
+																</div>
+															</div>
+															<div className="form-group col-md-4 mb-3">
+																<label className="text-white font-w500">Sea</label>
+																<div className="contact-name">
+																	<div className="input-group input-white">
+																	<span class="input-group-text">$</span>
+																	<input type="text" className="form-control"  autoComplete="off"
+																		name="shippingModeSeaCost"
+																		value={editFormData.shippingModeSeaCost}
+																		onChange={handleEditFormChange}
+																	/>
+																	</div>
+																</div>
+															</div>
+															<div className="form-group col-md-4 mb-3">
+																<label className="text-white font-w500">Land</label>
+																<div className="contact-name">
+																	<div className="input-group input-white">
+																	<span class="input-group-text">$</span>
+																	<input type="text" className="form-control"  autoComplete="off"
+																		name="shippingModeLandCost"
+																		value={editFormData.shippingModeLandCost}
+																		onChange={handleEditFormChange}
+																	/>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="text-black border_primary card card--form_element">
+													<div class="card-header">
+														<div class="text-black card-title h5">Attachments</div>
+													</div>
+													<div class="mb-0 card-body">
+														<div className="form-group mb-4">
+															<label className="text-black font-w500">Designs</label>
+															<div className="contact-name">
+																<div class="input-group mb-3">
+																	<div class="form-file">
+																		<input type="file" class="custom-file-input form-control" />
+																	</div>
+																	<button class="btn btn-primary btn-sm" type="button">Upload</button>
+																</div>
+															</div>
+														</div>
+														<div className="form-group mb-4">
+															<label className="text-black font-w500">Documents</label>
+															<div className="contact-name">
+																<div class="input-group mb-3">
+																	<div class="form-file">
+																		<input type="file" class="custom-file-input form-control" />
+																	</div>
+																	<button class="btn btn-primary btn-sm" type="button">Upload</button>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="text-white bg-primary card card--form_element">
+													<div class="card-header">
+														<div class="text-white card-title h5">Inventory Settings</div>
+													</div>
+													<div class="mb-0 card-body">
+														<p className="text-white">This section helps to notify when the next batch need to be ordered.</p>
+														<div className="row">
+															<div className="form-group col-md-12 mb-4">
+																<label className="text-blawhiteck font-w500">My Warehouse Stock</label>
+																<div className="contact-name">
+																	<div className="input-group input-white">
+																		<input type="text" className="form-control"  autoComplete="off"
+																			name="myWarehouseStock"
+																			value={editFormData.myWarehouseStock}
+																			onChange={handleEditFormChange}
+																		/><span class="input-group-text">Units</span>
+																	</div>
+																</div>
+															</div>
+															<div className="form-group col-md-6 mb-4">
+																<label className="text-blawhiteck font-w500">Manufacturing Time</label>
+																<div className="contact-name">
+																	<div className="input-group input-white">
+																		<input type="text" className="form-control"  autoComplete="off"
+																			name="productManufacturingDays"
+																			value={editFormData.productManufacturingDays}
+																			onChange={handleEditFormChange}
+																		/><span class="input-group-text">Days</span>
+																	</div>
+																</div>
+															</div>
+															<div className="form-group col-md-6 mb-3">
+																<label className="text-white font-w500">Fastest Shipping Time</label>
+																<div className="contact-name">
+																	<div className="input-group input-white">
+																	<input type="text" className="form-control"  autoComplete="off"
+																		name="fastestShippingDays"
+																		value={editFormData.fastestShippingDays}
+																		onChange={handleEditFormChange}
+																	/><span class="input-group-text">Days</span>
+																	</div>
+																</div>
+															</div>
+															<div className="form-group col-md-6 mb-3">
+																<label className="text-white font-w500">Shipment Handling Time</label>
+																<div className="contact-name">
+																	<div className="input-group input-white">
+																	<input type="text" className="form-control"  autoComplete="off"
+																		name="shippingHandlingDays"
+																		value={editFormData.shippingHandlingDays}
+																		onChange={handleEditFormChange}
+																	/><span class="input-group-text">Days</span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-12 col-6">
+																<div class="form-check custom-checkbox mb-3 checkbox-success">
+																	<input type="checkbox" class="form-check-input" id="customCheckBox1" required="" checked />
+																	<label class="form-check-label" for="customCheckBox1">Notify when to order</label>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="text-white bg-primary card card--form_element">
+													<div class="card-header">
+														<div class="text-white card-title h5">Order Settings</div>
+													</div>
+													<div class="mb-0 card-body">
+														<p className="text-white">Turn on/off Required Fields</p>
+														<div className="row">
+															<div class="col-xl-4 col-xxl-6 col-6">
+																<div class="form-check custom-checkbox mb-3 checkbox-success">
+																	<input type="checkbox" class="form-check-input" id="customCheckBox1" required="" checked />
+																	<label class="form-check-label" for="customCheckBox1">Expiry Date</label>
+																</div>
+															</div>
+															<div class="col-xl-4 col-xxl-6 col-6">
+																<div class="form-check custom-checkbox mb-3 checkbox-success">
+																	<input type="checkbox" class="form-check-input" id="customCheckBox1" required="" checked />
+																	<label class="form-check-label" for="customCheckBox1">Expiry Date</label>
+																</div>
+															</div>
+															<div class="col-xl-4 col-xxl-6 col-6">
+																<div class="form-check custom-checkbox mb-3 checkbox-success">
+																	<input type="checkbox" class="form-check-input" id="customCheckBox1" required="" checked />
+																	<label class="form-check-label" for="customCheckBox1">Expiry Date</label>
+																</div>
+															</div>
+															<div class="col-xl-4 col-xxl-6 col-6">
+																<div class="form-check custom-checkbox mb-3 checkbox-success">
+																	<input type="checkbox" class="form-check-input" id="customCheckBox1" required="" checked />
+																	<label class="form-check-label" for="customCheckBox1">Expiry Date</label>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -272,36 +691,13 @@ const Products = () =>{
 						{products.map((product,index)=>(
 							<div className="col-xl-3 col-xxl-4 col-lg-4 col-md-6 col-sm-6 items" key={index}>
 								<div className="card contact-bx item-content">
-									<div className="card-header border-0">
-										<div className="action-dropdown">
-											<Dropdown>
-												<Dropdown.Toggle variant="" as="div" className="btn-link i-false" >	
-													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<circle cx="12.4999" cy="3.5" r="2.5" fill="#A5A5A5"/>
-													<circle cx="12.4999" cy="11.5" r="2.5" fill="#A5A5A5"/>
-													<circle cx="12.4999" cy="19.5" r="2.5" fill="#A5A5A5"/>
-												</svg>                                  
-												</Dropdown.Toggle>	
-												<Dropdown.Menu alignRight={true} className="dropdown-menu-right">
-													<Dropdown.Item 
-														onClick={(event) => handleEditClick(event, product)}
-													>Edit
-													</Dropdown.Item>
-													<Dropdown.Item className="text-danger"
-														onClick={()=>handleDeleteClick(product.id)}
-													>Delete
-													</Dropdown.Item>		
-												</Dropdown.Menu>	
-											</Dropdown>
-										</div>
-									</div>
 									<div className="card-body user-profile">
 										<div className="image-bx">
-											<img src={product.image} alt="" className="rounded-circle" />
+											<Link to={"/product-detail"}><img src={product.productThumb} alt="" className="rounded-circle" /></Link>
 										</div>
 										<div className="media-body user-meta-info">
-											<h6 className="fs-18 font-w600 my-1"><Link to={"/product-detail"} className="text-black user-name" data-name="Alan Green">{product.name}</Link></h6>
-											<span className="d-block fs-14 user-work">{product.profile}</span>
+											<h6 className="fs-18 font-w600 my-1"><Link to={"/product-detail"} className="text-black user-name" data-name="">{product.productName}</Link></h6>
+											<span className="d-block fs-14 mb-3 user-work">{product.productSKU}</span>
 											<ul>
 												<li><Link to={"#"}><i className="fas fa-plus"></i></Link></li>
 												<li><Link onClick={(event) => handleEditClick(event, product)}><i className="far fa-edit"></i></Link></li>

@@ -442,8 +442,8 @@
         }
     }
     .avatar-preview {
-        width: 120px;
-        height: 120px;
+        width: 200px;
+        height: 200px;
         position: relative;
         border-radius: 100%;
         border: 6px solid #F8F8F8;
@@ -475,4 +475,20 @@
     flex-basis: unset;
     padding-right: 15px;
     padding-left: 15px;
+}
+.edit_product_form .image-placeholder {
+	    max-width: 200px;
+}
+.edit_product_form .image-placeholder .avatar-edit {
+	right: 20px;
+    top: 20px;
+}
+.edit_product_form .card--form_element {
+	height: auto;
+}
+.edit_product_form .border_primary {
+	border: 1px solid $primary;
+}
+.edit_product_form .border_primary .card-header {
+	border-bottom: 1px solid $primary;
 }
