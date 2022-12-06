@@ -29,8 +29,7 @@ const Products = () => {
     }, 200);
   };
 
-  //Add data
-  const [addFormData, setAddFormData] = useState({
+  const initialFormState = {
     productName: "",
     productSKU: "",
     productThumb: "",
@@ -48,7 +47,10 @@ const Products = () => {
     fastestShippingDays: "",
     shippingHandlingDays: "",
     myWarehouseStock: "",
-  });
+  };
+
+  //Add data
+  const [addFormData, setAddFormData] = useState(initialFormState);
 
   // Add Product function
   const handleAddFormChange = (event) => {
@@ -63,8 +65,8 @@ const Products = () => {
   //Add Submit data
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
-    var error = false;
-    var errorMsg = "";
+    let error = false;
+    let errorMsg = "";
     if (addFormData.name === "") {
       error = true;
       errorMsg = "Please fill Name";
@@ -141,25 +143,7 @@ const Products = () => {
   };
 
   // edit  data
-  const [editFormData, setEditFormData] = useState({
-    productName: "",
-    productSKU: "",
-    productThumb: "",
-    productASIN: "",
-    productWidth: "",
-    productHeight: "",
-    productLength: "",
-    productWeight: "",
-    productSize: "",
-    productManufacturingCost: "",
-    shippingModeAirCost: "",
-    shippingModeSeaCost: "",
-    shippingModeLandCost: "",
-    productManufacturingDays: "",
-    fastestShippingDays: "",
-    shippingHandlingDays: "",
-    myWarehouseStock: "",
-  });
+  const [editFormData, setEditFormData] = useState(initialFormState);
 
   //update data function
   const handleEditFormChange = (event) => {
@@ -233,15 +217,15 @@ const Products = () => {
             + New Product
           </Link>
           <Modal className="modal fade" show={addCard} onHide={setAddCard}>
+            <div className="modal-header">
+              <h4 className="modal-title fs-20">Add Product</h4>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setAddCard(false)}
+              ></button>
+            </div>
             <form>
-              <div className="modal-header">
-                <h4 className="modal-title fs-20">Add Product</h4>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={() => setAddCard(false)}
-                ></button>
-              </div>
               <div className="modal-body">
                 <i className="flaticon-cancel-12 close"></i>
                 <div className="add-contact-box">

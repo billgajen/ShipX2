@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import loadable from "@loadable/component";
 import pMinDelay from "p-min-delay";
 import {Dropdown} from 'react-bootstrap';
-
+import { useStateValue } from "../../../store/selectors/useStateValue";
 
 //Images
 import chart1 from './../../../images/chart.png';
@@ -49,9 +49,12 @@ const MessagesBlog  = [
 ];
 
 const Home = () => {	
-	const { changeBackground } = useContext(ThemeContext);
+	const { changeBackground, changePrimaryColor } = useContext(ThemeContext);
+	const { auth } = useStateValue();
+
 	useEffect(() => {
 		changeBackground({ value: "light", label: "Light" });
+		auth.userType === "Supplier" && changePrimaryColor("color_6");
 	}, []);
 	
 	return(
