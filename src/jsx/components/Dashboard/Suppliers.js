@@ -2,12 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';	
 import {Dropdown, Nav,Tab} from 'react-bootstrap';
 
-///Import
-import {
-	TabCard,PendingTab,
-	ProgressTab,CloseTab
-}
-from './Project/Project';
 import bg1 from "./../../../images/big/img1.jpg";
 import profile from "./../../../images/profile/profile.png";
 	
