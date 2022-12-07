@@ -3,12 +3,12 @@ import { useHistory } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useStateValue } from "../../../../../store/selectors/useStateValue";
-import { setProductsAction } from "../../../../../store/actions/ProductActions";
-import { initialFormState } from "../../../customForms/AddProductForm"
+import { useStateValue } from "../../../store/selectors/useStateValue";
+import { setProductsAction } from "../../../store/actions/ProductActions";
+import { initialFormState } from "../customForms/AddProductForm"
 
-import user from "../../../../../images/pic1.jpg";
-import bg1 from "../../../../../images/big/img1.jpg";
+import user from "./../../../images/pic1.jpg";
+import bg1 from "./../../../images/big/img1.jpg";
 
 const ProductDetail = () => {
 	const history = useHistory();
