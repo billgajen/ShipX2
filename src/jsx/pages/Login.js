@@ -18,6 +18,8 @@ function Login(props) {
   const [password, setPassword] = useState("123456");
 	const [currentUserType, setCurrentUserType] = useState(props.userType);
 
+  const isBusinessUser = currentUserType === "Business";
+
   const dispatch = useDispatch();
   function onLogin(e) {
     e.preventDefault();
@@ -118,7 +120,9 @@ function Login(props) {
                           <input
                             value={props.userType}
                             onChange={() =>
-                              setCurrentUserType("Supplier")
+                              setCurrentUserType(
+                                isBusinessUser ? "Supplier" : "Business"
+                              )
                             }
                             type="checkbox"
                             className="form-check-input"

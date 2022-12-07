@@ -9,6 +9,8 @@ import {
 } from "../../../store/actions/ProductActions";
 import { useDispatch } from "react-redux";
 import { useStateValue } from "../../../store/selectors/useStateValue";
+import AddProductForm from "../customForms/AddProductForm";
+import { initialFormState } from "../customForms/AddProductForm";
 
 import user from "./../../../images/pic1.jpg";
 
@@ -20,33 +22,13 @@ const Products = () => {
   const [productsData, setProducts] = useState(products.productsState);
 
   //For Image upload in ListBlog
-  const [file, setFile] = React.useState(null);
+  const [file, setFile] = useState(null);
   const fileHandler = (e) => {
     setFile(e.target.files[0]);
     setTimeout(function () {
       let src = document.getElementById("saveImageFile").getAttribute("src");
       addFormData.productThumb = src;
     }, 200);
-  };
-
-  const initialFormState = {
-    productName: "",
-    productSKU: "",
-    productThumb: "",
-    productASIN: "",
-    productWidth: "",
-    productHeight: "",
-    productLength: "",
-    productWeight: "",
-    productSize: "",
-    productManufacturingCost: "",
-    shippingModeAirCost: "",
-    shippingModeSeaCost: "",
-    shippingModeLandCost: "",
-    productManufacturingDays: "",
-    fastestShippingDays: "",
-    shippingHandlingDays: "",
-    myWarehouseStock: "",
   };
 
   //Add data
@@ -100,6 +82,7 @@ const Products = () => {
       };
       const newProducts = [...productsData, newProduct];
       setProducts(newProducts);
+      dispatch(setProductsAction(newProducts));
       setAddCard(false);
       swal("Good job!", "Successfully Added", "success");
       addFormData.name = addFormData.productSKU = addFormData.productThumb = "";
@@ -226,61 +209,13 @@ const Products = () => {
               ></button>
             </div>
             <form>
-              <div className="modal-body">
-                <i className="flaticon-cancel-12 close"></i>
-                <div className="add-contact-box">
-                  <div className="add-contact-content">
-                    <div className="image-placeholder">
-                      <div className="avatar-edit">
-                        <input
-                          type="file"
-                          onChange={fileHandler}
-                          id="imageUpload"
-                          onClick={(event) => setFile(event.target.value)}
-                        />
-                        <label htmlFor="imageUpload" name=""></label>
-                      </div>
-                      <div className="avatar-preview">
-                        <div id="imagePreview">
-                          <img
-                            id="saveImageFile"
-                            src={file ? URL.createObjectURL(file) : user}
-                            alt={file ? file.name : null}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="form-group mb-3">
-                      <label className="text-black font-w500">Name</label>
-                      <div className="contact-name">
-                        <input
-                          type="text"
-                          className="form-control"
-                          autoComplete="off"
-                          name="productName"
-                          required="required"
-                          onChange={handleAddFormChange}
-                          placeholder="name"
-                        />
-                      </div>
-                    </div>
-                    <div className="form-group mb-3">
-                      <label className="text-black font-w500">SKU</label>
-                      <div className="contact-name">
-                        <input
-                          type="text"
-                          className="form-control"
-                          autoComplete="off"
-                          name="productSKU"
-                          required="required"
-                          onChange={handleAddFormChange}
-                          placeholder="SKU"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <AddProductForm
+                onChangeFile={fileHandler}
+                onClickFile={(event) => setFile(event.target.value)}
+                file={file}
+                onProductNameChange={handleAddFormChange}
+                onProductASINChange={handleAddFormChange}
+              />
               <div className="modal-footer">
                 <button
                   type="submit"
@@ -306,16 +241,16 @@ const Products = () => {
             onHide={setEditModal}
             size="xl"
           >
+            <div className="modal-header">
+              <h4 className="modal-title fs-20">Edit Product</h4>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setEditModal(false)}
+                data-dismiss="modal"
+              ></button>
+            </div>
             <form>
-              <div className="modal-header">
-                <h4 className="modal-title fs-20">Edit Product</h4>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={() => setEditModal(false)}
-                  data-dismiss="modal"
-                ></button>
-              </div>
               <div className="modal-body">
                 <i
                   className="flaticon-cancel-12 close"
@@ -811,23 +746,23 @@ const Products = () => {
                   </div>
                 </div>
               </div>
-              <div className="modal-footer">
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={handleEditFormSubmit}
-                >
-                  Save
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setEditModal(false)}
-                  className="btn btn-danger"
-                >
-                  <i className="flaticon-delete-1"></i> Discard
-                </button>
-              </div>
             </form>
+            <div className="modal-footer">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={handleEditFormSubmit}
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                onClick={() => setEditModal(false)}
+                className="btn btn-danger"
+              >
+                <i className="flaticon-delete-1"></i> Discard
+              </button>
+            </div>
           </Modal>
         </div>
       </div>
