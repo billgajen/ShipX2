@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useStateValue } from "../../../../../store/selectors/useStateValue";
 import { setProductsAction } from "../../../../../store/actions/ProductActions";
+import { initialFormState } from "../../../customForms/AddProductForm"
 
 import user from "../../../../../images/pic1.jpg";
 import bg1 from "../../../../../images/big/img1.jpg";
@@ -38,7 +39,7 @@ const ProductDetail = () => {
   };
 
   //For Image upload in ListBlog
-  const [file, setFile] = React.useState(null);
+  const [file, setFile] = useState(null);
   const fileHandler = (e) => {
     setFile(e.target.files[0]);
     setTimeout(function () {
@@ -78,24 +79,7 @@ const ProductDetail = () => {
   };
 
   // edit  data
-  const [editFormData, setEditFormData] = useState({
-    productName: "",
-    productSKU: "",
-    productThumb: "",
-    productASIN: "",
-    productWidth: "",
-    productHeight: "",
-    productLength: "",
-    productWeight: "",
-    productManufacturingCost: "",
-    shippingModeAirCost: "",
-    shippingModeSeaCost: "",
-    shippingModeLandCost: "",
-    productManufacturingDays: "",
-    fastestShippingDays: "",
-    shippingHandlingDays: "",
-    myWarehouseStock: "",
-  });
+  const [editFormData, setEditFormData] = useState(initialFormState);
 
   //update data function
   const handleEditFormChange = (event) => {
@@ -132,16 +116,16 @@ const ProductDetail = () => {
             onHide={setEditModal}
             size="xl"
           >
+            <div className="modal-header">
+              <h4 className="modal-title fs-20">Edit Product</h4>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setEditModal(false)}
+                data-dismiss="modal"
+              ></button>
+            </div>
             <form>
-              <div className="modal-header">
-                <h4 className="modal-title fs-20">Edit Product</h4>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={() => setEditModal(false)}
-                  data-dismiss="modal"
-                ></button>
-              </div>
               <div className="modal-body">
                 <i
                   className="flaticon-cancel-12 close"
@@ -637,23 +621,23 @@ const ProductDetail = () => {
                   </div>
                 </div>
               </div>
-              <div className="modal-footer">
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={handleEditFormSubmit}
-                >
-                  Save
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setEditModal(false)}
-                  className="btn btn-danger"
-                >
-                  <i className="flaticon-delete-1"></i> Discard
-                </button>
-              </div>
             </form>
+            <div className="modal-footer">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={handleEditFormSubmit}
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                onClick={() => setEditModal(false)}
+                className="btn btn-danger"
+              >
+                <i className="flaticon-delete-1"></i> Discard
+              </button>
+            </div>
           </Modal>
           <Modal
             className="modal fade"

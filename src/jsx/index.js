@@ -19,6 +19,7 @@ import Project from "./components/Dashboard/Project";
 import Products from "./components/Dashboard/Products";
 import Payments from "./components/Dashboard/Payments";
 import Suppliers from "./components/Dashboard/Suppliers";
+import Clients from "./components/Dashboard/Clients";
 import Inventory from "./components/Dashboard/Inventory";
 import Kanban from "./components/Dashboard/Kanban";
 import Task from "./components/Dashboard/Task";
@@ -131,6 +132,7 @@ const Markup = () => {
     { url: "products", component: Products },
     { url: "payments", component: Payments },
     { url: "suppliers", component: Suppliers },
+    { url: "clients", component: Clients },
     { url: "inventory", component: Inventory },
     { url: "kanban", component: Kanban },
     { url: "task", component: Task },
