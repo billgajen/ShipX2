@@ -20,7 +20,7 @@ import {
 	TabCard,PendingTab,
 	ProgressTab,CloseTab
 }
-from './Order/Order.js';
+from './Orders/Orders.js';
 
 const OrderDetail = () => {
   const history = useHistory();

@@ -201,7 +201,7 @@ const SideBar = () => {
             </Link>
           </li>
           <li className={`${orders.includes(path) ? "mm-active" : ""}`}>
-            <Link to="/project" className="ai-icon">
+            <Link to="/orders" className="ai-icon">
               <i className="fas fa-ship"></i>
               <span className="nav-text">Orders</span>
             </Link>

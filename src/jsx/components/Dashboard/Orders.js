@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import { nanoid } from "nanoid";
 import { useStateValue } from "../../../store/selectors/useStateValue";
 ///Import
-import { TabCard, PendingTab, ProgressTab, CloseTab } from "./Project/Project";
+import { TabCard, PendingTab, ProgressTab, CloseTab } from "./Orders/Orders";
 
 import amazonLogo from "./../../../images/freight/amazon.png";
 
