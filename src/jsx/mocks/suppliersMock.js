@@ -2,6 +2,7 @@ import profile from "../../images/profile/profile.png";
 
 export const suppliersData = [
   {
+    id: 1,
     name: "Augo Biotech",
     image: profile,
     location: "China",
@@ -14,6 +15,7 @@ export const suppliersData = [
     ],
   },
   {
+    id: 2,
     name: "Vigo World",
     image: profile,
     location: "China",
@@ -26,6 +28,7 @@ export const suppliersData = [
     ],
   },
   {
+    id: 3,
     name: "Net Direct",
     image: profile,
     location: "USA",
@@ -38,6 +41,7 @@ export const suppliersData = [
     ],
   },
   {
+    id: 4,
     name: "Augo Biotech",
     image: profile,
     location: "China",
@@ -50,6 +54,7 @@ export const suppliersData = [
     ],
   },
   {
+    id: 5,
     name: "Net Direct",
     image: profile,
     location: "USA",

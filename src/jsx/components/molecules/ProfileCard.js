@@ -45,7 +45,7 @@ const ProfileCard = ({
             <span className="mb-0">Products</span>{" "}
             <div>
               {profileProducts.map(product => {
-                return <p className="mb-0">{product.productSKU}</p>;
+                return <p key={product.productSKU} className="mb-0">{product.productSKU}</p>;
               })}
             </div>
           </li>
@@ -55,7 +55,7 @@ const ProfileCard = ({
             <span class="btn-icon-start text-primary">
               <i class="fa fa-envelope color-primary"></i>
             </span>
-            Contact Supplier
+            Contact {profileType}
           </button>
         </div>
       </div>
