@@ -9,8 +9,7 @@ import {
 } from "../../../store/actions/ProductActions";
 import { useDispatch } from "react-redux";
 import { useStateValue } from "../../../store/selectors/useStateValue";
-import AddProductForm from "../customForms/AddProductForm";
-import { initialFormState } from "../customForms/AddProductForm";
+import AddProductForm, { initialFormState } from "../customForms/AddProductForm";
 
 import user from "./../../../images/pic1.jpg";
 

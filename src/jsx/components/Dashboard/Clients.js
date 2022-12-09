@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import ProfileCard from "../molecules/ProfileCard/ProfileCard";
 import { Link } from "react-router-dom";
-
-///Import
-import bg1 from "./../../../images/big/img1.jpg";
-import profile from "./../../../images/profile/profile.png";
+import { useStateValue } from "../../../store/selectors/useStateValue";
+import { useDispatch } from "react-redux";
+import { setSelectedClientIdAction } from "../../../store/actions/clientActions";
 
 const Clients = () => {
+	const { clients } = useStateValue();
+  const dispatch = useDispatch();
+
+  const [clientsData, ] = useState(clients.clientsState);
+
+  const handleSelectClient = (id) => {
+    const newClientData = [...clientsData];
+    const selectedClient = newClientData.find(
+      (client) => client.id === id
+    );
+    dispatch(setSelectedClientIdAction(selectedClient.id));
+  };
+
   return (
     <>
       <div className="d-flex justify-content-between align-items-center flex-wrap">
@@ -28,251 +41,23 @@ const Clients = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-xl-4 col-lg-6 col-sm-12">
-          <div className="card overflow-hidden">
-            <div
-              className="text-center p-3 overlay-box"
-              style={{ backgroundImage: `url(${bg1})` }}
-            >
-              <div className="profile-photo">
-                <img
-                  src={profile}
-                  width="100"
-                  className="m-auto img-fluid rounded-circle d-block"
-                  alt=""
-                />
-              </div>
-              <h3 className="mt-3 mb-1 text-white">Wixar Naturals</h3>
-              <p className="text-white mb-0">Client</p>
-            </div>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Location</span>{" "}
-                <strong className="text-muted">England</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Email</span>{" "}
-                <strong className="text-muted">first.last@company.com</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Phone</span>{" "}
-                <strong className="text-muted">+1684123456</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Products</span>{" "}
-                <div>
-                  <p className="mb-0">BL003 DRESS01</p>
-                  <p className="mb-0">BL003 DRESS02</p>
-                  <p className="mb-0">BL003 DRESS03</p>
-                </div>
-              </li>
-            </ul>
-            <div className="card-footer text-center border-0 mt-0">
-              <button type="button" class="me-2 btn btn-primary btn-rounded">
-                <span class="btn-icon-start text-primary">
-                  <i class="fa fa-envelope color-primary"></i>
-                </span>
-                Contact Client
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-4 col-lg-6 col-sm-12">
-          <div className="card overflow-hidden">
-            <div
-              className="text-center p-3 overlay-box"
-              style={{ backgroundImage: `url(${bg1})` }}
-            >
-              <div className="profile-photo">
-                <img
-                  src={profile}
-                  width="100"
-                  className="m-auto img-fluid rounded-circle d-block"
-                  alt=""
-                />
-              </div>
-              <h3 className="mt-3 mb-1 text-white">Wixar Naturals</h3>
-              <p className="text-white mb-0">Client</p>
-            </div>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Location</span>{" "}
-                <strong className="text-muted">England</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Email</span>{" "}
-                <strong className="text-muted">first.last@company.com</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Phone</span>{" "}
-                <strong className="text-muted">+1684123456</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Products</span>{" "}
-                <div>
-                  <p className="mb-0">BL003 DRESS01</p>
-                  <p className="mb-0">BL003 DRESS02</p>
-                  <p className="mb-0">BL003 DRESS03</p>
-                </div>
-              </li>
-            </ul>
-            <div className="card-footer text-center border-0 mt-0">
-              <button type="button" class="me-2 btn btn-primary btn-rounded">
-                <span class="btn-icon-start text-primary">
-                  <i class="fa fa-envelope color-primary"></i>
-                </span>
-                Contact Client
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-4 col-lg-6 col-sm-12">
-          <div className="card overflow-hidden">
-            <div
-              className="text-center p-3 overlay-box"
-              style={{ backgroundImage: `url(${bg1})` }}
-            >
-              <div className="profile-photo">
-                <img
-                  src={profile}
-                  width="100"
-                  className="m-auto img-fluid rounded-circle d-block"
-                  alt=""
-                />
-              </div>
-              <h3 className="mt-3 mb-1 text-white">Wixar Naturals</h3>
-              <p className="text-white mb-0">Client</p>
-            </div>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Location</span>{" "}
-                <strong className="text-muted">England</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Email</span>{" "}
-                <strong className="text-muted">first.last@company.com</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Phone</span>{" "}
-                <strong className="text-muted">+1684123456</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Products</span>{" "}
-                <div>
-                  <p className="mb-0">BL003 DRESS01</p>
-                  <p className="mb-0">BL003 DRESS02</p>
-                  <p className="mb-0">BL003 DRESS03</p>
-                </div>
-              </li>
-            </ul>
-            <div className="card-footer text-center border-0 mt-0">
-              <button type="button" class="me-2 btn btn-primary btn-rounded">
-                <span class="btn-icon-start text-primary">
-                  <i class="fa fa-envelope color-primary"></i>
-                </span>
-                Contact Client
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-4 col-lg-6 col-sm-12">
-          <div className="card overflow-hidden">
-            <div
-              className="text-center p-3 overlay-box"
-              style={{ backgroundImage: `url(${bg1})` }}
-            >
-              <div className="profile-photo">
-                <img
-                  src={profile}
-                  width="100"
-                  className="m-auto img-fluid rounded-circle d-block"
-                  alt=""
-                />
-              </div>
-              <h3 className="mt-3 mb-1 text-white">Wixar Naturals</h3>
-              <p className="text-white mb-0">Client</p>
-            </div>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Location</span>{" "}
-                <strong className="text-muted">England</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Email</span>{" "}
-                <strong className="text-muted">first.last@company.com</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Phone</span>{" "}
-                <strong className="text-muted">+1684123456</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Products</span>{" "}
-                <div>
-                  <p className="mb-0">BL003 DRESS01</p>
-                  <p className="mb-0">BL003 DRESS02</p>
-                  <p className="mb-0">BL003 DRESS03</p>
-                </div>
-              </li>
-            </ul>
-            <div className="card-footer text-center border-0 mt-0">
-              <button type="button" class="me-2 btn btn-primary btn-rounded">
-                <span class="btn-icon-start text-primary">
-                  <i class="fa fa-envelope color-primary"></i>
-                </span>
-                Contact Client
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-4 col-lg-6 col-sm-12">
-          <div className="card overflow-hidden">
-            <div
-              className="text-center p-3 overlay-box"
-              style={{ backgroundImage: `url(${bg1})` }}
-            >
-              <div className="profile-photo">
-                <img
-                  src={profile}
-                  width="100"
-                  className="m-auto img-fluid rounded-circle d-block"
-                  alt=""
-                />
-              </div>
-              <h3 className="mt-3 mb-1 text-white">Wixar Naturals</h3>
-              <p className="text-white mb-0">Client</p>
-            </div>
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Location</span>{" "}
-                <strong className="text-muted">England</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Email</span>{" "}
-                <strong className="text-muted">first.last@company.com</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Phone</span>{" "}
-                <strong className="text-muted">+1684123456</strong>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="mb-0">Products</span>{" "}
-                <div>
-                  <p className="mb-0">BL003 DRESS01</p>
-                  <p className="mb-0">BL003 DRESS02</p>
-                  <p className="mb-0">BL003 DRESS03</p>
-                </div>
-              </li>
-            </ul>
-            <div className="card-footer text-center border-0 mt-0">
-              <button type="button" class="me-2 btn btn-primary btn-rounded">
-                <span class="btn-icon-start text-primary">
-                  <i class="fa fa-envelope color-primary"></i>
-                </span>
-                Contact Client
-              </button>
-            </div>
-          </div>
-        </div>
+        {clientsData.map((client) => {
+          return (
+            <ProfileCard
+              key={client.id}
+              profileName={client.name}
+              profileType="Client"
+              profileImage={client.image}
+              profileLocation={client.location}
+              profileEmail={client.email}
+              profilePhone={client.phoneNumber}
+              profileProducts={client.products}
+              link1="#"
+              link2={`/client-profile/${client.id}`}
+              onClick2={() => handleSelectClient(client.id)}
+            />
+          );
+        })}
       </div>
     </>
   );

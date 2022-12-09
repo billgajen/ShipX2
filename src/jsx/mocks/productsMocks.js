@@ -7,7 +7,6 @@ import pic6 from "../../images/pic6.jpg";
 import pic8 from "../../images/contacts/2.jpg";
 import pic9 from "../../images/contacts/3.jpg";
 import pic10 from "../../images/contacts/4.jpg";
-// import pic11 from "../../images/contacts/5.jpg";
 
 export const productsData = [
   {

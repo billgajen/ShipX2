@@ -21,6 +21,8 @@ import Products from "./components/Dashboard/Products";
 import ProductDetail from "./components/Dashboard/ProductDetail";
 import Payments from "./components/Dashboard/Payments";
 import Suppliers from "./components/Dashboard/Suppliers";
+import SupplierProfile from "./components/Dashboard/SupplierProfile";
+import ClientProfile from "./components/Dashboard/ClientProfile";
 import Clients from "./components/Dashboard/Clients";
 import Inventory from "./components/Dashboard/Inventory";
 import Kanban from "./components/Dashboard/Kanban";
@@ -131,26 +133,28 @@ const Markup = () => {
     { url: "dashboard-dark", component: DashboardDark },
     { url: "orders", component: Orders },
     { url: "order-detail", component: OrderDetail },
+    { url: "payments", component: Payments },
     { url: "products", component: Products },
     { url: "product-detail/:id", component: ProductDetail },
-    { url: "payments", component: Payments },
     { url: "suppliers", component: Suppliers },
+    { url: "supplier-profile/:id", component: SupplierProfile },
     { url: "clients", component: Clients },
+    { url: "client-profile/:id", component: ClientProfile },
     { url: "inventory", component: Inventory },
     { url: "kanban", component: Kanban },
     { url: "task", component: Task },
-	{ url: "calendar", component: DashboardCalendar },
+    { url: "calendar", component: DashboardCalendar },
     { url: "messages", component: Messages },
-	
-	///Demo
+
+    ///Demo
     { url: "theme1", component: Theme1 },
     { url: "theme2", component: Theme2 },
     { url: "theme3", component: Theme3 },
     { url: "theme4", component: Theme4 },
     { url: "theme5", component: Theme5 },
     { url: "theme6", component: Theme6 },
-	
-	/// Apps
+
+    /// Apps
     { url: "app-profile", component: AppProfile },
     { url: "email-compose", component: Compose },
     { url: "email-inbox", component: Inbox },
@@ -193,11 +197,11 @@ const Markup = () => {
     { url: "map-jqvmap", component: JqvMap },
     { url: "uc-lightgallery", component: Lightgallery },
 
-	///Redux
-	{ url: "todo", component: Todo },
-	//{ url: "redux-form", component: ReduxForm },
+    ///Redux
+    { url: "todo", component: Todo },
+    //{ url: "redux-form", component: ReduxForm },
     //{ url: "redux-wizard", component: WizardForm },
-	
+
     /// Widget
     { url: "widget-basic", component: Widget },
 
@@ -217,8 +221,8 @@ const Markup = () => {
     { url: "form-validation-jquery", component: jQueryValidation },
 
     /// table
-	{ url: 'table-filtering', component: FilteringTable },
-    { url: 'table-sorting', component: SortingTable },
+    { url: "table-filtering", component: FilteringTable },
+    { url: "table-sorting", component: SortingTable },
     { url: "table-datatable-basic", component: DataTable },
     { url: "table-bootstrap-basic", component: BootstrapTable },
 
