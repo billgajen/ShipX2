@@ -1,0 +1,22 @@
+.link-with-icon {
+  margin: 0 10px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+  background: var(--rgba-primary-1);
+  color: var(--primary);
+  line-height: 60px;
+  display: block;
+  font-size: 26px;
+  transition: all 0.5s;
+  text-align:center;
+  &:hover{
+    background:var(--primary);
+    color:#fff;
+  }
+}
+
+.links-container {
+  display: flex;
+  justify-content: center;
+}
