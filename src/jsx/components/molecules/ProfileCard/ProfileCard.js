@@ -1,5 +1,6 @@
 import React from "react";
-import bg1 from "./../../../images/big/img1.jpg";
+import LinkWithIcon from "../../elements/LinkWithIcon/LinkWithIcon";
+import bg1 from "../../../../images/big/img1.jpg";
 
 const ProfileCard = ({
   profileName,
@@ -8,7 +9,11 @@ const ProfileCard = ({
   profileLocation,
   profileEmail,
   profilePhone,
-  profileProducts
+  profileProducts,
+  link1,
+  link2,
+  onClick1,
+  onClick2,
 }) => {
   return (
     <div className="col-xl-4 col-lg-6 col-sm-12">
@@ -44,19 +49,21 @@ const ProfileCard = ({
           <li className="list-group-item d-flex justify-content-between">
             <span className="mb-0">Products</span>{" "}
             <div>
-              {profileProducts.map(product => {
-                return <p key={product.productSKU} className="mb-0">{product.productSKU}</p>;
+              {profileProducts.map((product) => {
+                return (
+                  <p key={product.productSKU} className="mb-0">
+                    {product.productSKU}
+                  </p>
+                );
               })}
             </div>
           </li>
         </ul>
         <div className="card-footer text-center border-0 mt-0">
-          <button type="button" class="me-2 btn btn-primary btn-rounded">
-            <span class="btn-icon-start text-primary">
-              <i class="fa fa-envelope color-primary"></i>
-            </span>
-            Contact {profileType}
-          </button>
+          <div className="links-container">
+            <LinkWithIcon path={link1} onClick={onClick1} iconName="fa-envelope" />
+            <LinkWithIcon path={link2} onClick={onClick2} iconName="fa-user" />
+          </div>
         </div>
       </div>
     </div>

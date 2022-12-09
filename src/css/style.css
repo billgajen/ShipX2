@@ -24894,6 +24894,33 @@ table.dataTable.display tbody td {
   border: 0 !important;
   margin-left: 0.625rem; }
 
+.link-with-icon {
+  margin: 0 10px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+  background: var(--rgba-primary-1);
+  color: var(--primary);
+  line-height: 60px;
+  display: block;
+  font-size: 26px;
+  transition: all 0.5s;
+  text-align: center; }
+  .link-with-icon:hover {
+    background: var(--primary);
+    color: #fff; }
+
+.links-container {
+  display: flex;
+  justify-content: center; }
+
+.cover-photo.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .cover-photo.banner h1, .cover-photo.banner .h1 {
+    color: #fff; }
+
 .error-page .error-text {
   font-size: 9.375rem;
   line-height: 1; }

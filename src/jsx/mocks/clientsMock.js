@@ -1,12 +1,12 @@
 import profile from "../../images/profile/profile.png";
 
-export const suppliersData = [
+export const clientsData = [
   {
     id: 869741,
-    name: "Augo Biotech",
+    name: "Bluum Limited",
     image: profile,
-    location: "China",
-    email: "Rebekah.last@company.com",
+    location: "Canada",
+    email: "siven.bill@bluumlimited.com",
     phoneNumber: "+1684123456",
     products: [
       { productSKU: "BL003 DRESS01" },
@@ -16,11 +16,11 @@ export const suppliersData = [
   },
   {
     id: 578382,
-    name: "Vigo World",
+    name: "Wixar Naturals",
     image: profile,
-    location: "China",
-    email: "Sunny.last@company.com",
-    phoneNumber: "+1684123456",
+    location: "Sri Lanka",
+    email: "gajen.b@thewixar.com",
+    phoneNumber: "+94684123456",
     products: [
       { productSKU: "BL003 DRESS01" },
       { productSKU: "BL003 DRESS02" },
@@ -29,11 +29,11 @@ export const suppliersData = [
   },
   {
     id: 283843,
-    name: "Net Direct",
+    name: "Bluum Realty",
     image: profile,
-    location: "USA",
-    email: "Isabel.last@company.com",
-    phoneNumber: "+1684123456",
+    location: "United Kingdom",
+    email: "pravien.b@bluumrealty.com",
+    phoneNumber: "+44684123456",
     products: [
       { productSKU: "BL003 DRESS01" },
       { productSKU: "BL003 DRESS02" },
@@ -42,10 +42,10 @@ export const suppliersData = [
   },
   {
     id: 129834,
-    name: "Augo Biotech",
+    name: "Wixar LLC",
     image: profile,
-    location: "China",
-    email: "first.last@company.com",
+    location: "USA",
+    email: "rajen.b@thewixarllc.com",
     phoneNumber: "+1684123456",
     products: [
       { productSKU: "BL003 DRESS01" },
