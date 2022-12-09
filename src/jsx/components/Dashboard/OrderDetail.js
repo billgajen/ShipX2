@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState , Fragment } from "react";
 import { useHistory } from "react-router-dom";
-import { Modal } from "react-bootstrap";
+import { Modal,Dropdown, SplitButton, ButtonGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useStateValue } from "../../../store/selectors/useStateValue";
@@ -9,11 +9,8 @@ import { setProductsAction } from "../../../store/actions/ProductActions";
 import user from "./../../../images/pic1.jpg";
 import bg1 from "./../../../images/big/img1.jpg";
 import amazonLogo from './../../../images/freight/amazon.png';
-import pic1 from './../../../images/profile/small/pic1.jpg';
-import pic2 from './../../../images/profile/small/pic2.jpg';
-import pic3 from './../../../images/profile/small/pic3.jpg';
-import pic4 from './../../../images/profile/small/pic4.jpg';
-import pic5 from './../../../images/profile/small/pic5.jpg';
+import freight1 from './../../../images/freight/dhl.png';
+import avatar1 from "./../../../images/avatar/1.jpg";
 
 ///Import
 import {
@@ -21,6 +18,9 @@ import {
 	ProgressTab,CloseTab
 }
 from './Orders/Orders.js';
+
+import PerfectScrollbar from "react-perfect-scrollbar";
+
 
 const OrderDetail = () => {
   const history = useHistory();
@@ -703,227 +703,238 @@ const OrderDetail = () => {
     </div>
       <div className="row">
         <div className="col-xl-12">
-          <div className="card">
-            <div className="card-body">
-                <div className="row">
-                    <div className="col-xl-3  col-lg-6 col-sm-12 align-items-center product-details">
-                        <div className="media-body">
+            <div className="card">
+                <div className="card-body">
+                    <div className="d-flex align-items-center justify-content-between flex-wrap">
+                        <div className="mb-3">
                             <span className="text-primary d-block fs-18 font-w600 mb-1">#PO-000441429</span>
                             <span className="d-block mb-2 fs-14"><i className="fas fa-calendar me-2"></i>Ordered on Sep 8th, 2020</span>
-                            <div className="d-flex project-image mb-3">
-                                <img src={user} alt="" />
-                                <div>
-                                    <h3 className="fs-18 text-black font-w600">Womens Vintage Retro Bodycon Ladies</h3>
-                                </div>
-                            </div>
-                            <span className="d-block fs-12 font-w500">SKU: BL003 DRESS01</span>
-                            <span className="d-block fs-12 font-w500">ASIN: B09ABC2327</span>
+                            <h4 className="fs-22 font-w700 mb-0">Womens Vintage Retro Bodycon Ladies</h4>
+                            <div class="mt-1 fs-16 font-w500 mb-2"><span class="font-w600 text-primary">L003 DRESS01</span><span class=""> / B09ABC2327</span></div>
+                            <SplitButton
+                              as={ButtonGroup}
+                              id="dropdown-button-drop-down"
+                              drop="down"
+                              variant="primary"
+                              size="sm"
+                              title="Mark Status"
+                              className="mt-1 me-1 mb-0"
+                            >
+                              <Dropdown.Item href="#">Production</Dropdown.Item>
+                              <Dropdown.Item href="#">Shipped</Dropdown.Item>
+                              <Dropdown.Item href="#">Closed</Dropdown.Item>
+                              <div className="dropdown-divider"></div>
+                              <Dropdown.Item href="#">Cancelled</Dropdown.Item>
+                            </SplitButton>
                         </div>
-                    </div>
-                    <div className="col-xl-3 col-lg-3 col-sm-4 col-6 mb-3 order-details">
-                        <div className="d-flex align-items-center project-image mb-3">
-                            <img src={user} alt="" />
-                            <div>
-                                <h3 className="fs-16 text-black font-w600 mb-0">Mmondschein LLC</h3>
-                            </div>
-                        </div>
-                        <div className="d-flex align-items-end mt-2 justify-content-between">
-                            <span className="d-block fs-16 text-black font-w600 mb-0">5000 Units</span>
-                            <span>1500 Remaining</span>
-                        </div>
-                        <div className="progress  mb-4">
-                            <div className="progress-bar progress-animated" style={{ width: "50%" }}></div>
-                        </div>
-                        <div className="d-flex align-items-end mt-2 justify-content-between">
-                            <span className="d-block fs-16 text-black font-w600 mb-0">$9000</span>
-                            <span>$4500 Remaining</span>
-                        </div>
-                        <div className="progress">
-                            <div className="progress-bar progress-animated" style={{ width: "60%" }}></div>
-                        </div>
-                    </div>
-                    <div className="col-xl-3 col-lg-3 col-sm-4 col-6 mb-3">
-                        <div className="d-flex justify-content-between">
+                        <div className="mb-3"> 
                             <div className="d-flex align-items-center project-image mb-3">
                                 <img src={user} alt="" />
                                 <div>
-                                    <small className="d-block fs-16 font-w700">Tracking ID</small>
-                                    <span className="d-block fs-12 font-w500">770532218138</span>
+                                    <h3 className="fs-16 text-black font-w600 mb-0">Mmondschein LLC</h3>
                                 </div>
                             </div>
-                            <div className="project-image">
-                                <svg className="me-0" width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="27.5" cy="27.5" r="27.5" fill="#886CC0"/>
-                                    <g clipPath="url(#clip0)">
-                                    <path d="M37.2961 23.6858C37.1797 23.4406 36.9325 23.2843 36.661 23.2843H29.6088L33.8773 16.0608C34.0057 15.8435 34.0077 15.5738 33.8826 15.3546C33.7574 15.1354 33.5244 14.9999 33.2719 15L27.2468 15.0007C26.9968 15.0008 26.7656 15.1335 26.6396 15.3495L18.7318 28.905C18.6049 29.1224 18.604 29.3911 18.7294 29.6094C18.8548 29.8277 19.0873 29.9624 19.3391 29.9624H26.3464L24.3054 38.1263C24.2255 38.4457 24.3781 38.7779 24.6725 38.9255C24.7729 38.9757 24.8806 39 24.9872 39C25.1933 39 25.3952 38.9094 25.5324 38.7413L37.2058 24.4319C37.3774 24.2215 37.4126 23.931 37.2961 23.6858Z" fill="white"/>
-                                    </g>
-                                    <defs>
-                                    <clipPath>
-                                    <rect width="24" height="24" fill="white" transform="translate(16 15)"/>
-                                    </clipPath>
-                                    </defs>
-                                </svg>
+                            <button type="button" class="me-2 btn btn-primary btn-rounded">
+                              <span class="btn-icon-start text-primary"><i className="fas fa-plus"></i></span>
+                              Tracking details
+                            </button>
+                        </div>
+                        <div className="mb-3">
+                            <div className="d-flex align-items-end mt-2 justify-content-between">
+                                <h4 className="fs-20 font-w700 mb-0 text-success me-5">5000 Units</h4>
+                                <span>1500 Remaining</span>
                             </div>
-                        </div>
-                        <span className="d-block fs-16 text-black font-w600">In Transit</span>
-                        <div className="progress mb-2">
-                            <div className="progress-bar progress-animated bg-success" style={{ width: "50%" }}></div>
-                        </div>
-                        <span className="d-block fs-12 font-w500">Shipment has departed from a DHL facility CINCINNATI HUB - USA</span>
-                    </div>
-                    <div className="col-xl-3  col-lg-6 col-sm-6 mb-sm-4 mb-0">
-                        <div className="d-flex align-items-center project-image mb-3">
-                            <img src={amazonLogo} alt="" />
-                            <div>
-                                <small className="d-block fs-16 font-w700">Shipping ID</small>
-                                <span className="d-block fs-12 font-w500">FBA16YR0BH62</span>
+                            <div className="progress  mb-4">
+                                <div className="progress-bar progress-animated" style={{ width: "50%" }}></div>
                             </div>
-                        </div>
-                        <span className="d-block fs-16 text-black font-w600">Receiving</span>
-                        <div className="progress mb-2">
-                            <div className="progress-bar progress-animated" style={{ width: "75%" }}></div>
-                        </div>
-                        <span className="d-block fs-12 font-w500">Delivered to IND9,1151 S GRAHAM RD,GREENWOOD,IN,46143-7830,US</span>
-                    </div>
-                    <div className="col-xl-12  col-lg-6 col-sm-4 text-end">
-                        <div className="d-flex justify-content-end align-items-center flex-wrap">
-                            <div className="me-2"><a className="badge badge-outline-primary badge-circle"><i className="fs-22 fas fa-file-pdf"></i></a></div>
-                            <div className="d-flex justify-content-end project-btn">
-                            <Link to={"#"} className=" btn btn-sm bg-progress fs-18 font-w600 text-nowrap btn-rounded">ON PROGRESS<i class="fas fa-chevron-right ms-2"></i></Link>
-                            </div>	
-                        </div>
-                    </div>
-                </div>	
-            </div>	
-          </div>
-        </div>
-      </div>
-      <div className="row">
-            <div className="col-xl-12">
-                <div className="card">
-                    <div className="card-body">
-                        <div className="d-flex align-items-center justify-content-between flex-wrap">
-                            <div className="mb-3">
-                                <span className="text-primary d-block fs-18 font-w600 mb-1">#PO-000441429</span>
-                                <span className="d-block mb-2 fs-14"><i className="fas fa-calendar me-2"></i>Ordered on Sep 8th, 2020</span>
-                                <h4 className="fs-22 font-w700 mb-0">Womens Vintage Retro Bodycon Ladies</h4>
-                                <div class="mt-1 fs-16 font-w500"><span class="font-w600 text-primary">L003 DRESS01</span><span class=""> / B09ABC2327</span></div>
+                            <div className="d-flex align-items-end mt-2 justify-content-between">
+                                <h4 className="fs-20 font-w700 mb-0 text-danger me-5">$9000</h4>
+                                <span>$4500 Remaining</span>
                             </div>
-                            <div className="mb-3"> 
-                                <div className="d-flex align-items-center project-image mb-3">
-                                    <img src={user} alt="" />
-                                    <div>
-                                        <h3 className="fs-16 text-black font-w600 mb-0">Mmondschein LLC</h3>
-                                    </div>
-                                </div>
+                            <div className="progress">
+                                <div className="progress-bar progress-animated" style={{ width: "60%" }}></div>
                             </div>
-                            <div className="mb-3">
-                                <div className="d-flex align-items-end mt-2 justify-content-between">
-                                    <h4 className="fs-20 font-w700 mb-0 text-success me-5">5000 Units</h4>
-                                    <span>1500 Remaining</span>
-                                </div>
-                                <div className="progress  mb-4">
-                                    <div className="progress-bar progress-animated" style={{ width: "50%" }}></div>
-                                </div>
-                                <div className="d-flex align-items-end mt-2 justify-content-between">
-                                    <h4 className="fs-20 font-w700 mb-0 text-danger me-5">$9000</h4>
-                                    <span>$4500 Remaining</span>
-                                </div>
-                                <div className="progress">
-                                    <div className="progress-bar progress-animated" style={{ width: "60%" }}></div>
-                                </div>
-                            </div>	
-                        </div>
+                        </div>	
                     </div>
                 </div>
-            </div>				
-        </div>	
+            </div>
+        </div>
+      </div>				
       <div className="row">
         <div className="col-xl-4 col-lg-6 col-sm-12">
-          <div className="card overflow-hidden">
-            <div
-              className="text-center p-3 overlay-box"
-              style={{ backgroundImage: `url(${bg1})` }}
-            >
-              <div className="profile-photo">
-                <img
-                  src={product?.productThumb}
-                  width="100"
-                  className="m-auto img-fluid rounded-circle d-block"
-                  alt=""
-                />
-              </div>
-              <h3 className="mt-3 mb-1 text-white">Shipment Tracking</h3>
-              <p className="text-white mb-0">Supplier</p>
-            </div>
-            <div className="card-body">
-            <span className="d-block fs-16 text-black font-w600">In Transit</span>
-                <div className="progress mb-2">
-                    <div className="progress-bar progress-animated bg-success" style={{ width: "50%" }}></div>
+          <div className="row">
+            <div className="col-sm-12">
+              <div className="card overflow-hidden">
+                <div
+                  className="text-center p-3 overlay-box"
+                  style={{ backgroundImage: `url(${bg1})` }}
+                >
+                  <h3 className="mt-3 mb-1 text-white">Shipment Tracking</h3>
                 </div>
-                <span className="d-block fs-12 font-w500">Shipment has departed from a DHL facility CINCINNATI HUB - USA</span>
+                <div className="card-body">
+                    <div className="freight_tracking">
+                        <div className="mb-3">
+                          <div className="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                              <div className="d-flex align-items-center project-image">
+                                  <img src={freight1} alt="" />
+                                  <div>
+                                      <small className="d-block fs-16 font-w700">Tracking ID</small>
+                                      <span className="d-block fs-12 font-w500">770532218138</span>
+                                  </div>
+                              </div>
+                              <div class="media-body user-meta-info">
+                                <ul>
+                                  <li><a href="/react/demo/contacts"><i class="fas fa-plane"></i></a></li>
+                                </ul>
+                              </div>
+                          </div>
+                          <span className="d-block fs-16 text-black font-w600">In Transit</span>
+                          <div className="progress mb-2">
+                              <div className="progress-bar progress-animated bg-success" style={{ width: "50%" }}></div>
+                          </div>
+                          <span className="d-block fs-12 font-w500">Shipment has departed from a DHL facility CINCINNATI HUB - USA</span>
+                        </div>
+                        <div className="row">
+                          <div className="col-xl-6">
+                            <h6 className="mb-0">From:</h6>
+                            <div className="fs-12 font-w400">
+                              <span className="d-block">State Name</span>
+                              <span className="d-block">CN</span>
+                            </div>
+                          </div>
+                          <div className="col-xl-6">
+                            <h6 className="mb-0">To:</h6>
+                            <div className="fs-12 font-w400">
+                              <span className="d-block">IN 46143-7830</span>
+                              <span className="d-block">US (IND9)</span>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="card-footer text-center border-0 mt-0">
+                  <button type="button" class="me-2 btn btn-primary btn-rounded">
+                    <span class="btn-icon-start text-primary"><i className="fas fa-plus"></i></span>
+                    Tracking details
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="card-footer text-center border-0 mt-0">
-              <button type="button" class="me-2 btn btn-danger btn-rounded">
-                <span class="btn-icon-start text-danger">
-                  <i class="fa fa-link color-danger"></i>
-                </span>
-                Remove Supplier
-              </button>
+          </div>
+          <div className="row">
+            <div className="col-sm-12">
+              <div className="card overflow-hidden">
+                <div
+                  className="text-center p-3 overlay-box"
+                  style={{ backgroundImage: `url(${bg1})` }}
+                >
+                  <div className="profile-photo">
+                    <img
+                      src={product?.productThumb}
+                      width="100"
+                      className="m-auto img-fluid rounded-circle d-block"
+                      alt=""
+                    />
+                  </div>
+                  <h3 className="mt-3 mb-1 text-white">Amazon Tracking</h3>
+                </div>
+                <div className="card-body">
+                    <div className="amazon_tracking mb-4">
+                        <div className="mb-3">
+                          <div className="d-flex align-items-center project-image mb-3">
+                              <img src={amazonLogo} alt="" />
+                              <div>
+                                  <small className="d-block fs-16 font-w700">Shipping ID</small>
+                                  <span className="d-block fs-12 font-w500">FBA16YR0BH62</span>
+                              </div>
+                          </div>
+                          <span className="d-block fs-16 text-black font-w600">Receiving</span>
+                          <div className="progress mb-2">
+                              <div className="progress-bar progress-animated" style={{ width: "75%" }}></div>
+                          </div>
+                          <span className="d-block fs-12 font-w500">IND9, 1151 S GRAHAM RD, GREENWOOD, IN, 46143-7830, US</span>
+                        </div>
+                        <div className="row">
+                          <div className="col-xl-6">
+                            <h6 className="mb-0">Units expected</h6>
+                            <div className="">
+                              <span className="fs-18 font-w600 d-block text-success">400</span>
+                            </div>
+                          </div>
+                          <div className="col-xl-6">
+                            <h6 className="mb-0">Units received</h6>
+                            <div className="">
+                              <span className="fs-18 font-w400 d-block text-danger">397</span>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div className="amazon_tracking mb-3">
+                        <div className="mb-3">
+                          <div className="d-flex align-items-center project-image mb-3">
+                              <img src={amazonLogo} alt="" />
+                              <div>
+                                  <small className="d-block fs-16 font-w700">Shipping ID</small>
+                                  <span className="d-block fs-12 font-w500">FBA16YR0BH62</span>
+                              </div>
+                          </div>
+                          <span className="d-block fs-16 text-black font-w600">Shipment created</span>
+                          <div className="progress mb-2">
+                              <div className="progress-bar progress-animated" style={{ width: "5%" }}></div>
+                          </div>
+                          <span className="d-block fs-12 font-w500">&nbsp;</span>
+                        </div>
+                        <div className="row">
+                          <div className="col-xl-6">
+                            <h6 className="mb-0">Units expected</h6>
+                            <div className="">
+                              <span className="fs-18 font-w600 d-block text-success">640</span>
+                            </div>
+                          </div>
+                          <div className="col-xl-6">
+                            <h6 className="mb-0">Units received</h6>
+                            <div className="">
+                              <span className="fs-18 font-w400 d-block text-danger">0</span>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="card-footer text-center border-0 mt-0">
+                  <button type="button" class="me-2 btn btn-primary btn-rounded">
+                    <span class="btn-icon-start text-primary"><i className="fas fa-plus"></i></span>
+                    Tracking details
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div className="col-xl-8 col-lg-6 col-sm-12">
           <div className="row">
-            <div className="col-lg-12">
+            <div className="col-xl-7 col-lg-12">
               <div className="text-white bg-primary card">
-                <div className="card-header">
-                  <div className="text-white card-title h5">Manufacturing</div>
-                </div>
-                <div className="card-body">
-                  <div className="profile-statistics">
-                    <div className="text-center">
-                      <div className="row">
-                        <div className="col text-white">
-                          <h2 className="m-b-0 text-white font-w700">
-                            ${product?.productManufacturingCost}
-                          </h2>
-                          <span>per unit</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-7">
-              <div className="text-white bg-primary card">
-                <div className="card-header">
+                <div className="card-header justify-content-between">
                   <div className="text-white card-title h5">
-                    Shipping per Unit
+                    Payment Status
                   </div>
+                  <button type="button" class="btn btn-dark light btn-sm">Update</button>
                 </div>
                 <div className="card-body">
                   <div className="profile-statistics">
                     <div className="text-center">
                       <div className="row">
                         <div className="col text-white">
-                          <h3 className="m-b-0 text-white">
-                            ${product?.shippingModeAirCost}
-                          </h3>
-                          <span>Air</span>
+                          <h3 className="m-b-0 text-white font-w600">$9000</h3>
+                          <span>Total</span>
                         </div>
                         <div className="col text-white">
-                          <h3 className="m-b-0 text-white">
-                            ${product?.shippingModeSeaCost}
-                          </h3>{" "}
-                          <span>Sea</span>
+                          <h3 className="m-b-0 text-success font-w600">$3000</h3>{" "}
+                          <span>Paid</span>
                         </div>
                         <div className="col text-white">
-                          <h3 className="m-b-0 text-white">
-                            ${product?.shippingModeLandCost}
-                          </h3>{" "}
-                          <span>Ground</span>
+                          <h3 className="m-b-0 text-white">$6000</h3>{" "}
+                          <span>Remaining</span>
                         </div>
                       </div>
                     </div>
@@ -931,7 +942,94 @@ const OrderDetail = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-7">
+            <div className="col-xl-5 col-lg-12">
+              <div className="card">
+                <div className="card-header">
+                  <div className="card-title h5">Invoice</div>
+                </div>
+                <div className="card-body">
+                  <div className="profile-statistics">
+                    <div className="text-center">
+                      <button type="button" class="me-2 btn btn-primary btn-rounded">
+                        <span class="btn-icon-start text-primary"><i className="fas fa-plus"></i></span>
+                        Upload
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-12">
+              <div className="card">
+                <div className="card-header">
+                  <div className="text-black card-title h5">Batch Information</div>
+                </div>
+                <div className="card-body">
+                    <div className="row mb-5">
+                      <div className="col-md-6">
+                        <h6>Product Expiry</h6>
+                        <p>12.28.2024</p>
+                      </div>
+                      <div className="col-md-6">
+                        <h6>LOT Number</h6>
+                        <p>ABC987654321</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <PerfectScrollbar
+                        id="DZ_W_Todo1"
+                        className="widget-media dlab-scroll ps ps--active-y"
+                      >
+                        <ul className="timeline">
+                          <li>
+                            <div className="timeline-panel">
+                              <div className="media me-2">
+                                <img  alt="" width="50" src={avatar1} />
+                              </div>
+                              <div className="media-body">
+                                <h5 className="mb-1">Dr sultads Send you Photo</h5>
+                                <small className="d-block">
+                                  29 July 2020 - 02:26 PM
+                                </small>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div className="timeline-panel">
+                              <div className="media me-2">
+                                <img  alt="" width="50" src={avatar1} />
+                              </div>
+                              <div className="media-body">
+                                <h5 className="mb-1">Dr sultads Send you Photo</h5>
+                                <small className="d-block">
+                                  29 July 2020 - 02:26 PM
+                                </small>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div className="timeline-panel">
+                              <div className="media me-2 media-danger">KG</div>
+                              <div className="media-body">
+                                <h5 className="mb-1">Resport created successfully</h5>
+                                <small className="d-block">
+                                  29 July 2020 - 02:26 PM
+                                </small>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </PerfectScrollbar>
+                      <div className="card-footer border-0 type-massage">
+                        <div className="input-group">
+                          <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Add small notes"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-7 col-lg-12">
               <div className="card">
                 <div className="card-header">
                   <div className="card-title h5">Dimensions</div>
@@ -958,7 +1056,7 @@ const OrderDetail = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-5">
+            <div className="col-xl-5 col-lg-12">
               <div className="card">
                 <div className="card-header">
                   <div className="card-title h5">Weight</div>
@@ -978,59 +1076,56 @@ const OrderDetail = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="col-xl-5">
-          <div className="row"></div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-xl-6">
           <div className="row">
-            <div className="col-lg-12">
-              <div className="card">
-                <div className="card-header border-0 pb-0">
-                  <h5 className="text-black ">Design Files</h5>
-                </div>
-                <div className="card-body pt-3">
-                  <div class="final-badge">
-                    <span class="badge text-black border">
-                      <i class="far fa-file-alt me-3"></i>
-                      Master_Label_Desgin.psd
-                    </span>
-                    <span class="badge text-black border">
-                      <i class="far fa-file-alt me-3"></i>Box_Design.ai
-                    </span>
-                    <span class="badge text-black border">
-                      <i class="fas fa-image me-2"></i>Insert.jpg
-                    </span>
+            <div className="col-xl-6">
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="card">
+                    <div className="card-header border-0 pb-0">
+                      <h5 className="text-black ">Design Files</h5>
+                    </div>
+                    <div className="card-body pt-3">
+                      <div class="final-badge">
+                        <span class="badge text-black border">
+                          <i class="far fa-file-alt me-3"></i>
+                          Master_Label_Desgin.psd
+                        </span>
+                        <span class="badge text-black border">
+                          <i class="far fa-file-alt me-3"></i>Box_Design.ai
+                        </span>
+                        <span class="badge text-black border">
+                          <i class="fas fa-image me-2"></i>Insert.jpg
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="col-xl-6">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="card">
-                <div className="card-header border-0 pb-0">
-                  <h5 className="text-black ">Documents</h5>
-                </div>
-                <div className="card-body pt-3">
-                  <div class="final-badge">
-                    <span class="badge text-black border">
-                      <i class="far fa-file-alt me-3"></i>
-                      Certificate_of_Analysis.pdf
-                    </span>
-                    <span class="badge text-black border">
-                      <i class="far fa-file-alt me-3"></i>product_listing.csv
-                    </span>
-                    <span class="badge text-black border">
-                      <i class="fas fa-image me-2"></i>USDA_Organic.pdf
-                    </span>
-                    <span class="badge text-black border">
-                      <i class="fas fa-image me-2"></i>ISO_Certificate.pdf
-                    </span>
+            <div className="col-xl-6">
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="card">
+                    <div className="card-header border-0 pb-0">
+                      <h5 className="text-black ">Documents</h5>
+                    </div>
+                    <div className="card-body pt-3">
+                      <div class="final-badge">
+                        <span class="badge text-black border">
+                          <i class="far fa-file-alt me-3"></i>
+                          Certificate_of_Analysis.pdf
+                        </span>
+                        <span class="badge text-black border">
+                          <i class="far fa-file-alt me-3"></i>product_listing.csv
+                        </span>
+                        <span class="badge text-black border">
+                          <i class="fas fa-image me-2"></i>USDA_Organic.pdf
+                        </span>
+                        <span class="badge text-black border">
+                          <i class="fas fa-image me-2"></i>ISO_Certificate.pdf
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
