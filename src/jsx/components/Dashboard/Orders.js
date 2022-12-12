@@ -21,15 +21,13 @@ const Orders = () => {
   const [addCard, setAddCard] = useState(false);
   const [tabState, setTabState] = useState("AllStatus");
   const [productsData, setProducts] = useState(products.productsState);
-  const [ordersDetails] = useState(orders.ordersState);
-  const [showOrders, setShowOrders] = useState(orders.ordersState);
+  const [ordersDetails, setOrderDetails] = useState(orders.ordersState);
   const [selectedOrderProductSKU, setSelectedOrderProductSKU] = useState();
   const [addNewProductForm, setAddNewProductForm] = useState(false);
 
   const handleAllStatusClick = () => {
     setTabState("AllStatus");
-    // const newOrders = [...ordersDetails];
-    setShowOrders(orders.ordersState);
+    setOrderDetails(orders.ordersState);
   };
 
   const handleOnProgressClick = () => {
@@ -38,7 +36,7 @@ const Orders = () => {
     const onProgressOrders = newOrders.filter(
       (order) => order.orderStatus === "ON_PROGRESS"
     );
-    setShowOrders(onProgressOrders);
+    setOrderDetails(onProgressOrders);
   };
 
   const handlePendingClick = () => {
@@ -47,7 +45,7 @@ const Orders = () => {
     const pendingOrders = newOrders.filter(
       (order) => order.orderStatus === "PENDING"
     );
-    setShowOrders(pendingOrders);
+    setOrderDetails(pendingOrders);
   };
 
   const handleClosedClick = () => {
@@ -56,7 +54,7 @@ const Orders = () => {
     const closedOrders = newOrders.filter(
       (order) => order.orderStatus === "CLOSED"
     );
-    setShowOrders(closedOrders);
+    setOrderDetails(closedOrders);
   };
 
   //For Image upload in ListBlog
@@ -178,7 +176,7 @@ const Orders = () => {
       const newProduct = {
         id: nanoid(),
         productId: addFormData.productId,
-        productName: addFormData.productName,
+        productName: selectedOrderProduct.productName,
         productThumb: selectedOrderProduct.productThumb,
         productASIN: selectedOrderProduct.productASIN,
         productSKU: selectedOrderProduct.productSKU,
@@ -196,8 +194,8 @@ const Orders = () => {
         addFormData.productSKU =
         addFormData.productThumb =
           "";
-      const newOrders = [newProduct, ...showOrders];
-      setShowOrders(newOrders);
+      const newOrders = [newProduct, ...ordersDetails];
+      setOrderDetails(newOrders);
       dispatch(setOrdersAction(newOrders));
     } else {
       swal("Oops", errorMsg, "error");
@@ -332,7 +330,7 @@ const Orders = () => {
           <div className="col-xl-12">
             <Tab.Content>
               <Tab.Pane eventKey={tabState}>
-                {showOrders.map((order) => (
+                {ordersDetails.map((order) => (
                   <OrderCard
                     key={order.id}
                     orderId={order.id}
