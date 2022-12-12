@@ -1,0 +1,11 @@
+.product-label-holder {
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    color: var(--primary);
+    &:hover {
+      color: #000;
+    }
+  }
+}

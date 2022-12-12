@@ -148,7 +148,7 @@ const SideBar = () => {
        "todo",
     ],
     widget = ["widget-basic"],
-    orders = ["project"],
+    orders = ["orders"],
     products = ["products"],
     messages = ["messages"],
     payments = ["payments"],

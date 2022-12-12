@@ -48,7 +48,7 @@ const Products = () => {
     event.preventDefault();
     let error = false;
     let errorMsg = "";
-    if (addFormData.name === "") {
+    if (addFormData.productName === "") {
       error = true;
       errorMsg = "Please fill Name";
     } else if (addFormData.productSKU === "") {
@@ -214,24 +214,9 @@ const Products = () => {
                 file={file}
                 onProductNameChange={handleAddFormChange}
                 onProductASINChange={handleAddFormChange}
+                onClickSubmit={handleAddFormSubmit}
+                onClickCancel={() => setAddCard(false)}
               />
-              <div className="modal-footer">
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={handleAddFormSubmit}
-                >
-                  Add
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setAddCard(false)}
-                  className="btn btn-danger"
-                >
-                  {" "}
-                  <i className="flaticon-delete-1"></i> Discard
-                </button>
-              </div>
             </form>
           </Modal>
           <Modal
