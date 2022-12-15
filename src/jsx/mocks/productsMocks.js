@@ -172,8 +172,8 @@ export const productsData = [
   {
     id: 9,
     productThumb: pic8,
-    productName: "Mens Vintage Retro Bodycon Ladies",
-    productSKU: "BL003 SHIRT04",
+    productName: "Bodycon Ladies",
+    productSKU: "BL003 BODYCON06",
     productASIN: "B09ABC2330",
     productManufacturingCost: "2.1",
     productWidth: "123",

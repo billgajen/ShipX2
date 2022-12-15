@@ -6,22 +6,142 @@ import swal from "sweetalert";
 import { nanoid } from "nanoid";
 import { useStateValue } from "../../../store/selectors/useStateValue";
 ///Import
-import { TabCard, PendingTab, ProgressTab, CloseTab } from "./Orders/Orders";
-
-import amazonLogo from "./../../../images/freight/amazon.png";
+import OrderCard from "../molecules/OrderCard/OrderCard";
+import AddOrderForm from "../customForms/AddOrderForm";
+import AddProductForm, {
+  initialFormState,
+} from "../customForms/AddProductForm";
+import {  setProductsAction } from "../../../store/actions/ProductActions";
+import {  setOrdersAction } from "../../../store/actions/orderActions";
+import { useDispatch } from "react-redux";
 
 const Orders = () => {
-  const { auth } = useStateValue();
+  const dispatch = useDispatch();
+  const { auth, products, orders } = useStateValue();
   const [addCard, setAddCard] = useState(false);
+  const [tabState, setTabState] = useState("AllStatus");
+  const [productsData, setProducts] = useState(products.productsState);
+  const [ordersDetails, setOrderDetails] = useState(orders.ordersState);
+  const [selectedOrderProductSKU, setSelectedOrderProductSKU] = useState();
+  const [addNewProductForm, setAddNewProductForm] = useState(false);
+
+  const handleAllStatusClick = () => {
+    setTabState("AllStatus");
+    setOrderDetails(orders.ordersState);
+  };
+
+  const handleOnProgressClick = () => {
+    setTabState("OnProgress");
+    const newOrders = [...orders.ordersState];
+    const onProgressOrders = newOrders.filter(
+      (order) => order.orderStatus === "ON_PROGRESS"
+    );
+    setOrderDetails(onProgressOrders);
+  };
+
+  const handlePendingClick = () => {
+    setTabState("Pending");
+    const newOrders = [...orders.ordersState];
+    const pendingOrders = newOrders.filter(
+      (order) => order.orderStatus === "PENDING"
+    );
+    setOrderDetails(pendingOrders);
+  };
+
+  const handleClosedClick = () => {
+    setTabState("Closed");
+    const newOrders = [...orders.ordersState];
+    const closedOrders = newOrders.filter(
+      (order) => order.orderStatus === "CLOSED"
+    );
+    setOrderDetails(closedOrders);
+  };
+
+  //For Image upload in ListBlog
+  const [file, setFile] = useState(null);
+  const fileHandler = (e) => {
+    setFile(e.target.files[0]);
+    setTimeout(function () {
+      let src = document.getElementById("saveImageFile").getAttribute("src");
+      addProductFormData.productThumb = src;
+    }, 200);
+  };
+
+  //Add data
+  const [addProductFormData, setAddProductFormData] = useState(initialFormState);
+
+  // Add Product function
+  const handleAddProductFormChange = (event) => {
+    event.preventDefault();
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+    const newFormData = { ...addProductFormData };
+    newFormData[fieldName] = fieldValue;
+    setAddProductFormData(newFormData);
+  };
+
+  //Add Product Submit data
+  const handleAddProductFormSubmit = (event) => {
+    event.preventDefault();
+    let error = false;
+    let errorMsg = "";
+    if (addProductFormData.productName === "") {
+      error = true;
+      errorMsg = "Please fill Name";
+    } else if (addProductFormData.productSKU === "") {
+      error = true;
+      errorMsg = "Please fill profile.";
+    } else if (addProductFormData.productThumb === "") {
+      error = true;
+      errorMsg = "Please attached image";
+    }
+    if (!error) {
+      const newProduct = {
+        id: nanoid(),
+        productName: addProductFormData.productName,
+        productSKU: addProductFormData.productSKU,
+        productThumb: addProductFormData.productThumb,
+        productASIN: addProductFormData.productASIN,
+        productWidth: addProductFormData.productWidth,
+        productHeight: addProductFormData.productHeight,
+        productLength: addProductFormData.productLength,
+        productWeight: addProductFormData.productWeight,
+        productSize: addProductFormData.productSize,
+        productManufacturingCost: addProductFormData.productManufacturingCost,
+        shippingModeAirCost: addProductFormData.shippingModeAirCost,
+        shippingModeSeaCost: addProductFormData.shippingModeSeaCost,
+        shippingModeLandCost: addProductFormData.shippingModeLandCost,
+        productManufacturingDays: addProductFormData.productManufacturingDays,
+        fastestShippingDays: addProductFormData.fastestShippingDays,
+        shippingHandlingDays: addProductFormData.shippingHandlingDays,
+        myWarehouseStock: addProductFormData.myWarehouseStock,
+      };
+      const newProducts = [...productsData, newProduct];
+      setProducts(newProducts);
+      dispatch(setProductsAction(newProducts));
+      setAddNewProductForm(false);
+      swal("Good job!", "Successfully Added", "success");
+      addProductFormData.name =
+        addProductFormData.productSKU =
+        addProductFormData.productThumb =
+          "";
+    } else {
+      swal("Oops", errorMsg, "error");
+    }
+  };
 
   //Add Order
   const [addFormData, setAddFormData] = useState({
+    id: "",
     productId: "",
-    bpOrderID: "",
+    productName: "",
+    productASIN: "",
+    productSKU: "",
     orderUnits: "",
     shippingMode: "",
     destination: "",
   });
+
   // Add Product function
   const handleAddFormChange = (event) => {
     event.preventDefault();
@@ -30,37 +150,72 @@ const Orders = () => {
     const newFormData = { ...addFormData };
     newFormData[fieldName] = fieldValue;
     setAddFormData(newFormData);
+    setSelectedOrderProductSKU(newFormData.productName.match(/\(([^)]+)\)/)[1]);
   };
+
+  const selectedOrderProduct = productsData.find(
+    (product) => product.productSKU === selectedOrderProductSKU
+  );
 
   //Add Submit data
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
     var error = false;
     var errorMsg = "";
-    if (addFormData.name === "") {
+    if (addFormData.productName === "") {
       error = true;
-      errorMsg = "Please fill Name";
-    } else if (addFormData.productSKU === "") {
+      errorMsg = "Please select a Product";
+    } else if (addFormData.orderUnits === "") {
       error = true;
-      errorMsg = "Please fill profile.";
-    } else if (addFormData.productThumb === "") {
+      errorMsg = "Please fill number of units.";
+    } else if (addFormData.destination === "") {
       error = true;
-      errorMsg = "Please attached image";
+      errorMsg = "Please fill destination";
     }
     if (!error) {
       const newProduct = {
         id: nanoid(),
         productId: addFormData.productId,
+        productName: selectedOrderProduct.productName,
+        productThumb: selectedOrderProduct.productThumb,
+        productASIN: selectedOrderProduct.productASIN,
+        productSKU: selectedOrderProduct.productSKU,
         bpOrderID: addFormData.bpOrderID,
         orderUnits: addFormData.orderUnits,
         shippingMode: addFormData.shippingMode,
         destination: addFormData.destination,
+        receivedUnits: 0,
+        receivedPayment: 0,
+        orderStatus: "PENDING",
       };
       setAddCard(false);
       swal("Good job!", "Successfully Added", "success");
-      addFormData.name = addFormData.productSKU = addFormData.productThumb = "";
+      addFormData.productName =
+        addFormData.productSKU =
+        addFormData.productThumb =
+          "";
+      const newOrders = [newProduct, ...ordersDetails];
+      setOrderDetails(newOrders);
+      dispatch(setOrdersAction(newOrders));
     } else {
       swal("Oops", errorMsg, "error");
+    }
+  };
+
+  const getStatus = (status) => {
+    switch (status) {
+      case "PENDING": {
+        return "btn-danger";
+      }
+      case "ON_PROGRESS": {
+        return "btn-warning";
+      }
+      case "CLOSED": {
+        return "btn-success";
+      }
+      default: {
+        return;
+      }
     }
   };
 
@@ -83,22 +238,38 @@ const Orders = () => {
           <div className="project mb-4">
             <Nav as="ul" className="nav nav-tabs" role="tablist">
               <Nav.Item as="li" className="nav-item">
-                <Nav.Link className="nav-link" eventKey="AllStatus">
+                <Nav.Link
+                  className="nav-link"
+                  eventKey="AllStatus"
+                  onClick={handleAllStatusClick}
+                >
                   All Status
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item as="li" className="nav-item">
-                <Nav.Link className="nav-link" eventKey="OnProgress">
+                <Nav.Link
+                  className="nav-link"
+                  eventKey="OnProgress"
+                  onClick={handleOnProgressClick}
+                >
                   On Progress
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item as="li" className="nav-item">
-                <Nav.Link className="nav-link" eventKey="Pending">
+                <Nav.Link
+                  className="nav-link"
+                  eventKey="Pending"
+                  onClick={handlePendingClick}
+                >
                   Pending
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item as="li" className="nav-item">
-                <Nav.Link className="nav-link" eventKey="Closed">
+                <Nav.Link
+                  className="nav-link"
+                  eventKey="Closed"
+                  onClick={handleClosedClick}
+                >
                   Closed
                 </Nav.Link>
               </Nav.Item>
@@ -120,68 +291,36 @@ const Orders = () => {
                   onHide={setAddCard}
                   size="lg"
                 >
-                  <form>
-                    <div className="modal-header">
-                      <h4 className="modal-title fs-20">Create New Order</h4>
-                      <button
-                        type="button"
-                        className="btn-close"
-                        onClick={() => setAddCard(false)}
-                      ></button>
-                    </div>
-                    <div className="modal-body">
-                      <i className="flaticon-cancel-12 close"></i>
-                      <div className="add-contact-box">
-                        <div className="add-contact-content">
-                          <div className="form-group mb-3">
-                            <label className="text-black font-w500">Name</label>
-                            <div className="contact-name">
-                              <input
-                                type="text"
-                                className="form-control"
-                                autoComplete="off"
-                                name="productName"
-                                required="required"
-                                onChange={handleAddFormChange}
-                                placeholder="name"
-                              />
-                            </div>
-                          </div>
-                          <div className="form-group mb-3">
-                            <label className="text-black font-w500">SKU</label>
-                            <div className="contact-name">
-                              <input
-                                type="text"
-                                className="form-control"
-                                autoComplete="off"
-                                name="productSKU"
-                                required="required"
-                                onChange={handleAddFormChange}
-                                placeholder="SKU"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="modal-footer">
-                      <button
-                        type="submit"
-                        className="btn btn-primary"
-                        onClick={handleAddFormSubmit}
-                      >
-                        Add
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setAddCard(false)}
-                        className="btn btn-danger"
-                      >
-                        {" "}
-                        <i className="flaticon-delete-1"></i> Discard
-                      </button>
-                    </div>
-                  </form>
+                  <div className="modal-header">
+                    <h4 className="modal-title fs-20">Create New Order</h4>
+                    <button
+                      type="button"
+                      className="btn-close"
+                      onClick={() => setAddCard(false)}
+                    ></button>
+                  </div>
+                  {addNewProductForm ? (
+                    <AddProductForm
+                      onChangeFile={fileHandler}
+                      onClickFile={(event) => setFile(event.target.value)}
+                      file={file}
+                      onProductNameChange={handleAddProductFormChange}
+                      onProductASINChange={handleAddProductFormChange}
+                      onClickSubmit={handleAddProductFormSubmit}
+                      onClickCancel={() => setAddNewProductForm(false)}
+                    />
+                  ) : (
+                    <AddOrderForm
+                      productOptions={productsData}
+                      onClickNewProduct={() => setAddNewProductForm(true)}
+                      onChangeProduct={handleAddFormChange}
+                      productSKUValue={addFormData.productSKU}
+                      onChangeOrderUnits={handleAddFormChange}
+                      onChangeDestination={handleAddFormChange}
+                      onSubmitForm={handleAddFormSubmit}
+                      onCloaseModal={() => setAddCard(false)}
+                    />
+                  )}
                 </Modal>
               </>
             )}
@@ -190,195 +329,30 @@ const Orders = () => {
         <div className="row">
           <div className="col-xl-12">
             <Tab.Content>
-              <Tab.Pane eventKey="AllStatus">
-                {TabCard.map((item, index) => (
-                  <div className="card" key={index}>
-                    <div className="card-body">
-                      <div className="row">
-                        <div className="col-xl-3  col-lg-6 col-sm-12 align-items-center product-details">
-                          <div className="media-body">
-                            <span className="text-primary d-block fs-18 font-w600 mb-1">
-                              #{item.bpOrderID}
-                            </span>
-                            <span className="d-block mb-2 fs-14">
-                              <i className="fas fa-calendar me-2"></i>Ordered on{" "}
-                              {item.orderDate}
-                            </span>
-                            <div className="d-flex project-image mb-3">
-                              <img src={item.productThumb} alt="" />
-                              <div>
-                                <h3 className="fs-18 text-black font-w600">
-                                  {item.productName}
-                                </h3>
-                              </div>
-                            </div>
-                            <span className="d-block fs-12 font-w500">
-                              SKU: {item.productSKU}
-                            </span>
-                            <span className="d-block fs-12 font-w500">
-                              ASIN: {item.productASIN}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="col-xl-3 col-lg-3 col-sm-4 col-6 mb-3 order-details">
-                          <div className="d-flex align-items-center project-image mb-3">
-                            <img src={item.supplierLogo} alt="" />
-                            <div>
-                              <h3 className="fs-16 text-black font-w600 mb-0">
-                                {item.supplierName}
-                              </h3>
-                            </div>
-                          </div>
-                          <div className="d-flex align-items-end mt-2 justify-content-between">
-                            <span className="d-block fs-16 text-black font-w600 mb-0">
-                              {item.orderUnits} Units
-                            </span>
-                            <span>
-                              {item.orderUnits - item.receivedUnits} Remaining
-                            </span>
-                          </div>
-                          <div className="progress  mb-4">
-                            <div
-                              className="progress-bar progress-animated"
-                              style={{
-                                width:
-                                  (item.receivedUnits / item.orderUnits) * 100 +
-                                  "%",
-                              }}
-                            ></div>
-                          </div>
-                          <div className="d-flex align-items-end mt-2 justify-content-between">
-                            <span className="d-block fs-16 text-black font-w600 mb-0">
-                              ${item.orderCost}
-                            </span>
-                            <span>
-                              ${item.orderCost - item.receivedPayment} Remaining
-                            </span>
-                          </div>
-                          <div className="progress">
-                            <div
-                              className="progress-bar progress-animated"
-                              style={{
-                                width:
-                                  (item.receivedPayment / item.orderCost) *
-                                    100 +
-                                  "%",
-                              }}
-                            ></div>
-                          </div>
-                        </div>
-                        <div className="col-xl-3 col-lg-3 col-sm-4 col-6 mb-3">
-                          <div className="d-flex justify-content-between">
-                            <div className="d-flex align-items-center project-image mb-3">
-                              <img src={item.shipmentAgentLogo} alt="" />
-                              <div>
-                                <small className="d-block fs-16 font-w700">
-                                  Tracking ID
-                                </small>
-                                <span className="d-block fs-12 font-w500">
-                                  {item.shipmentMasterTrackingID}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="project-image">
-                              <svg
-                                className="me-0"
-                                width="55"
-                                height="55"
-                                viewBox="0 0 55 55"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <circle
-                                  cx="27.5"
-                                  cy="27.5"
-                                  r="27.5"
-                                  fill="#886CC0"
-                                />
-                                <g clipPath="url(#clip0)">
-                                  <path
-                                    d="M37.2961 23.6858C37.1797 23.4406 36.9325 23.2843 36.661 23.2843H29.6088L33.8773 16.0608C34.0057 15.8435 34.0077 15.5738 33.8826 15.3546C33.7574 15.1354 33.5244 14.9999 33.2719 15L27.2468 15.0007C26.9968 15.0008 26.7656 15.1335 26.6396 15.3495L18.7318 28.905C18.6049 29.1224 18.604 29.3911 18.7294 29.6094C18.8548 29.8277 19.0873 29.9624 19.3391 29.9624H26.3464L24.3054 38.1263C24.2255 38.4457 24.3781 38.7779 24.6725 38.9255C24.7729 38.9757 24.8806 39 24.9872 39C25.1933 39 25.3952 38.9094 25.5324 38.7413L37.2058 24.4319C37.3774 24.2215 37.4126 23.931 37.2961 23.6858Z"
-                                    fill="white"
-                                  />
-                                </g>
-                                <defs>
-                                  <clipPath>
-                                    <rect
-                                      width="24"
-                                      height="24"
-                                      fill="white"
-                                      transform="translate(16 15)"
-                                    />
-                                  </clipPath>
-                                </defs>
-                              </svg>
-                            </div>
-                          </div>
-                          <span className="d-block fs-16 text-black font-w600">
-                            In Transit
-                          </span>
-                          <div className="progress mb-2">
-                            <div
-                              className="progress-bar progress-animated bg-success"
-                              style={{ width: "50%" }}
-                            ></div>
-                          </div>
-                          <span className="d-block fs-12 font-w500">
-                            Shipment has departed from a DHL facility CINCINNATI
-                            HUB - USA
-                          </span>
-                        </div>
-                        <div className="col-xl-3  col-lg-6 col-sm-6 mb-sm-4 mb-0">
-                          <div className="d-flex align-items-center project-image mb-3">
-                            <img src={amazonLogo} alt="" />
-                            <div>
-                              <small className="d-block fs-16 font-w700">
-                                Shipping ID
-                              </small>
-                              <span className="d-block fs-12 font-w500">
-                                {item.amzShippingID}
-                              </span>
-                            </div>
-                          </div>
-                          <span className="d-block fs-16 text-black font-w600">
-                            Receiving
-                          </span>
-                          <div className="progress mb-2">
-                            <div
-                              className="progress-bar progress-animated"
-                              style={{ width: "75%" }}
-                            ></div>
-                          </div>
-                          <span className="d-block fs-12 font-w500">
-                            Delivered to IND9,1151 S GRAHAM
-                            RD,GREENWOOD,IN,46143-7830,US
-                          </span>
-                        </div>
-                        <div className="col-xl-12  col-lg-6 col-sm-4 text-end">
-                          <div className="d-flex justify-content-end align-items-center flex-wrap">
-                            <div className="me-2">
-                              <a className="badge badge-outline-primary badge-circle">
-                                <i className="fs-22 fas fa-file-pdf"></i>
-                              </a>
-                            </div>
-                            <div className="d-flex justify-content-end project-btn">
-                              {item.status}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              <Tab.Pane eventKey={tabState}>
+                {ordersDetails.map((order) => (
+                  <OrderCard
+                    key={order.id}
+                    orderId={order.id}
+                    orderDate={order.orderDate}
+                    productThumb={order.productThumb}
+                    productName={order.productName}
+                    productSKU={order.productSKU}
+                    productASIN={order.productASIN}
+                    supplierLogo={order.supplierLogo}
+                    supplierName={order.supplierName}
+                    orderUnits={order.orderUnits}
+                    receivedUnits={order.receivedUnits}
+                    orderCost={order.orderCost}
+                    receivedPayment={order.receivedPayment}
+                    shipmentAgentLogo={order.shipmentAgentLogo}
+                    shipmentMasterTrackingID={order.shipmentMasterTrackingID}
+                    destinationLogo={order.destinationLogo}
+                    destinationShippingID={order.destinationShippingID}
+                    orderStatus={order.orderStatus}
+                    orderStatusColor={getStatus(order.orderStatus)}
+                  />
                 ))}
-              </Tab.Pane>
-              <Tab.Pane eventKey="OnProgress">
-                <ProgressTab />
-              </Tab.Pane>
-              <Tab.Pane eventKey="Pending">
-                <PendingTab />
-              </Tab.Pane>
-              <Tab.Pane eventKey="Closed">
-                <CloseTab />
               </Tab.Pane>
             </Tab.Content>
           </div>

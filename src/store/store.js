@@ -3,6 +3,7 @@ import PostsReducer from './reducers/PostsReducer';
 import ProductsReducer from "./reducers/ProductsReducer";
 import SuppliersReducer from './reducers/SuppliersReducer';
 import ClientsReducer from './reducers/ClientsReducer';
+import OrdersReducer from './reducers/OrdersReducer';
 import thunk from 'redux-thunk';
 import { AuthReducer } from './reducers/AuthReducer';
 import todoReducers from './reducers/Reducers';
@@ -15,6 +16,7 @@ const composeEnhancers =
 const reducers = combineReducers({
   posts: PostsReducer,
   products: ProductsReducer,
+  orders: OrdersReducer,
   suppliers: SuppliersReducer,
   clients: ClientsReducer,
   auth: AuthReducer,

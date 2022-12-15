@@ -27,6 +27,8 @@ const AddProductForm = ({
   file,
   onProductNameChange,
   onProductASINChange,
+  onClickSubmit,
+  onClickCancel,
 }) => {
   return (
     <div className="modal-body">
@@ -82,6 +84,23 @@ const AddProductForm = ({
             </div>
           </div>
         </div>
+      </div>
+      <div className="modal-footer">
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={onClickSubmit}
+        >
+          Add
+        </button>
+        <button
+          type="button"
+          onClick={onClickCancel}
+          className="btn btn-danger"
+        >
+          {" "}
+          <i className="flaticon-delete-1"></i> Discard
+        </button>
       </div>
     </div>
   );
