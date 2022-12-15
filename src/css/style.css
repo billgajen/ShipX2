@@ -24921,6 +24921,14 @@ table.dataTable.display tbody td {
   .cover-photo.banner h1, .cover-photo.banner .h1 {
     color: #fff; }
 
+.product-label-holder {
+  display: flex;
+  justify-content: space-between; }
+  .product-label-holder a {
+    color: var(--primary); }
+    .product-label-holder a:hover {
+      color: #000; }
+
 .error-page .error-text {
   font-size: 9.375rem;
   line-height: 1; }
