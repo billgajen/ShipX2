@@ -120,7 +120,7 @@ const Payments = () => {
                     </th>
                     <th className="sorting" style={{ width: "100px" }}>Total<span className="d-block fs-14 font-w500 text-primary">Paid</span></th>
                     <th className="sorting" style={{ width: "100px" }}>Balance</th>
-                    <th className="sorting" style={{ width: "100px" }}>Invoice</th>
+                    <th className="sorting" style={{ width: "100px" }}>Invoice<span className="d-block fs-14 font-w500 text-primary">Inv No.</span></th>
                     <th className="sorting" style={{ width: "100px" }}>Status</th>
                   </tr>
                 </thead>
@@ -146,7 +146,10 @@ const Payments = () => {
 		            	</div>
 		            </td>
 		            <td><h2 className="fs-22 font-w700 mb-0 text-danger"><span className="fs-16 font-w500 local_currency">$</span>3000.00</h2></td>
-		            <td><div class="final-badge"><span class="badge text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div></td>
+		            <td>
+						<div class="final-badge"><span class="badge badge-sm text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div>
+						<span className="fs-12 font-w400 text-dark ms-4">INV 123ABC</span>
+					</td>
 		            <td>
 		              <Badge variant="danger badge-xl light">Pending</Badge>
 		            </td>
@@ -171,7 +174,10 @@ const Payments = () => {
 		            	</div>
 		            </td>
 		            <td><h2 className="fs-22 font-w700 mb-0 text-primary"><span className="fs-16 font-w500 local_currency">$</span>1000.00</h2></td>
-		            <td><div class="final-badge"><span class="badge text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div></td>
+		            <td>
+						<div class="final-badge"><span class="badge badge-sm text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div>
+						<span className="fs-12 font-w400 text-dark ms-4">INV 123ABC</span>
+					</td>
 		            <td>
 		              <Badge variant="warning badge-xl light">Part Paid</Badge>
 		            </td>
@@ -196,7 +202,10 @@ const Payments = () => {
 		            	</div>
 		            </td>
 		            <td><h2 className="fs-22 font-w700 mb-0 text-success"><span className="fs-16 font-w500 local_currency">$</span>0.00</h2></td>
-		            <td><div class="final-badge"><span class="badge text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div></td>
+		            <td>
+						<div class="final-badge"><span class="badge badge-sm text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div>
+						<span className="fs-12 font-w400 text-dark ms-4">INV 123ABC</span>
+					</td>
 		            <td>
 		              <Badge variant="success badge-xl light">Complete</Badge>
 		            </td>
@@ -221,7 +230,10 @@ const Payments = () => {
 		            	</div>
 		            </td>
 		            <td><h2 className="fs-22 font-w700 mb-0 text-primary"><span className="fs-16 font-w500 local_currency">$</span>2000.00</h2></td>
-		            <td><div class="final-badge"><span class="badge text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div></td>
+		            <td>
+						<div class="final-badge"><span class="badge badge-sm text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div>
+						<span className="fs-12 font-w400 text-dark ms-4">INV 123ABC</span>
+					</td>
 		            <td>
 		              <Badge variant="warning badge-xl light">Part Paid</Badge>
 		            </td>
@@ -246,7 +258,10 @@ const Payments = () => {
 		            	</div>
 		            </td>
 		            <td><h2 className="fs-22 font-w700 mb-0 text-danger"><span className="fs-16 font-w500 local_currency">$</span>3000.00</h2></td>
-		            <td><div class="final-badge"><span class="badge text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div></td>
+		            <td>
+						<div class="final-badge"><span class="badge badge-sm text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div>
+						<span className="fs-12 font-w400 text-dark ms-4">INV 123ABC</span>
+					</td>
 		            <td>
 		              <Badge variant="danger badge-xl light">Pending</Badge>
 		            </td>
@@ -271,7 +286,10 @@ const Payments = () => {
 		            	</div>
 		            </td>
 		            <td><h2 className="fs-22 font-w700 mb-0 text-primary"><span className="fs-16 font-w500 local_currency">$</span>1000.00</h2></td>
-		            <td><div class="final-badge"><span class="badge text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div></td>
+		            <td>
+						<div class="final-badge"><span class="badge badge-sm text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div>
+						<span className="fs-12 font-w400 text-dark ms-4">INV 123ABC</span>
+					</td>
 		            <td>
 		              <Badge variant="warning badge-xl light">Part Paid</Badge>
 		            </td>
@@ -296,7 +314,10 @@ const Payments = () => {
 		            	</div>
 		            </td>
 		            <td><h2 className="fs-22 font-w700 mb-0 text-success"><span className="fs-16 font-w500 local_currency">$</span>0.00</h2></td>
-		            <td><div class="final-badge"><span class="badge text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div></td>
+		            <td>
+						<div class="final-badge"><span class="badge badge-sm text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div>
+						<span className="fs-12 font-w400 text-dark ms-4">INV 123ABC</span>
+					</td>
 		            <td>
 		              <Badge variant="success badge-xl light">Complete</Badge>
 		            </td>
@@ -321,7 +342,10 @@ const Payments = () => {
 		            	</div>
 		            </td>
 		            <td><h2 className="fs-22 font-w700 mb-0 text-primary"><span className="fs-16 font-w500 local_currency">$</span>2000.00</h2></td>
-		            <td><div class="final-badge"><span class="badge text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div></td>
+		            <td>
+						<div class="final-badge"><span class="badge badge-sm text-black border mt-0"><i class="far fa-file-alt me-3"></i>22.11.2022</span></div>
+						<span className="fs-12 font-w400 text-dark ms-4">INV 123ABC</span>
+					</td>
 		            <td>
 		              <Badge variant="warning badge-xl light">Part Paid</Badge>
 		            </td>
