@@ -25879,6 +25879,21 @@ table.dataTable.display tbody td {
       background: var(--primary);
       color: #fff; }
 
+.shipping-mode span {
+  height: 55px;
+  width: 55px;
+  border-radius: 50px;
+  background: var(--rgba-primary-1);
+  color: var(--primary);
+  line-height: 55px;
+  display: block;
+  font-size: 20px;
+  transition: all 0.5s;
+  text-align: center; }
+  .shipping-mode span:hover {
+    background: var(--primary);
+    color: #fff; }
+
 .kanbanimg {
   display: flex; }
   .kanbanimg img {

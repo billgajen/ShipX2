@@ -1,17 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';	
-import {Dropdown} from 'react-bootstrap';
 
 //Images
 import product1 from './../../../../images/product/4.jpg';
 import supplier1 from './../../../../images/customers/11.jpg';
 import freight1 from './../../../../images/freight/dhl.png';
 import amazonLogo from './../../../../images/freight/amazon.png';
-import cust11 from './../../../../images/customers/11.jpg';
-import cust22 from './../../../../images/customers/22.jpg';
-import cust33 from './../../../../images/customers/33.jpg';
-import cust44 from './../../../../images/customers/44.jpg';
-import cust55 from './../../../../images/customers/55.jpg';
 
 const PendingBlog =()=>{
 	return(
