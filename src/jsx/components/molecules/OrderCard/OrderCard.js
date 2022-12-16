@@ -55,6 +55,7 @@ const OrderCard = ({
               </span>
             </div>
           </div>
+
           <div className="col-xl-3 col-lg-3 col-sm-4 col-6 mb-3 order-details">
             <div className="d-flex align-items-center project-image mb-3">
               <img src={supplierLogo} alt="" />
@@ -78,20 +79,24 @@ const OrderCard = ({
                 }}
               ></div>
             </div>
-            <div className="d-flex align-items-end mt-2 justify-content-between">
-              <span className="d-block fs-16 text-black font-w600 mb-0">
-                ${orderCost}
-              </span>
-              <span>${orderCost - receivedPayment} Remaining</span>
-            </div>
-            <div className="progress">
-              <div
-                className="progress-bar progress-animated"
-                style={{
-                  width: (receivedPayment / orderCost) * 100 + "%",
-                }}
-              ></div>
-            </div>
+            {orderCost && (
+              <>
+                <div className="d-flex align-items-end mt-2 justify-content-between">
+                  <span className="d-block fs-16 text-black font-w600 mb-0">
+                    ${orderCost}
+                  </span>
+                  <span>${orderCost - receivedPayment} Remaining</span>
+                </div>
+                <div className="progress">
+                  <div
+                    className="progress-bar progress-animated"
+                    style={{
+                      width: (receivedPayment / orderCost) * 100 + "%",
+                    }}
+                  ></div>
+                </div>
+              </>
+            )}
           </div>
           <div className="col-xl-3 col-lg-3 col-sm-4 col-6 mb-3">
             <div className="d-flex justify-content-between">

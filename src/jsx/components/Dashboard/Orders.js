@@ -17,12 +17,14 @@ import { useDispatch } from "react-redux";
 
 const Orders = () => {
   const dispatch = useDispatch();
-  const { auth, products, orders } = useStateValue();
+  const { auth, products, orders, warehouses } = useStateValue();
   const [addCard, setAddCard] = useState(false);
   const [tabState, setTabState] = useState("AllStatus");
   const [productsData, setProducts] = useState(products.productsState);
   const [ordersDetails, setOrderDetails] = useState(orders.ordersState);
-  const [selectedOrderProductSKU, setSelectedOrderProductSKU] = useState();
+  const [warehouseData] = useState(warehouses.warehousesState);
+  const [selectedOrderProductSKU, setSelectedOrderProductSKU] = useState("");
+  const [selectedDestinationName, setSelectedDestinationName] = useState("");
   const [addNewProductForm, setAddNewProductForm] = useState(false);
 
   const handleAllStatusClick = () => {
@@ -151,11 +153,18 @@ const Orders = () => {
     newFormData[fieldName] = fieldValue;
     setAddFormData(newFormData);
     setSelectedOrderProductSKU(newFormData.productName.match(/\(([^)]+)\)/)[1]);
+    setSelectedDestinationName(newFormData.destination);
   };
 
   const selectedOrderProduct = productsData.find(
     (product) => product.productSKU === selectedOrderProductSKU
   );
+
+  const selectedDestination = warehouseData.find(
+    (warehouse) => warehouse.warehouseName === selectedDestinationName
+  );
+
+  console.log("Destination", selectedDestination)
 
   //Add Submit data
   const handleAddFormSubmit = (event) => {
@@ -168,14 +177,17 @@ const Orders = () => {
     } else if (addFormData.orderUnits === "") {
       error = true;
       errorMsg = "Please fill number of units.";
+    } else if (addFormData.shippingMode === "") {
+      error = true;
+      errorMsg = "Please select shipping mode";
     } else if (addFormData.destination === "") {
       error = true;
-      errorMsg = "Please fill destination";
+      errorMsg = "Please select destination";
     }
     if (!error) {
       const newProduct = {
         id: nanoid(),
-        productId: addFormData.productId,
+        productId: selectedOrderProduct.id,
         productName: selectedOrderProduct.productName,
         productThumb: selectedOrderProduct.productThumb,
         productASIN: selectedOrderProduct.productASIN,
@@ -312,10 +324,11 @@ const Orders = () => {
                   ) : (
                     <AddOrderForm
                       productOptions={productsData}
+                      destinationOptions={warehouseData}
                       onClickNewProduct={() => setAddNewProductForm(true)}
                       onChangeProduct={handleAddFormChange}
-                      productSKUValue={addFormData.productSKU}
                       onChangeOrderUnits={handleAddFormChange}
+                      onChangeShippingMode={handleAddFormChange}
                       onChangeDestination={handleAddFormChange}
                       onSubmitForm={handleAddFormSubmit}
                       onCloaseModal={() => setAddCard(false)}
