@@ -787,11 +787,10 @@ const OrderDetail = () => {
 														<span className="d-block fs-12 font-w500">770532218138</span>
 													</div>
 												</div>
-												<div class="media-body user-meta-info">
-													<ul>
-														<li><a href="/react/demo/contacts"><i class="fas fa-plane"></i></a></li>
-													</ul>
+												<div className="shipping-mode">
+														<span className="ms-2 me-0"><i class="fas fa-truck"></i></span>
 												</div>
+
 											</div>
 											<span className="d-block fs-16 text-black font-w600">In Transit</span>
 											<div className="progress mb-2">
@@ -907,8 +906,8 @@ const OrderDetail = () => {
 								</div>
 								<div className="card-footer text-center border-0 mt-0">
 									<button type="button" class="me-2 btn btn-primary btn-rounded">
-										<span class="btn-icon-start text-primary"><i className="fas fa-plus"></i></span>
-										Tracking details
+										<span class="btn-icon-start text-primary"><i className="fab fa-amazon"></i></span>
+										Shipping ID
 									</button>
 								</div>
 							</div>

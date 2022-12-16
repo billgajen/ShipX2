@@ -78,3 +78,21 @@
 		}
 	}	
 }
+.shipping-mode {
+	span{
+		height: 55px;
+		width: 55px;
+		border-radius: 50px;
+		background: var(--rgba-primary-1);
+		color: var(--primary);
+		line-height: 55px;
+		display: block;
+		font-size:20px;
+		transition: all 0.5s;
+		text-align:center;
+		&:hover{
+			background:var(--primary);
+			color:$white;
+		}
+	}
+}
