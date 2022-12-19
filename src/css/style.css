@@ -25879,7 +25879,7 @@ table.dataTable.display tbody td {
       background: var(--primary);
       color: #fff; }
 
-.shipping-mode span {
+.circle-icon span, .circle-icon a {
   height: 55px;
   width: 55px;
   border-radius: 50px;
@@ -25890,9 +25890,17 @@ table.dataTable.display tbody td {
   font-size: 20px;
   transition: all 0.5s;
   text-align: center; }
-  .shipping-mode span:hover {
+  .circle-icon span:hover, .circle-icon a:hover {
     background: var(--primary);
     color: #fff; }
+
+.circle-icon.circle-icon--medium span, .circle-icon.circle-icon--medium a {
+  height: 41px;
+  width: 41px;
+  line-height: 41px; }
+
+.order_detail__content-area .type-massage .input-group textarea {
+  height: 50px; }
 
 .kanbanimg {
   display: flex; }

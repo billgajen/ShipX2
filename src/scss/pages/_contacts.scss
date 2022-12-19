@@ -78,8 +78,8 @@
 		}
 	}	
 }
-.shipping-mode {
-	span{
+.circle-icon {
+	span, a {
 		height: 55px;
 		width: 55px;
 		border-radius: 50px;
@@ -95,4 +95,14 @@
 			color:$white;
 		}
 	}
+	&.circle-icon--medium {
+		span, a {
+			height: 41px;
+			width: 41px;
+			line-height: 41px;
+		}
+	}
+}
+.order_detail__content-area .type-massage .input-group textarea {
+	height: 50px;
 }

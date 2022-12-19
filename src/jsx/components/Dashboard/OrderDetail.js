@@ -765,7 +765,7 @@ const OrderDetail = () => {
 					</div>
 				</div>
 			</div>
-			<div className="row">
+			<div className="row order_detail__content-area">
 				<div className="col-xl-4 col-lg-6 col-sm-12">
 					<div className="row">
 						<div className="col-sm-12">
@@ -787,7 +787,7 @@ const OrderDetail = () => {
 														<span className="d-block fs-12 font-w500">770532218138</span>
 													</div>
 												</div>
-												<div className="shipping-mode">
+												<div className="circle-icon">
 														<span className="ms-2 me-0"><i class="fas fa-truck"></i></span>
 												</div>
 
@@ -913,9 +913,45 @@ const OrderDetail = () => {
 							</div>
 						</div>
 					</div>
+					<div className="row">
+						<div className="col-sm-12">
+							<div className="card">
+								<div className="card-header">
+									<div className="text-black card-title h5">Batch Information</div>
+								</div>
+								<ul className="list-group list-group-flush">
+									<li className="list-group-item d-flex justify-content-between">
+										<span className="mb-0">Product Expiry</span>{" "}
+										<strong className="text-muted">Sep 12 2025</strong>
+									</li>
+									<li className="list-group-item d-flex justify-content-between">
+										<span className="mb-0">LOT Number</span>{" "}
+										<strong className="text-muted">ABC987654321</strong>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div className="col-xl-8 col-lg-6 col-sm-12">
 					<div className="row">
+						<div className="col-sm-12">
+							<div className="card">
+								<div className="card-header">
+									<div className="card-title h5">Invoice</div>
+								</div>
+								<div className="card-body">
+									<div className="profile-statistics">
+										<div className="text-center">
+											<button type="button" class="me-2 btn btn-primary btn-rounded">
+												<span class="btn-icon-start text-primary"><i className="fas fa-plus"></i></span>
+												Upload Invoice
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div className="col-xl-7 col-lg-12">
 							<div className="text-white bg-primary card">
 								<div className="card-header justify-content-between">
@@ -952,13 +988,11 @@ const OrderDetail = () => {
 									<div className="card-title h5">Invoice</div>
 								</div>
 								<div className="card-body">
-									<div className="profile-statistics">
-										<div className="text-center">
-											<button type="button" class="me-2 btn btn-primary btn-rounded">
-												<span class="btn-icon-start text-primary"><i className="fas fa-plus"></i></span>
-												Upload
-											</button>
-										</div>
+									<div class="final-badge text-center">
+										<span class="badge text-black border mt-0">
+											<i class="far fa-file-alt me-3"></i>INV-1212
+										</span>
+										<span className="d-block fs-12 font-w400">Sep 12 2022</span>
 									</div>
 								</div>
 							</div>
@@ -966,19 +1000,9 @@ const OrderDetail = () => {
 						<div className="col-sm-12">
 							<div className="card">
 								<div className="card-header">
-									<div className="text-black card-title h5">Batch Information</div>
+									<div className="text-black card-title h5">Order Notes</div>
 								</div>
 								<div className="card-body">
-									<div className="row mb-5">
-										<div className="col-md-6">
-											<h6>Product Expiry</h6>
-											<p>12.28.2024</p>
-										</div>
-										<div className="col-md-6">
-											<h6>LOT Number</h6>
-											<p>ABC987654321</p>
-										</div>
-									</div>
 									<div className="row">
 										<PerfectScrollbar
 											id="DZ_W_Todo1"
@@ -991,20 +1015,7 @@ const OrderDetail = () => {
 															<img alt="" width="50" src={avatar1} />
 														</div>
 														<div className="media-body">
-															<h5 className="mb-1">Dr sultads Send you Photo</h5>
-															<small className="d-block">
-																29 July 2020 - 02:26 PM
-															</small>
-														</div>
-													</div>
-												</li>
-												<li>
-													<div className="timeline-panel">
-														<div className="media me-2">
-															<img alt="" width="50" src={avatar1} />
-														</div>
-														<div className="media-body">
-															<h5 className="mb-1">Dr sultads Send you Photo</h5>
+															<h5 className="mb-1">Please make sure to place the inserts. It has to be the new one attached in the product.</h5>
 															<small className="d-block">
 																29 July 2020 - 02:26 PM
 															</small>
@@ -1033,7 +1044,7 @@ const OrderDetail = () => {
 								</div>
 							</div>
 						</div>
-						<div className="col-xl-7 col-lg-12">
+						<div className="col-lg-12">
 							<div className="card">
 								<div className="card-header">
 									<div className="card-title h5">Dimensions</div>
@@ -1060,25 +1071,6 @@ const OrderDetail = () => {
 								</div>
 							</div>
 						</div>
-						<div className="col-xl-5 col-lg-12">
-							<div className="card">
-								<div className="card-header">
-									<div className="card-title h5">Weight</div>
-								</div>
-								<div className="card-body">
-									<div className="profile-statistics">
-										<div className="text-center">
-											<div className="row">
-												<div className="col">
-													<h3 className="m-b-0">{product?.productWeight}lbs</h3>{" "}
-													<span>Weight</span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 					<div className="row">
 						<div className="col-xl-6">
@@ -1086,19 +1078,18 @@ const OrderDetail = () => {
 								<div className="col-lg-12">
 									<div className="card">
 										<div className="card-header border-0 pb-0">
-											<h5 className="text-black ">Design Files</h5>
+											<h5 className="text-black ">Images</h5>
 										</div>
 										<div className="card-body pt-3">
 											<div class="final-badge">
-												<span class="badge text-black border">
-													<i class="far fa-file-alt me-3"></i>
-													Master_Label_Desgin.psd
+											<span class="badge text-black border">
+													<i class="fas fa-image me-2"></i>Manufacturing.jpg
 												</span>
 												<span class="badge text-black border">
-													<i class="far fa-file-alt me-3"></i>Box_Design.ai
+													<i class="fas fa-image me-2"></i>Pre-Shipment.jpg
 												</span>
 												<span class="badge text-black border">
-													<i class="fas fa-image me-2"></i>Insert.jpg
+													<i class="fas fa-image me-2"></i>Product.jpg
 												</span>
 											</div>
 										</div>
@@ -1120,13 +1111,7 @@ const OrderDetail = () => {
 													Certificate_of_Analysis.pdf
 												</span>
 												<span class="badge text-black border">
-													<i class="far fa-file-alt me-3"></i>product_listing.csv
-												</span>
-												<span class="badge text-black border">
-													<i class="fas fa-image me-2"></i>USDA_Organic.pdf
-												</span>
-												<span class="badge text-black border">
-													<i class="fas fa-image me-2"></i>ISO_Certificate.pdf
+													<i class="far fa-file-alt me-3"></i>Quality_Assurance.pdf
 												</span>
 											</div>
 										</div>
