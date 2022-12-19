@@ -7,12 +7,14 @@ const AddOrderForm = ({
   onChangeOrderUnits,
   onChangeShippingMode,
   onChangeDestination,
+  onChangeAMZFBA,
+  onChangeMyWarehouse,
   productOptions,
   destinationOptions,
   onSubmitForm,
   onCloaseModal,
 }) => {
-  const [myWarehouseOption, setMyWarehouseOption] = useState(false);
+  const [myWarehouseOption, setMyWarehouseOption] = useState("AmazonFBA");
 
   return (
     <form>
@@ -67,6 +69,7 @@ const AddOrderForm = ({
                 <option value="select">Select Shipping Mode</option>
                 <option>Air</option>
                 <option>Ship</option>
+                <option>Land</option>
               </select>
             </div>
             <div className="form-group mb-3">
@@ -78,28 +81,30 @@ const AddOrderForm = ({
               <div className="col-sm-9 radio-holder">
                 <div className="form-check">
                   <input
+                    onClick={() => setMyWarehouseOption("AmazonFBA")}
                     className="form-check-input"
                     type="radio"
-                    name="gridRadios"
-                    value="option1"
-                    onChange={() => setMyWarehouseOption(false)}
+                    name="destinationType"
+                    value="AmazonFBA"
+                    onChange={onChangeAMZFBA}
                     defaultChecked
                   />
                   <label className="form-check-label">Amazon FBA</label>
                 </div>
                 <div className="form-check">
                   <input
+                    onClick={() => setMyWarehouseOption("Private")}
                     className="form-check-input"
                     type="radio"
-                    name="gridRadios"
-                    value="option2"
-                    onChange={() => setMyWarehouseOption(true)}
+                    name="destinationType"
+                    value="Private"
+                    onChange={onChangeMyWarehouse}
                   />
                   <label className="form-check-label">My Warehouse</label>
                 </div>
               </div>
             </div>
-            {myWarehouseOption && (
+            {myWarehouseOption === "Private" && (
               <div className="form-group mb-3">
                 <div className="product-label-holder">
                   <label className="text-black font-w500">Destination</label>

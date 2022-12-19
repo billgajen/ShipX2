@@ -12,7 +12,7 @@ import AddProductForm, {
   initialFormState,
 } from "../customForms/AddProductForm";
 import {  setProductsAction } from "../../../store/actions/ProductActions";
-import {  setOrdersAction } from "../../../store/actions/orderActions";
+import { setOrdersAction } from "../../../store/actions/orderActions";
 import { useDispatch } from "react-redux";
 
 const Orders = () => {
@@ -141,12 +141,14 @@ const Orders = () => {
     productSKU: "",
     orderUnits: "",
     shippingMode: "",
+    destinationType: "AmazonFBA",
     destination: "",
+    destinationAddress: {},
   });
 
   // Add Product function
   const handleAddFormChange = (event) => {
-    event.preventDefault();
+    event.stopPropagation();
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
     const newFormData = { ...addFormData };
@@ -164,8 +166,6 @@ const Orders = () => {
     (warehouse) => warehouse.warehouseName === selectedDestinationName
   );
 
-  console.log("Destination", selectedDestination)
-
   //Add Submit data
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
@@ -180,7 +180,7 @@ const Orders = () => {
     } else if (addFormData.shippingMode === "") {
       error = true;
       errorMsg = "Please select shipping mode";
-    } else if (addFormData.destination === "") {
+    } else if (addFormData.destinationType === "Private" && addFormData.destination === "") {
       error = true;
       errorMsg = "Please select destination";
     }
@@ -195,7 +195,9 @@ const Orders = () => {
         bpOrderID: addFormData.bpOrderID,
         orderUnits: addFormData.orderUnits,
         shippingMode: addFormData.shippingMode,
+        destinationType: addFormData.destinationType,
         destination: addFormData.destination,
+        destinationAddress: selectedDestination,
         receivedUnits: 0,
         receivedPayment: 0,
         orderStatus: "PENDING",
@@ -212,6 +214,7 @@ const Orders = () => {
     } else {
       swal("Oops", errorMsg, "error");
     }
+    addFormData.destinationType = "AmazonFBA";
   };
 
   const getStatus = (status) => {
@@ -330,6 +333,8 @@ const Orders = () => {
                       onChangeOrderUnits={handleAddFormChange}
                       onChangeShippingMode={handleAddFormChange}
                       onChangeDestination={handleAddFormChange}
+                      onChangeAMZFBA={handleAddFormChange}
+                      onChangeMyWarehouse={handleAddFormChange}
                       onSubmitForm={handleAddFormSubmit}
                       onCloaseModal={() => setAddCard(false)}
                     />
@@ -362,8 +367,16 @@ const Orders = () => {
                     shipmentMasterTrackingID={order.shipmentMasterTrackingID}
                     destinationLogo={order.destinationLogo}
                     destinationShippingID={order.destinationShippingID}
+                    destinationType={order.destinationType}
                     orderStatus={order.orderStatus}
                     orderStatusColor={getStatus(order.orderStatus)}
+                    shippingMode={order.shippingMode}
+                    warehouseName={order.destinationAddress?.warehouseName}
+                    firstLine={order.destinationAddress?.firstLine}
+                    city={order.destinationAddress?.city}
+                    county={order.destinationAddress?.county}
+                    zipCode={order.destinationAddress?.zipCode}
+                    country={order.destinationAddress?.country}
                   />
                 ))}
               </Tab.Pane>
