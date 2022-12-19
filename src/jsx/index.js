@@ -25,6 +25,7 @@ import SupplierProfile from "./components/Dashboard/SupplierProfile";
 import ClientProfile from "./components/Dashboard/ClientProfile";
 import Clients from "./components/Dashboard/Clients";
 import Inventory from "./components/Dashboard/Inventory";
+import MyWarehouse from "./components/Dashboard/MyWarehouse";
 import Kanban from "./components/Dashboard/Kanban";
 import Task from "./components/Dashboard/Task";
 import DashboardCalendar from "./components/Dashboard/DashboardCalendar";
@@ -141,6 +142,7 @@ const Markup = () => {
     { url: "clients", component: Clients },
     { url: "client-profile/:id", component: ClientProfile },
     { url: "inventory", component: Inventory },
+    { url: "my-warehouse", component: MyWarehouse },
     { url: "kanban", component: Kanban },
     { url: "task", component: Task },
     { url: "calendar", component: DashboardCalendar },

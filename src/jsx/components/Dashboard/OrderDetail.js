@@ -8,131 +8,112 @@ import { setProductsAction } from "../../../store/actions/ProductActions";
 
 import user from "./../../../images/pic1.jpg";
 import bg1 from "./../../../images/big/img1.jpg";
-import amazonLogo from './../../../images/freight/amazon.png';
-import freight1 from './../../../images/freight/dhl.png';
+import amazonLogo from "./../../../images/freight/amazon.png";
+import freight1 from "./../../../images/freight/dhl.png";
 import avatar1 from "./../../../images/avatar/1.jpg";
 
-///Import
-import {
-	TabCard, PendingTab,
-	ProgressTab, CloseTab
-}
-	from './Orders/Orders.js';
 
 import PerfectScrollbar from "react-perfect-scrollbar";
 
-
 const OrderDetail = () => {
-	const history = useHistory();
-	const dispatch = useDispatch();
-	const { products } = useStateValue();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { products } = useStateValue();
 
-	const [productsData, setProductsData] = useState(products.productsState);
-	const newProducts = [...productsData];
-	const selectedProduct = newProducts.filter(
-		(product) => product.id === products.selectedProductId
-	);
-	const [product, setProduct] = useState(selectedProduct[0]);
-	const [editProductId, setEditProductId] = useState(null);
+  const [productsData, setProductsData] = useState(products.productsState);
+  const newProducts = [...productsData];
+  const selectedProduct = newProducts.filter(
+    (product) => product.id === products.selectedProductId
+  );
+  const [product, setProduct] = useState(selectedProduct[0]);
+  const [editProductId, setEditProductId] = useState(null);
 
-	// delete data
-	const [deleteModal, setDeleteModal] = useState(false);
+  // delete data
+  const [deleteModal, setDeleteModal] = useState(false);
 
-	// delete data submit
-	const handleDeleteSubmit = () => {
-		const newProducts = [...productsData];
-		const updatedProducts = newProducts.filter(
-			(product) => product.id !== products.selectedProductId
-		);
-		setProductsData(updatedProducts);
-		dispatch(setProductsAction(updatedProducts));
-		setDeleteModal(false);
-		history.push("/products");
-	};
+  // delete data submit
+  const handleDeleteSubmit = () => {
+    const newProducts = [...productsData];
+    const updatedProducts = newProducts.filter(
+      (product) => product.id !== products.selectedProductId
+    );
+    setProductsData(updatedProducts);
+    dispatch(setProductsAction(updatedProducts));
+    setDeleteModal(false);
+    history.push("/products");
+  };
 
-	//For Image upload in ListBlog
-	const [file, setFile] = React.useState(null);
-	const fileHandler = (e) => {
-		setFile(e.target.files[0]);
-		setTimeout(function () {
-			let src = document.getElementById("saveImageFile").getAttribute("src");
-			editFormData.productThumb = src;
-		}, 200);
-	};
+  //For Image upload in ListBlog
+  const [file, setFile] = React.useState(null);
+  const fileHandler = (e) => {
+    setFile(e.target.files[0]);
+    setTimeout(function () {
+      let src = document.getElementById("saveImageFile").getAttribute("src");
+      editFormData.productThumb = src;
+    }, 200);
+  };
 
-	//Edit Modal
-	const [editModal, setEditModal] = useState(false);
+  //Edit Modal
+  const [editModal, setEditModal] = useState(false);
 
-	// Edit function button click to edit
-	const handleEditClick = (event) => {
-		event.preventDefault();
-		setEditProductId(product.id);
-		const formValues = {
-			id: product.id,
-			productName: product.productName,
-			productSKU: product.productSKU,
-			productThumb: product.productThumb,
-			productASIN: product.productASIN,
-			productWidth: product.productWidth,
-			productHeight: product.productHeight,
-			productLength: product.productLength,
-			productWeight: product.productWeight,
-			productManufacturingCost: product.productManufacturingCost,
-			shippingModeAirCost: product.shippingModeAirCost,
-			shippingModeSeaCost: product.shippingModeSeaCost,
-			shippingModeLandCost: product.shippingModeLandCost,
-			productManufacturingDays: product.productManufacturingDays,
-			fastestShippingDays: product.fastestShippingDays,
-			shippingHandlingDays: product.shippingHandlingDays,
-			myWarehouseStock: product.myWarehouseStock,
-		};
-		setEditFormData(formValues);
-		setEditModal(true);
-	};
+  // Edit function button click to edit
+  const handleEditClick = (event) => {
+    event.preventDefault();
+    setEditProductId(product.id);
+    const formValues = {
+      id: product.id,
+      productName: product.productName,
+      productSKU: product.productSKU,
+      productThumb: product.productThumb,
+      productASIN: product.productASIN,
+      productWidth: product.productWidth,
+      productHeight: product.productHeight,
+      productLength: product.productLength,
+      productWeight: product.productWeight,
+      productManufacturingCost: product.productManufacturingCost,
+      shippingModeAirCost: product.shippingModeAirCost,
+      shippingModeSeaCost: product.shippingModeSeaCost,
+      shippingModeLandCost: product.shippingModeLandCost,
+      productManufacturingDays: product.productManufacturingDays,
+      fastestShippingDays: product.fastestShippingDays,
+      shippingHandlingDays: product.shippingHandlingDays,
+      myWarehouseStock: product.myWarehouseStock,
+    };
+    setEditFormData(formValues);
+    setEditModal(true);
+  };
 
-	// edit  data
-	const [editFormData, setEditFormData] = useState({
-		productName: "",
-		productSKU: "",
-		productThumb: "",
-		productASIN: "",
-		productWidth: "",
-		productHeight: "",
-		productLength: "",
-		productWeight: "",
-		productManufacturingCost: "",
-		shippingModeAirCost: "",
-		shippingModeSeaCost: "",
-		shippingModeLandCost: "",
-		productManufacturingDays: "",
-		fastestShippingDays: "",
-		shippingHandlingDays: "",
-		myWarehouseStock: "",
-	});
+  // edit  data
+  const [editFormData, setEditFormData] = useState({
+    productName: "",
+    productSKU: "",
+    productThumb: "",
+    productASIN: "",
+    productWidth: "",
+    productHeight: "",
+    productLength: "",
+    productWeight: "",
+    productManufacturingCost: "",
+    shippingModeAirCost: "",
+    shippingModeSeaCost: "",
+    shippingModeLandCost: "",
+    productManufacturingDays: "",
+    fastestShippingDays: "",
+    shippingHandlingDays: "",
+    myWarehouseStock: "",
+  });
 
-	//update data function
-	const handleEditFormChange = (event) => {
-		event.preventDefault();
-		const fieldName = event.target.getAttribute("name");
-		const fieldValue = event.target.value;
-		const newFormData = { ...editFormData };
-		newFormData[fieldName] = fieldValue;
-		setEditFormData(newFormData);
-	};
-
-	// edit form data submit
-	const handleEditFormSubmit = (event) => {
-		event.preventDefault();
-		const newProduct = editFormData;
-		const newProducts = [...productsData];
-		const index = productsData.findIndex(
-			(product) => product.id === editProductId
-		);
-		newProducts[index] = newProduct;
-		setProduct(newProduct);
-		setProductsData(newProducts);
-		dispatch(setProductsAction(newProducts));
-		setEditModal(false);
+  //update data function
+  const handleEditFormChange = (event) => {
+    event.preventDefault();
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+    const newFormData = { ...editFormData };
+    newFormData[fieldName] = fieldValue;
+    setEditFormData(newFormData);
+  };
+	const handleEditFormSubmit = () =>{
+		console.log('test');
 	};
 
 	return (
