@@ -155,6 +155,7 @@ const SideBar = () => {
     suppliers = ["suppliers"],
     clients = ["clients"],
     inventory = ["inventory"],
+    myWarehouse = ["my-warehouse"],
     forms = [
       "form-element",
       "form-wizard",
@@ -220,6 +221,14 @@ const SideBar = () => {
                   <span className="nav-text">Inventory</span>
                 </Link>
               </li>
+              <li
+                className={`${myWarehouse.includes(path) ? "mm-active" : ""}`}
+              >
+                <Link to="/my-warehouse" className="ai-icon">
+                  <i class="fas fa-solid fa-store"></i>
+                  <span className="nav-text">My Warehouse</span>
+                </Link>
+              </li>
             </>
           )}
 
@@ -242,9 +251,14 @@ const SideBar = () => {
                 : `${clients.includes(path) ? "mm-active" : ""}`
             }
           >
-            <Link to={isBusinessUser ? "/suppliers" : "/clients"} className="ai-icon">
+            <Link
+              to={isBusinessUser ? "/suppliers" : "/clients"}
+              className="ai-icon"
+            >
               <i className="fas fa-id-card"></i>
-              <span className="nav-text">{isBusinessUser ? "Suppliers" : "Clients"}</span>
+              <span className="nav-text">
+                {isBusinessUser ? "Suppliers" : "Clients"}
+              </span>
             </Link>
           </li>
         </MM>

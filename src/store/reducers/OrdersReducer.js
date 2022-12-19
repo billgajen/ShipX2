@@ -22,8 +22,8 @@ export default function OrdersReducer(state = initialState, action) {
     case SET_SELECTED_ORDER_ID:
       return {
         ...state,
-        ...state.orderState,
-        selectedorderId: action.id,
+        ...state.ordersState,
+        selectedOrderId: action.id,
       };
 
     default:

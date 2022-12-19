@@ -9,3 +9,11 @@
     }
   }
 }
+
+.radio-holder {
+  display: flex;
+
+  .form-check {
+    margin-right: 30px;
+  }
+}

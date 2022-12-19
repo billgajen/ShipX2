@@ -1,6 +1,10 @@
 import React from "react";
 import Status from "../../elements/Status/Status";
-import { Link } from "react-router-dom";
+import TrackingUnavailableCard from "./TrackingUnavailableCard";
+import TrackingCard from "./TrackingCard";
+import AMZReceivingCard from "./AMZReceivingCard";
+import AMZCreateLabelCard from "./AMZCreateLabelCard";
+import PrivateDestination from "./PrivateDestination";
 
 const OrderCard = ({
   orderId,
@@ -17,10 +21,18 @@ const OrderCard = ({
   receivedPayment,
   shipmentAgentLogo,
   shipmentMasterTrackingID,
+  shippingMode,
   destinationLogo,
   destinationShippingID,
+  destinationType,
   orderStatus,
   orderStatusColor,
+  warehouseName,
+  firstLine,
+  city,
+  county,
+  zipCode,
+  country,
 }) => {
   const getFormattedText = (str) => {
     let i,
@@ -47,7 +59,9 @@ const OrderCard = ({
               <div className="d-flex align-items-center project-image mb-3">
                 <img src={productThumb} alt="Product Thumbnail" />
                 <div>
-                  <h3 className="fs-18 text-black font-w600 mb-0">{productName}</h3>
+                  <h3 className="fs-18 text-black font-w600 mb-0">
+                    {productName}
+                  </h3>
                 </div>
               </div>
               <span className="d-block fs-12 font-w500">SKU: {productSKU}</span>
@@ -56,6 +70,7 @@ const OrderCard = ({
               </span>
             </div>
           </div>
+
           <div className="col-xl-3 col-lg-3 col-sm-4 col-6 mb-3 order-details">
             <div className="d-flex align-items-center project-image mb-3">
               <img src={supplierLogo} alt="" />
@@ -79,107 +94,56 @@ const OrderCard = ({
                 }}
               ></div>
             </div>
-            <div className="d-flex align-items-end mt-2 justify-content-between">
-              <span className="d-block fs-16 text-black font-w600 mb-0">
-                ${orderCost}
-              </span>
-              <span>${orderCost - receivedPayment} Remaining</span>
-            </div>
-            <div className="progress">
-              <div
-                className="progress-bar progress-animated"
-                style={{
-                  width: (receivedPayment / orderCost) * 100 + "%",
-                }}
-              ></div>
-            </div>
+            {orderCost && (
+              <>
+                <div className="d-flex align-items-end mt-2 justify-content-between">
+                  <span className="d-block fs-16 text-black font-w600 mb-0">
+                    ${orderCost}
+                  </span>
+                  <span>${orderCost - receivedPayment} Remaining</span>
+                </div>
+                <div className="progress">
+                  <div
+                    className="progress-bar progress-animated"
+                    style={{
+                      width: (receivedPayment / orderCost) * 100 + "%",
+                    }}
+                  ></div>
+                </div>
+              </>
+            )}
           </div>
           <div className="col-xl-3 col-lg-3 col-sm-4 col-6 mb-3">
-            <div className="d-flex justify-content-between">
-              <div className="d-flex align-items-center project-image mb-3">
-                <img src={shipmentAgentLogo} alt="" />
-                <div>
-                  <small className="d-block fs-16 font-w700">Tracking ID</small>
-                  <span className="d-block fs-12 font-w500">
-                    {shipmentMasterTrackingID}
-                  </span>
-                </div>
-              </div>
-              <div className="shipping-mode">
-                  <span className="ms-0"><i class="fas fa-plane"></i></span>
-              </div>
-            </div>
-            <span className="d-block fs-16 text-black font-w600">
-              In Transit
-            </span>
-            <div className="progress mb-2">
-              <div
-                className="progress-bar progress-animated bg-success"
-                style={{ width: "50%" }}
-              ></div>
-            </div>
-            <span className="d-block fs-12 font-w500">
-              Shipment has departed from a DHL facility CINCINNATI HUB - USA
-            </span>
-            --
-            <div className="d-flex align-items-center project-image mb-4">
-              <div className="shipping-mode">
-                  <span className="ms-0 me-3"><i class="fas fa-truck"></i></span>
-              </div>
-              <div>
-                <h3 className="fs-16 text-black font-w600 mb-0">Shipping Mode</h3>
-                <span className="d-block fs-12 font-w500">Land</span>
-              </div>
-            </div>
-            <div className="invite mb-0">
-              <Link to={"#"} className="btn btn-xs btn-primary light btn-rounded me-2 mb-0"><i className="fa fa-plus me-3 scale3"></i>Tracking Details</Link>
-            </div>
+            {shipmentMasterTrackingID ? (
+              <TrackingCard
+                shipmentAgentLogo={shipmentAgentLogo}
+                shipmentMasterTrackingID={shipmentMasterTrackingID}
+                shippingMode={shippingMode}
+              />
+            ) : (
+              <TrackingUnavailableCard shippingMode={shippingMode} />
+            )}
           </div>
           <div className="col-xl-3  col-lg-6 col-sm-6 mb-sm-4 mb-0">
-            <div className="d-flex align-items-center project-image mb-3">
-              <img src={destinationLogo} alt="" />
-              <div>
-                <small className="d-block fs-16 font-w700">Shipping ID</small>
-                <span className="d-block fs-12 font-w500">
-                  {destinationShippingID}
-                </span>
-              </div>
-            </div>
-            <span className="d-block fs-16 text-black font-w600">
-              Receiving
-            </span>
-            <div className="progress mb-2">
-              <div
-                className="progress-bar progress-animated"
-                style={{ width: "75%" }}
-              ></div>
-            </div>
-            <span className="d-block fs-12 font-w500">
-              Delivered to IND9,1151 S GRAHAM RD,GREENWOOD,IN,46143-7830,US
-            </span>
-            ---
-            <div className="d-flex align-items-center project-image mb-4">
-              <img src={destinationLogo} alt="" />
-              <div>
-                <small className="d-block fs-16 font-w700">Send to Amazon</small>
-              </div>
-            </div>
-            <div className="invite mb-0">
-              <Link to={"#"} className="btn btn-xs btn-danger light btn-rounded me-2 mb-0"><i className="fab fa-amazon me-3 scale3"></i>Create Label</Link>
-            </div>
-            ---
-            <div className="d-flex align-items-center project-image mb-3">
-              <div className="shipping-mode">
-                  <span className="ms-0 me-3"><i class="fas fa-warehouse"></i></span>
-              </div>
-              <div>
-                <h3 className="fs-16 text-black font-w600 mb-0">Destination</h3>
-              </div>
-            </div>
-            <div className="my-warehouse-address ms-2">
-              <span className="d-block fs-12 text-black font-w600">NETDIRECT DISTRIBUTION, LLC</span>
-              <p>9360 Federal Blvd<br />Denver<br />CO 80260<br />US</p>
-            </div>
+            {destinationShippingID && (
+              <AMZReceivingCard
+                destinationLogo={destinationLogo}
+                destinationShippingID={destinationShippingID}
+              />
+            )}
+            {!destinationShippingID && destinationType === "AmazonFBA" && (
+              <AMZCreateLabelCard destinationLogo={destinationLogo} />
+            )}
+            {!destinationShippingID && destinationType === "Private" && (
+              <PrivateDestination
+                warehouseName={warehouseName}
+                firstLine={firstLine}
+                city={city}
+                county={county}
+                zipCode={zipCode}
+                country={country}
+              />
+            )}
           </div>
           <div className="col-xl-12  col-lg-6 col-sm-4 text-end">
             <div className="d-flex justify-content-end align-items-center flex-wrap">

@@ -19,8 +19,10 @@ export const ordersData = [
     receivedPayment: 4500,
     shipmentAgentLogo: freight1,
     shipmentMasterTrackingID: "770532218138",
+    shippingMode: "Air",
     destinationLogo: amazonLogo,
     destinationShippingID: "FBA16YR0BH62",
+    destinationType: "AmazonFBA",
     orderStatus: "PENDING",
   },
   {
@@ -38,8 +40,10 @@ export const ordersData = [
     receivedPayment: 2500,
     shipmentAgentLogo: freight1,
     shipmentMasterTrackingID: "770532218138",
+    shippingMode: "Ship",
     destinationLogo: amazonLogo,
     destinationShippingID: "FBA16YR0BH62",
+    destinationType: "AmazonFBA",
     orderStatus: "ON_PROGRESS",
   },
   {
@@ -57,8 +61,10 @@ export const ordersData = [
     receivedPayment: 9000,
     shipmentAgentLogo: freight1,
     shipmentMasterTrackingID: "770532218138",
+    shippingMode: "Land",
     destinationLogo: amazonLogo,
     destinationShippingID: "FBA16YR0BH62",
+    destinationType: "AmazonFBA",
     orderStatus: "CLOSED",
   },
   {
@@ -76,8 +82,10 @@ export const ordersData = [
     receivedPayment: 4500,
     shipmentAgentLogo: freight1,
     shipmentMasterTrackingID: "770532218138",
+    shippingMode: "Air",
     destinationLogo: amazonLogo,
     destinationShippingID: "FBA16YR0BH62",
+    destinationType: "AmazonFBA",
     orderStatus: "PENDING",
   },
 ];

@@ -48,6 +48,26 @@
   flex: 1 1 auto;
   padding: $card-spacer-y $card-spacer-x;
   color: $card-color;
+
+  &.add-item {
+    display: flex;
+    cursor: pointer;
+
+    i {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .add-item-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .item-card h6 {
+    margin-bottom: 0;
+  }
 }
 
 .card-title {
