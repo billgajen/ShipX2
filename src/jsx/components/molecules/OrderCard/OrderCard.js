@@ -71,7 +71,6 @@ const OrderCard = ({
               </span>
             </div>
           </div>
-
           <div className="col-xl-3 col-lg-3 col-sm-4 col-6 mb-3 order-details">
             <div className="d-flex align-items-center project-image mb-3">
               <img src={supplierLogo} alt="" />
