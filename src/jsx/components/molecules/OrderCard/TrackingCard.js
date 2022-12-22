@@ -34,7 +34,7 @@ const TrackingCard = ({
             </span>
           </div>
         </div>
-        <div className="shipping-mode">
+        <div className="circle-icon">
           <span className="ms-0">
             <i class={`fas ${getShippingIcon(shippingMode)}`}></i>
           </span>

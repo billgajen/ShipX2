@@ -6,7 +6,7 @@ const TrackingUnavailable = ({ shippingMode }) => {
   return (
     <>
       <div className="d-flex align-items-center project-image mb-4">
-        <div className="shipping-mode">
+        <div className="circle-icon">
           <span className="ms-0 me-3">
             <i className={`fas ${getShippingIcon(shippingMode)}`}></i>
           </span>
