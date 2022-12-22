@@ -4,7 +4,7 @@ const PrivateDestination = ({ warehouseName, firstLine, city, county, zipCode, c
   return (
     <>
       <div className="d-flex align-items-center project-image mb-3">
-        <div className="shipping-mode">
+        <div className="circle-icon">
           <span className="ms-0 me-3">
             <i class="fas fa-warehouse"></i>
           </span>
@@ -14,18 +14,9 @@ const PrivateDestination = ({ warehouseName, firstLine, city, county, zipCode, c
         </div>
       </div>
       <div className="my-warehouse-address ms-2">
-        <span className="d-block fs-12 text-black font-w600">
-          {warehouseName}
-        </span>
-        <p>
-          {firstLine}
-          <br />
-          {city}, {county}
-          <br />
-          {zipCode}
-          <br />
-          {country}
-        </p>
+        <span className="d-block fs-12 text-black font-w600">{warehouseName}</span>
+        <span class="d-block fs-12 font-w400 mb-0">{firstLine}</span>
+        <span class="d-block fs-12 font-w400 mb-0">{city}, {county} {zipCode}, {country}</span>
       </div>
     </>
   );

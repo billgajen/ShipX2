@@ -5,6 +5,7 @@ import TrackingCard from "./TrackingCard";
 import AMZReceivingCard from "./AMZReceivingCard";
 import AMZCreateLabelCard from "./AMZCreateLabelCard";
 import PrivateDestination from "./PrivateDestination";
+import { Link } from "react-router-dom";
 
 const OrderCard = ({
   orderId,
@@ -34,15 +35,15 @@ const OrderCard = ({
   zipCode,
   country,
 }) => {
-  const getFormattedText = (str) => {
-    let i,
-    frags = str.split("_");
-    for (i = 0; i < frags.length; i++) {
-      frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].substr(1).toLowerCase();
-    }
-    return frags.join(" ");
-  }
-  const formattedStatusText = getFormattedText(orderStatus);
+	const getFormattedText = (str) => {
+		let i,
+		frags = str.split("_");
+		for (i = 0; i < frags.length; i++) {
+			frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].substr(1).toLowerCase();
+		}
+		return frags.join(" ");
+	}
+	const formattedStatusText = getFormattedText(orderStatus);
 
   return (
     <div className="card">
@@ -70,7 +71,6 @@ const OrderCard = ({
               </span>
             </div>
           </div>
-
           <div className="col-xl-3 col-lg-3 col-sm-4 col-6 mb-3 order-details">
             <div className="d-flex align-items-center project-image mb-3">
               <img src={supplierLogo} alt="" />
@@ -94,7 +94,7 @@ const OrderCard = ({
                 }}
               ></div>
             </div>
-            {orderCost && (
+            {orderCost ? (
               <>
                 <div className="d-flex align-items-end mt-2 justify-content-between">
                   <span className="d-block fs-16 text-black font-w600 mb-0">
@@ -111,7 +111,11 @@ const OrderCard = ({
                   ></div>
                 </div>
               </>
-            )}
+            ) : (
+							<div className="invite mb-0">
+									<Link to={"#"} className="btn btn-xs btn-primary light btn-rounded me-2 mb-0"><i className="fa fa-plus me-3 scale3"></i>Upload Invoice</Link>
+							</div>
+						)} 
           </div>
           <div className="col-xl-3 col-lg-3 col-sm-4 col-6 mb-3">
             {shipmentMasterTrackingID ? (
