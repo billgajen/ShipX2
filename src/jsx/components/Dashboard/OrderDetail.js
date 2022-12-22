@@ -12,13 +12,12 @@ import amazonLogo from "./../../../images/freight/amazon.png";
 import freight1 from "./../../../images/freight/dhl.png";
 import avatar1 from "./../../../images/avatar/1.jpg";
 
-
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 const OrderDetail = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { products } = useStateValue();
+  const { products, orders } = useStateValue();
 
   const [productsData, setProductsData] = useState(products.productsState);
   const newProducts = [...productsData];
@@ -127,6 +126,8 @@ const OrderDetail = () => {
     dispatch(setProductsAction(newProducts));
     setEditModal(false);
   };
+
+  console.log("orders", orders);
 
   return (
     <>

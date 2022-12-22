@@ -17,6 +17,7 @@ export const setOrders = (orders) => {
 };
 
 export const setSelectedOrderIdAction = (id) => {
+  console.log("dispatch", id)
   return (dispatch) => {
     dispatch(setSelectedOrderId(id));
   };

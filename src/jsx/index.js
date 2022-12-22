@@ -133,7 +133,7 @@ const Markup = () => {
     { url: "dashboard", component: Home },
     { url: "dashboard-dark", component: DashboardDark },
     { url: "orders", component: Orders },
-    { url: "order-detail", component: OrderDetail },
+    { url: "order-detail/:id", component: OrderDetail },
     { url: "payments", component: Payments },
     { url: "products", component: Products },
     { url: "product-detail/:id", component: ProductDetail },

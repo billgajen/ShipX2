@@ -20,6 +20,7 @@ export default function OrdersReducer(state = initialState, action) {
       return updatedState;
 
     case SET_SELECTED_ORDER_ID:
+      console.log("Action", action);
       return {
         ...state,
         ...state.ordersState,

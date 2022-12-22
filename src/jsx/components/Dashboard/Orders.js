@@ -12,8 +12,9 @@ import AddProductForm, {
   initialFormState,
 } from "../customForms/AddProductForm";
 import {  setProductsAction } from "../../../store/actions/ProductActions";
-import { setOrdersAction } from "../../../store/actions/orderActions";
+import { setOrdersAction, setSelectedOrderIdAction } from "../../../store/actions/orderActions";
 import { useDispatch } from "react-redux";
+import { formatDate } from "../utils/formatDate"
 
 const Orders = () => {
   const dispatch = useDispatch();
@@ -140,6 +141,7 @@ const Orders = () => {
     productASIN: "",
     productSKU: "",
     orderUnits: "",
+    orderDate: "",
     shippingMode: "",
     destinationType: "AmazonFBA",
     destination: "",
@@ -194,6 +196,7 @@ const Orders = () => {
         productSKU: selectedOrderProduct.productSKU,
         bpOrderID: addFormData.bpOrderID,
         orderUnits: addFormData.orderUnits,
+        orderDate: formatDate(new Date()),
         shippingMode: addFormData.shippingMode,
         destinationType: addFormData.destinationType,
         destination: addFormData.destination,
@@ -215,6 +218,10 @@ const Orders = () => {
       swal("Oops", errorMsg, "error");
     }
     addFormData.destinationType = "AmazonFBA";
+  };
+
+  const handleSelectedOrderId = (id) => {
+    dispatch(setSelectedOrderIdAction(id));
   };
 
   const getStatus = (status) => {
@@ -377,6 +384,7 @@ const Orders = () => {
                     county={order.destinationAddress?.county}
                     zipCode={order.destinationAddress?.zipCode}
                     country={order.destinationAddress?.country}
+                    onClickOrder={() => handleSelectedOrderId(order.id)}
                   />
                 ))}
               </Tab.Pane>

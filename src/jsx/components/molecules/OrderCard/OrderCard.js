@@ -33,6 +33,7 @@ const OrderCard = ({
   county,
   zipCode,
   country,
+  onClickOrder,
 }) => {
   const getFormattedText = (str) => {
     let i,
@@ -156,7 +157,12 @@ const OrderCard = ({
                 </a>
               </div>
               <div className="d-flex justify-content-end project-btn">
-                <Status text={formattedStatusText} color={orderStatusColor} />
+                <Status
+                  text={formattedStatusText}
+                  color={orderStatusColor}
+                  onCick={onClickOrder}
+                  path={`/order-detail/${orderId}`}
+                />
               </div>
             </div>
           </div>
