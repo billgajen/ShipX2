@@ -9,7 +9,9 @@ import {
 } from "../../../store/actions/ProductActions";
 import { useDispatch } from "react-redux";
 import { useStateValue } from "../../../store/selectors/useStateValue";
-import AddProductForm, { initialFormState } from "../customForms/AddProductForm";
+import AddProductForm, {
+  initialFormState,
+} from "../customForms/AddProductForm";
 
 import user from "./../../../images/pic1.jpg";
 
@@ -166,14 +168,14 @@ const Products = () => {
     );
     newProducts[index] = editedProduct;
     setProducts(newProducts);
-		dispatch(setProductsAction(newProducts));
+    dispatch(setProductsAction(newProducts));
     setEditProductId(null);
     setEditModal(false);
   };
 
-	const handleSelectedProductId = (id) => {
-		dispatch(setSelectedProductIdAction(id));
-	};
+  const handleSelectedProductId = (id) => {
+    dispatch(setSelectedProductIdAction(id));
+  };
 
   return (
     <>

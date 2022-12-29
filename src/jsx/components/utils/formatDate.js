@@ -6,4 +6,4 @@ export const formatDate = (date) => {
     // weekday: "short",
   };
   return date.toLocaleDateString("en-US", options);
-}
+};

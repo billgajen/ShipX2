@@ -1,7 +1,4 @@
-import {
-  SET_ORDERS_ACTION,
-  SET_SELECTED_ORDER_ID,
-} from "./orderTypes";
+import { SET_ORDERS_ACTION, SET_SELECTED_ORDER_ID } from "./orderTypes";
 
 export const setOrdersAction = (orders) => {
   return (dispatch) => {
@@ -17,7 +14,6 @@ export const setOrders = (orders) => {
 };
 
 export const setSelectedOrderIdAction = (id) => {
-  console.log("dispatch", id)
   return (dispatch) => {
     dispatch(setSelectedOrderId(id));
   };
@@ -28,4 +24,4 @@ export const setSelectedOrderId = (id) => {
     type: SET_SELECTED_ORDER_ID,
     id: id,
   };
-}
+};

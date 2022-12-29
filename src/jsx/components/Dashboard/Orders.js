@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Nav, Tab } from "react-bootstrap";
-import { Modal } from "react-bootstrap";
+import { Nav, Tab, Modal } from "react-bootstrap";
 import swal from "sweetalert";
 import { nanoid } from "nanoid";
 import { useStateValue } from "../../../store/selectors/useStateValue";
@@ -11,10 +10,15 @@ import AddOrderForm from "../customForms/AddOrderForm";
 import AddProductForm, {
   initialFormState,
 } from "../customForms/AddProductForm";
-import {  setProductsAction } from "../../../store/actions/ProductActions";
-import { setOrdersAction, setSelectedOrderIdAction } from "../../../store/actions/orderActions";
+import { setProductsAction } from "../../../store/actions/ProductActions";
+import {
+  setOrdersAction,
+  setSelectedOrderIdAction,
+} from "../../../store/actions/orderActions";
 import { useDispatch } from "react-redux";
-import { formatDate } from "../utils/formatDate"
+import { formatDate } from "../utils/formatDate";
+import UploadInvoiceForm from "./OrderDetail/UploadInvoiceForm/UploadInvoiceForm";
+import { initialInvoiceFormState } from "../../components/Dashboard/OrderDetail/OrderDetail";
 
 const Orders = () => {
   const dispatch = useDispatch();
@@ -27,6 +31,11 @@ const Orders = () => {
   const [selectedOrderProductSKU, setSelectedOrderProductSKU] = useState("");
   const [selectedDestinationName, setSelectedDestinationName] = useState("");
   const [addNewProductForm, setAddNewProductForm] = useState(false);
+  const [invoiceModal, setInvoiceModal] = useState(false);
+  const [addInvoiceFormData, setAddInvoiceFormData] = useState(
+    initialInvoiceFormState
+  );
+  const [invoiceDetails, setInvoiceDetails] = useState([]);
 
   const handleAllStatusClick = () => {
     setTabState("AllStatus");
@@ -71,7 +80,8 @@ const Orders = () => {
   };
 
   //Add data
-  const [addProductFormData, setAddProductFormData] = useState(initialFormState);
+  const [addProductFormData, setAddProductFormData] =
+    useState(initialFormState);
 
   // Add Product function
   const handleAddProductFormChange = (event) => {
@@ -171,8 +181,8 @@ const Orders = () => {
   //Add Submit data
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
-    var error = false;
-    var errorMsg = "";
+    let error = false;
+    let errorMsg = "";
     if (addFormData.productName === "") {
       error = true;
       errorMsg = "Please select a Product";
@@ -182,7 +192,10 @@ const Orders = () => {
     } else if (addFormData.shippingMode === "") {
       error = true;
       errorMsg = "Please select shipping mode";
-    } else if (addFormData.destinationType === "Private" && addFormData.destination === "") {
+    } else if (
+      addFormData.destinationType === "Private" &&
+      addFormData.destination === ""
+    ) {
       error = true;
       errorMsg = "Please select destination";
     }
@@ -222,6 +235,81 @@ const Orders = () => {
 
   const handleSelectedOrderId = (id) => {
     dispatch(setSelectedOrderIdAction(id));
+  };
+
+  const handleUploadInvoiceClick = (id) => {
+    setInvoiceModal(true);
+    dispatch(setSelectedOrderIdAction(id));
+  };
+
+  // Invoice file change
+  const handleInvoiceFileChange = (e) => {
+    setFile(e.target.files[0]);
+    setTimeout(() => {
+      let src = URL.createObjectURL(e.target.files[0]);
+      addInvoiceFormData.invoiceSRC = src;
+    }, 200);
+  };
+
+  const newOrders = [...ordersDetails];
+  const selectedOrder = newOrders.find(
+    (order) => order.id === orders.selectedOrderId
+  );
+
+  // Add invoice form change
+  const handleInvoiceFormChange = (event) => {
+    event.preventDefault();
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+    const newFormData = { ...addInvoiceFormData };
+    newFormData[fieldName] = fieldValue;
+    setAddInvoiceFormData(newFormData);
+  };
+
+  //Add Invoice Submit data
+  const handleAddInvoiceFormSubmit = (event) => {
+    event.preventDefault();
+    let error = false;
+    let errorMsg = "";
+    if (addInvoiceFormData.totalCost === "") {
+      error = true;
+      errorMsg = "Please fill total cost";
+    } else if (addInvoiceFormData.productSKU === "") {
+      error = true;
+      errorMsg = "Please fill product sku.";
+    } else if (addInvoiceFormData.invoiceSRC === "") {
+      error = true;
+      errorMsg = "Please upload invoice";
+    }
+    if (!error) {
+      const newInvoice = {
+        id: nanoid(),
+        totalCost: addInvoiceFormData.totalCost,
+        productSKU: addInvoiceFormData.productSKU,
+        invoice: file,
+        invoiceSRC: addInvoiceFormData.invoiceSRC,
+        createdDate: new Date(),
+      };
+      setInvoiceModal(false);
+      swal("Good job!", "Successfully Added", "success");
+      addInvoiceFormData.totalCost =
+        addInvoiceFormData.productSKU =
+        addInvoiceFormData.invoiceSRC =
+          "";
+      const newInvoiceData = invoiceDetails.length
+        ? (invoiceDetails[0] = newInvoice)
+        : [newInvoice];
+      setInvoiceDetails(newInvoiceData);
+      selectedOrder.invoiceInfo = newInvoice;
+      const newOrders = [...ordersDetails];
+      let itemIndex = newOrders.findIndex(
+        (item) => item.id === selectedOrder.id
+      );
+      newOrders[itemIndex] = selectedOrder;
+      dispatch(setOrdersAction(newOrders));
+    } else {
+      swal("Oops", errorMsg, "error");
+    }
   };
 
   const getStatus = (status) => {
@@ -350,6 +438,24 @@ const Orders = () => {
               </>
             )}
           </div>
+          <Modal className="modal fade" show={invoiceModal}>
+            <div className="modal-header">
+              <h4 className="modal-title fs-20">Upload Invoice</h4>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setInvoiceModal(false)}
+                data-dismiss="modal"
+              ></button>
+            </div>
+            <UploadInvoiceForm
+              onClickCancel={() => setInvoiceModal(false)}
+              onChangeFile={handleInvoiceFileChange}
+              onTotalCostChange={handleInvoiceFormChange}
+              onProductSKUChange={handleInvoiceFormChange}
+              onClickSubmit={handleAddInvoiceFormSubmit}
+            />
+          </Modal>
         </div>
         <div className="row">
           <div className="col-xl-12">
@@ -368,8 +474,11 @@ const Orders = () => {
                     supplierName={order.supplierName}
                     orderUnits={order.orderUnits}
                     receivedUnits={order.receivedUnits}
-                    orderCost={order.orderCost}
+                    orderCost={order.invoiceInfo?.totalCost}
                     receivedPayment={order.receivedPayment}
+                    onUploadInvoiceClick={() =>
+                      handleUploadInvoiceClick(order.id)
+                    }
                     shipmentAgentLogo={order.shipmentAgentLogo}
                     shipmentMasterTrackingID={order.shipmentMasterTrackingID}
                     destinationLogo={order.destinationLogo}
@@ -384,6 +493,8 @@ const Orders = () => {
                     county={order.destinationAddress?.county}
                     zipCode={order.destinationAddress?.zipCode}
                     country={order.destinationAddress?.country}
+                    invoiceLink={order.invoiceInfo?.invoiceSRC}
+                    invoiceName={order.invoiceInfo?.invoice?.name}
                     onClickOrder={() => handleSelectedOrderId(order.id)}
                   />
                 ))}
