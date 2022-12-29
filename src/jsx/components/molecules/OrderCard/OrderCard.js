@@ -20,7 +20,7 @@ const OrderCard = ({
   receivedUnits,
   orderCost,
   receivedPayment,
-	onUploadInvoiceClick,
+  onUploadInvoiceClick,
   shipmentAgentLogo,
   shipmentMasterTrackingID,
   shippingMode,
@@ -36,8 +36,8 @@ const OrderCard = ({
   zipCode,
   country,
   onClickOrder,
-	invoiceLink,
-	invoiceName,
+  invoiceLink,
+  invoiceName,
 }) => {
   const getFormattedText = (str) => {
     let i,
@@ -121,7 +121,7 @@ const OrderCard = ({
                 <Link
                   to={"#"}
                   className="btn btn-xs btn-primary light btn-rounded me-2 mb-0"
-									onClick={onUploadInvoiceClick}
+                  onClick={onUploadInvoiceClick}
                 >
                   <i className="fa fa-plus me-3 scale3"></i>Upload Invoice
                 </Link>
@@ -162,17 +162,17 @@ const OrderCard = ({
           </div>
           <div className="col-xl-12  col-lg-6 col-sm-4 text-end">
             <div className="d-flex justify-content-end align-items-center flex-wrap">
-							{orderCost && (
-								<div className="me-2">
-									<a
-										className="badge badge-outline-primary badge-circle"
-										href={invoiceLink}
-										download={invoiceName}
-									>
-										<i className="fs-22 fas fa-file-pdf"></i>
-									</a>
-								</div>
-							)}
+              {orderCost && (
+                <div className="me-2">
+                  <a
+                    className="badge badge-outline-primary badge-circle"
+                    href={invoiceLink}
+                    download={invoiceName}
+                  >
+                    <i className="fs-22 fas fa-file-pdf"></i>
+                  </a>
+                </div>
+              )}
               <div className="d-flex justify-content-end project-btn">
                 <Status
                   text={formattedStatusText}
