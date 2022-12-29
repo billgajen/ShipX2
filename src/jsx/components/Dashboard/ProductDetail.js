@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useStateValue } from "../../../store/selectors/useStateValue";
 import { setProductsAction } from "../../../store/actions/ProductActions";
-import { initialFormState } from "../customForms/AddProductForm"
+import { initialFormState } from "../customForms/AddProductForm";
 
 import user from "./../../../images/pic1.jpg";
 import bg1 from "./../../../images/big/img1.jpg";
 
 const ProductDetail = () => {
-	const history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
   const { products } = useStateValue();
 
@@ -35,7 +34,7 @@ const ProductDetail = () => {
     setProductsData(updatedProducts);
     dispatch(setProductsAction(updatedProducts));
     setDeleteModal(false);
-		history.push("/products");
+    history.push("/products");
   };
 
   //For Image upload in ListBlog

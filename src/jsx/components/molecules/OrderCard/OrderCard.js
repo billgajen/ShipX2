@@ -20,6 +20,7 @@ const OrderCard = ({
   receivedUnits,
   orderCost,
   receivedPayment,
+  onUploadInvoiceClick,
   shipmentAgentLogo,
   shipmentMasterTrackingID,
   shippingMode,
@@ -34,16 +35,20 @@ const OrderCard = ({
   county,
   zipCode,
   country,
+  onClickOrder,
+  invoiceLink,
+  invoiceName,
 }) => {
-	const getFormattedText = (str) => {
-		let i,
-		frags = str.split("_");
-		for (i = 0; i < frags.length; i++) {
-			frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].substr(1).toLowerCase();
-		}
-		return frags.join(" ");
-	}
-	const formattedStatusText = getFormattedText(orderStatus);
+  const getFormattedText = (str) => {
+    let i,
+      frags = str.split("_");
+    for (i = 0; i < frags.length; i++) {
+      frags[i] =
+        frags[i].charAt(0).toUpperCase() + frags[i].substr(1).toLowerCase();
+    }
+    return frags.join(" ");
+  };
+  const formattedStatusText = getFormattedText(orderStatus);
 
   return (
     <div className="card">
@@ -112,10 +117,16 @@ const OrderCard = ({
                 </div>
               </>
             ) : (
-							<div className="invite mb-0">
-									<Link to={"#"} className="btn btn-xs btn-primary light btn-rounded me-2 mb-0"><i className="fa fa-plus me-3 scale3"></i>Upload Invoice</Link>
-							</div>
-						)} 
+              <div className="invite mb-0">
+                <Link
+                  to={"#"}
+                  className="btn btn-xs btn-primary light btn-rounded me-2 mb-0"
+                  onClick={onUploadInvoiceClick}
+                >
+                  <i className="fa fa-plus me-3 scale3"></i>Upload Invoice
+                </Link>
+              </div>
+            )}
           </div>
           <div className="col-xl-3 col-lg-3 col-sm-4 col-6 mb-3">
             {shipmentMasterTrackingID ? (
@@ -151,16 +162,24 @@ const OrderCard = ({
           </div>
           <div className="col-xl-12  col-lg-6 col-sm-4 text-end">
             <div className="d-flex justify-content-end align-items-center flex-wrap">
-              <div className="me-2">
-                <a
-                  className="badge badge-outline-primary badge-circle"
-                  href="/#"
-                >
-                  <i className="fs-22 fas fa-file-pdf"></i>
-                </a>
-              </div>
+              {orderCost && (
+                <div className="me-2">
+                  <a
+                    className="badge badge-outline-primary badge-circle"
+                    href={invoiceLink}
+                    download={invoiceName}
+                  >
+                    <i className="fs-22 fas fa-file-pdf"></i>
+                  </a>
+                </div>
+              )}
               <div className="d-flex justify-content-end project-btn">
-                <Status text={formattedStatusText} color={orderStatusColor} />
+                <Status
+                  text={formattedStatusText}
+                  color={orderStatusColor}
+                  onClick={onClickOrder}
+                  path={`/order-detail/${orderId}`}
+                />
               </div>
             </div>
           </div>
