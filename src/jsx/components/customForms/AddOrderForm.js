@@ -81,6 +81,7 @@ const AddOrderForm = ({
               <div className="col-sm-9 radio-holder">
                 <div className="form-check">
                   <input
+                    id="amzfba"
                     onClick={() => setMyWarehouseOption("AmazonFBA")}
                     className="form-check-input"
                     type="radio"
@@ -89,10 +90,11 @@ const AddOrderForm = ({
                     onChange={onChangeAMZFBA}
                     defaultChecked
                   />
-                  <label className="form-check-label">Amazon FBA</label>
+                  <label className="form-check-label" for="amzfba">Amazon FBA</label>
                 </div>
                 <div className="form-check">
                   <input
+                    id="mywarehouse"
                     onClick={() => setMyWarehouseOption("Private")}
                     className="form-check-input"
                     type="radio"
@@ -100,7 +102,7 @@ const AddOrderForm = ({
                     value="Private"
                     onChange={onChangeMyWarehouse}
                   />
-                  <label className="form-check-label">My Warehouse</label>
+                  <label className="form-check-label" for="mywarehouse">My Warehouse</label>
                 </div>
               </div>
             </div>

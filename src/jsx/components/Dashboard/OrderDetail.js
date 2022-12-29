@@ -909,7 +909,33 @@ const OrderDetail = () => {
 										<span className="mb-0">LOT Number</span>{" "}
 										<strong className="text-muted">ABC987654321</strong>
 									</li>
+									<li className="list-group-item d-flex justify-content-between">
+										<span className="mb-0">Batch Number</span>{" "}
+										<strong className="text-muted">ABC123</strong>
+									</li>
+									<li className="list-group-item d-flex justify-content-between">
+										<span className="mb-0">Color</span>{" "}
+										<strong className="text-muted">Red</strong>
+									</li>
+									<li className="list-group-item d-flex justify-content-between">
+										<span className="mb-0">Model Number</span>{" "}
+										<strong className="text-muted">ABC987654321</strong>
+									</li>
+									<li className="list-group-item d-flex justify-content-between">
+										<span className="mb-0">Type</span>{" "}
+										<strong className="text-muted">CDE</strong>
+									</li>
+									<li className="list-group-item d-flex justify-content-between">
+										<span className="mb-0">Size</span>{" "}
+										<strong className="text-muted">Medium</strong>
+									</li>
 								</ul>
+								<div className="card-footer text-center border-0 mt-0">
+									<button type="button" class="me-2 btn btn-primary btn-rounded">
+										<span class="btn-icon-start text-primary"><i className="fas fa-edit"></i></span>
+										Update Batch Information
+									</button>
+								</div>
 							</div>
 						</div>
 					</div>

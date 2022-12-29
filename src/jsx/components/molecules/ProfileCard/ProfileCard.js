@@ -46,18 +46,6 @@ const ProfileCard = ({
             <span className="mb-0">Phone</span>{" "}
             <strong className="text-muted">{profilePhone}</strong>
           </li>
-          <li className="list-group-item d-flex justify-content-between">
-            <span className="mb-0">Products</span>{" "}
-            <div>
-              {profileProducts.map((product) => {
-                return (
-                  <p key={product.productSKU} className="mb-0">
-                    {product.productSKU}
-                  </p>
-                );
-              })}
-            </div>
-          </li>
         </ul>
         <div className="card-footer text-center border-0 mt-0">
           <div className="links-container">
