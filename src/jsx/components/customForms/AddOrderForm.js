@@ -68,7 +68,7 @@ const AddOrderForm = ({
               >
                 <option value="select">Select Shipping Mode</option>
                 <option>Air</option>
-                <option>Ship</option>
+                <option>Sea</option>
                 <option>Land</option>
               </select>
             </div>

@@ -5,7 +5,7 @@ export const getShippingIcon = (shippingMode) => {
     case "Air": {
       return "fa-plane";
     }
-    case "Ship": {
+    case "Sea": {
       return "fa-ship";
     }
     case "Land": {

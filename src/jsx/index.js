@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 /// React router dom
-import {  Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 /// Css
 import "./index.css";
@@ -16,7 +16,7 @@ import ScrollToTop from "./layouts/ScrollToTop";
 import Home from "./components/Dashboard/Home";
 import DashboardDark from "./components/Dashboard/DashboardDark";
 import Orders from "./components/Dashboard/Orders";
-import OrderDetail from "./components/Dashboard/OrderDetail";
+import OrderDetail from "./components/Dashboard/OrderDetail/OrderDetail";
 import Products from "./components/Dashboard/Products";
 import ProductDetail from "./components/Dashboard/ProductDetail";
 import Payments from "./components/Dashboard/Payments";
@@ -38,7 +38,6 @@ import Theme3 from "./components/Dashboard/Demo/Theme3";
 import Theme4 from "./components/Dashboard/Demo/Theme4";
 import Theme5 from "./components/Dashboard/Demo/Theme5";
 import Theme6 from "./components/Dashboard/Demo/Theme6";
-
 
 /// App
 import AppProfile from "./components/AppsMenu/AppProfile/AppProfile";
@@ -133,7 +132,7 @@ const Markup = () => {
     { url: "dashboard", component: Home },
     { url: "dashboard-dark", component: DashboardDark },
     { url: "orders", component: Orders },
-    { url: "order-detail", component: OrderDetail },
+    { url: "order-detail/:id", component: OrderDetail },
     { url: "payments", component: Payments },
     { url: "products", component: Products },
     { url: "product-detail/:id", component: ProductDetail },
@@ -274,7 +273,7 @@ const Markup = () => {
         {!pagePath && <Footer />}
       </div>
       <Setting />
-	  <ScrollToTop />
+      <ScrollToTop />
     </>
   );
 };

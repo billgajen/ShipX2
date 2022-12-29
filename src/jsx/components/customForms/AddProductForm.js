@@ -1,25 +1,25 @@
 import React from "react";
 import user from "../../../images/pic1.jpg";
 
-export  const initialFormState = {
-    productName: "",
-    productSKU: "",
-    productThumb: "",
-    productASIN: "",
-    productWidth: "",
-    productHeight: "",
-    productLength: "",
-    productWeight: "",
-    productSize: "",
-    productManufacturingCost: "",
-    shippingModeAirCost: "",
-    shippingModeSeaCost: "",
-    shippingModeLandCost: "",
-    productManufacturingDays: "",
-    fastestShippingDays: "",
-    shippingHandlingDays: "",
-    myWarehouseStock: "",
-  };
+export const initialFormState = {
+  productName: "",
+  productSKU: "",
+  productThumb: "",
+  productASIN: "",
+  productWidth: "",
+  productHeight: "",
+  productLength: "",
+  productWeight: "",
+  productSize: "",
+  productManufacturingCost: "",
+  shippingModeAirCost: "",
+  shippingModeSeaCost: "",
+  shippingModeLandCost: "",
+  productManufacturingDays: "",
+  fastestShippingDays: "",
+  shippingHandlingDays: "",
+  myWarehouseStock: "",
+};
 
 const AddProductForm = ({
   onChangeFile,
