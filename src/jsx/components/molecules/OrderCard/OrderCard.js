@@ -169,9 +169,9 @@ const OrderCard = ({
 										href={invoiceLink}
 										download={invoiceName}
 									>
-									<i class="fs-22 fas fa-file-pdf"></i>
+										<i class="fs-22 fas fa-file-pdf"></i>
 									</a>
-							</div>
+								</div>
 							)}
 							<div className="d-flex justify-content-end project-btn">
 								<Status
