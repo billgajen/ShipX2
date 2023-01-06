@@ -299,7 +299,7 @@ const OrderDetail = () => {
                     to={"#"}
                     className="btn btn-xs btn-danger light btn-rounded me-2 mb-0"
                   >
-                    <i className="fab fa-amazon me-3 scale3"></i>Shipping ID
+                    <i className="fab fa-amazon me-3 scale3"></i>Create Label
                   </Link>
                 </div>
               </div>

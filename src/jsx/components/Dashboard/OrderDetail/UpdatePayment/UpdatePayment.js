@@ -1,8 +1,9 @@
 import React from "react";
+import   DatePicker  from "react-datepicker";
 
 const UpdatePayment = ({ closeModal }) => {
   return (
-    <div className="col-xl-7 col-lg-12">
+    <div className="col-lg-12">
       <div>
         <div className="card-header justify-content-between">
           <div className="card-title h5">Update Payment</div>
@@ -36,19 +37,28 @@ const UpdatePayment = ({ closeModal }) => {
               <strong>$2000</strong>
             </li>
             <li class="list-group-item d-flex justify-content-between">
-              <span class="mb-0">Aug 20th 2023</span>
-              <strong>$2000</strong>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span class="mb-0">Aug 20th 2023</span>
+              <span class="mb-0">Aug 24th 2023</span>
               <strong>$2000</strong>
             </li>
           </ul>
-          <div class="final-badge text-center">
-            <span class="badge text-black border mt-0">
-              <i class="far fa-file-alt me-3"></i>INV-1212
-            </span>
-            <span className="d-block fs-12 font-w400">Sep 12 2022</span>
+        </div>
+        <div className="card-header pb-1 pt-1">
+          <div className="clearfix">
+            <span class="d-block fs-16 text-success font-w600">Add new payment</span>
+          </div>
+        </div>
+        <div className="card-body pt-2">
+          <div class="row">
+            <div class="form-group mb-1 col-md-4">
+              <input type="text" class="form-control" placeholder="Eg: 2000" />
+            </div>
+            <div class="form-group mb-1 col-md-4">
+              <DatePicker
+                className="form-control" />
+            </div>
+            <div class="form-group mb-1 col-md-4 text-end">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
           </div>
         </div>
         <div className="card-header border-0">
