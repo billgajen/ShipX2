@@ -53,7 +53,7 @@ const AmazonShippingCard = ({
           <span class="btn-icon-start text-primary">
             <i className="fab fa-amazon"></i>
           </span>
-          Shipping ID
+          + Shipping ID
         </button>
       </div>
     </>

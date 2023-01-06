@@ -5,9 +5,6 @@ import { useStateValue } from "../../../store/selectors/useStateValue";
 import HeaderBanner from "../molecules/HeaderBanner/HeaderBanner";
 //** Import Image */
 import profile01 from "../../../images/profile/1.jpg";
-import profile05 from "../../../images/profile/5.jpg";
-import profile06 from "../../../images/profile/6.jpg";
-import profile07 from "../../../images/profile/7.jpg";
 
 const SupplierProfile = () => {
   const { suppliers } = useStateValue();
@@ -16,7 +13,7 @@ const SupplierProfile = () => {
     (supplier) => supplier.id === suppliers.selectedSupplierId
   );
 
-  const [activeToggle, setActiveToggle] = useState("posts");
+  const [activeToggle, setActiveToggle] = useState("aboutMe");
   const [sendMessage, setSendMessage] = useState(false);
 
   return (
@@ -267,20 +264,6 @@ const SupplierProfile = () => {
                   <ul className="nav nav-tabs">
                     <li
                       className="nav-item"
-                      onClick={() => setActiveToggle("posts")}
-                    >
-                      <Link
-                        to="#my-posts"
-                        data-toggle="tab"
-                        className={`nav-link ${
-                          activeToggle === "posts" ? "active show" : ""
-                        }`}
-                      >
-                        Our Products
-                      </Link>
-                    </li>
-                    <li
-                      className="nav-item"
                       onClick={() => setActiveToggle("aboutMe")}
                     >
                       <Link
@@ -302,83 +285,11 @@ const SupplierProfile = () => {
                           activeToggle === "setting" ? "active show" : ""
                         }`}
                       >
-                        Setting
+                        Settings
                       </Link>
                     </li>
                   </ul>
                   <div className="tab-content">
-                    <div
-                      id="my-posts"
-                      className={`tab-pane fade ${
-                        activeToggle === "posts" ? "active show" : ""
-                      }`}
-                    >
-                      <div className="col-lg-12">
-                        <div className="card">
-                          <div className="card-body pt-3">
-                            <div className="profile-news">
-                              <div className="media pt-3 pb-3">
-                                <img
-                                  src={profile05}
-                                  alt=""
-                                  className="me-3 rounded"
-                                  width={75}
-                                />
-                                <div className="media-body">
-                                  <h5 className="m-b-5">
-                                    <Link
-                                      to="/post-details"
-                                      className="text-black"
-                                    >
-                                      Ses Moss Gummies
-                                    </Link>
-                                  </h5>
-                                  <p className="mb-0">ASIN 374747</p>
-                                </div>
-                              </div>
-                              <div className="media pt-3 pb-3">
-                                <img
-                                  src={profile06}
-                                  alt=""
-                                  className="me-3 rounded"
-                                  width={75}
-                                />
-                                <div className="media-body">
-                                  <h5 className="m-b-5">
-                                    <Link
-                                      to="/post-details"
-                                      className="text-black"
-                                    >
-                                      Mullein Leaf Capsules
-                                    </Link>
-                                  </h5>
-                                  <p className="mb-0">ASIN 47482</p>
-                                </div>
-                              </div>
-                              <div className="media pt-3 ">
-                                <img
-                                  src={profile07}
-                                  alt=""
-                                  className="me-3 rounded"
-                                  width={75}
-                                />
-                                <div className="media-body">
-                                  <h5 className="m-b-5">
-                                    <Link
-                                      to="/post-details"
-                                      className="text-black"
-                                    >
-                                      Immune Gummies
-                                    </Link>
-                                  </h5>
-                                  <p className="mb-0">ASIN 73736</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                     <div
                       id="about-me"
                       className={`tab-pane fade ${
