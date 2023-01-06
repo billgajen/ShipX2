@@ -5,7 +5,6 @@ import { useStateValue } from "../../../store/selectors/useStateValue";
 import HeaderBanner from "../molecules/HeaderBanner/HeaderBanner";
 //** Import Image */
 import profile01 from "../../../images/profile/1.jpg";
-
 const SupplierProfile = () => {
   const { suppliers } = useStateValue();
   const [suppliersData, ] = useState(suppliers.suppliersState);
