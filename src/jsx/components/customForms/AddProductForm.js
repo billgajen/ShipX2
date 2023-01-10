@@ -19,6 +19,7 @@ export const initialFormState = {
   fastestShippingDays: "",
   shippingHandlingDays: "",
   myWarehouseStock: "",
+  amazonIntegrated: false,
 };
 
 const AddProductForm = ({

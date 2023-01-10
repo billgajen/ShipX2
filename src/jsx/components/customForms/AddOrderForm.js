@@ -38,7 +38,9 @@ const AddOrderForm = ({
                 <option value="select">Select a product</option>
                 {productOptions &&
                   productOptions.map((option) => (
-                    <option>{`${option.productName} (${option.productSKU})`}</option>
+                    <option
+                      key={option.productSKU}
+                    >{`${option.productName} (${option.productSKU})`}</option>
                   ))}
               </select>
             </div>
@@ -90,7 +92,9 @@ const AddOrderForm = ({
                     onChange={onChangeAMZFBA}
                     defaultChecked
                   />
-                  <label className="form-check-label" for="amzfba">Amazon FBA</label>
+                  <label className="form-check-label" for="amzfba">
+                    Amazon FBA
+                  </label>
                 </div>
                 <div className="form-check">
                   <input
@@ -102,7 +106,9 @@ const AddOrderForm = ({
                     value="Private"
                     onChange={onChangeMyWarehouse}
                   />
-                  <label className="form-check-label" for="mywarehouse">My Warehouse</label>
+                  <label className="form-check-label" for="mywarehouse">
+                    My Warehouse
+                  </label>
                 </div>
               </div>
             </div>
@@ -119,8 +125,8 @@ const AddOrderForm = ({
                 >
                   <option value="select">Select a destination</option>
                   {destinationOptions &&
-                    destinationOptions.map((option) => (
-                      <option>{option.warehouseName}</option>
+                    destinationOptions.map((option, index) => (
+                      <option key={index}>{option.warehouseName}</option>
                     ))}
                 </select>
               </div>
