@@ -26,6 +26,12 @@ import ClientProfile from "./components/Dashboard/ClientProfile";
 import Clients from "./components/Dashboard/Clients";
 import Inventory from "./components/Dashboard/Inventory";
 import MyWarehouse from "./components/Dashboard/MyWarehouse";
+import AccountApp from "./components/Dashboard/Settings/AccountApp";
+import UserPermissions from "./components/Dashboard/Settings/UserPermissions";
+import BillingPayments from "./components/Dashboard/Settings/BillingPayments";
+import Integrations from "./components/Dashboard/Settings/Integrations";
+import Notifications from "./components/Dashboard/Settings/Notifications";
+import Upgrade from "./components/Dashboard/Settings/Upgrade";
 import Kanban from "./components/Dashboard/Kanban";
 import Task from "./components/Dashboard/Task";
 import DashboardCalendar from "./components/Dashboard/DashboardCalendar";
@@ -147,6 +153,14 @@ const Markup = () => {
     { url: "calendar", component: DashboardCalendar },
     { url: "messages", component: Messages },
 
+    /// Settings
+    { url: "account-app", component: AccountApp },
+    { url: "user-permissions", component: UserPermissions },
+    { url: "billing-payments", component: BillingPayments },
+    { url: "integrations", component: Integrations },
+    { url: "notifications", component: Notifications },
+    { url: "upgrade", component: Upgrade },
+
     ///Demo
     { url: "theme1", component: Theme1 },
     { url: "theme2", component: Theme2 },
@@ -213,13 +227,6 @@ const Markup = () => {
     { url: "ecom-checkout", component: Checkout },
     { url: "ecom-invoice", component: Invoice },
     { url: "ecom-customers", component: Customers },
-
-    /// Form
-    { url: "form-element", component: Element },
-    { url: "form-wizard", component: Wizard },
-    { url: "form-editor-summernote", component: SummerNote },
-    { url: "form-pickers", component: Pickers },
-    { url: "form-validation-jquery", component: jQueryValidation },
 
     /// table
     { url: "table-filtering", component: FilteringTable },

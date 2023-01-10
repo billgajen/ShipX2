@@ -24,8 +24,8 @@ const AddWarehouseForm = ({
     <div className="modal-body">
       <i className="flaticon-cancel-12 close"></i>
       <div className="add-contact-box">
-        <div className="add-contact-content">
-          <div className="form-group mb-3">
+        <div className="row add-contact-content">
+          <div className="form-group col-sm-6 mb-3">
             <label className="text-black font-w500">Warehouse name</label>
             <div className="contact-name">
               <input
@@ -39,7 +39,7 @@ const AddWarehouseForm = ({
               />
             </div>
           </div>
-          <div className="form-group mb-3">
+          <div className="form-group col-sm-6 mb-3">
             <label className="text-black font-w500">
               First line of address
             </label>
@@ -55,7 +55,7 @@ const AddWarehouseForm = ({
               />
             </div>
           </div>
-          <div className="form-group mb-3">
+          <div className="form-group col-sm-6 mb-3">
             <label className="text-black font-w500">City</label>
             <div className="contact-name">
               <input
@@ -69,7 +69,7 @@ const AddWarehouseForm = ({
               />
             </div>
           </div>
-          <div className="form-group mb-3">
+          <div className="form-group col-sm-6 mb-3">
             <label className="text-black font-w500">County</label>
             <div className="contact-name">
               <input
@@ -83,7 +83,7 @@ const AddWarehouseForm = ({
               />
             </div>
           </div>
-          <div className="form-group mb-3">
+          <div className="form-group col-sm-6 mb-3">
             <label className="text-black font-w500">Zip code</label>
             <div className="contact-name">
               <input
@@ -97,7 +97,7 @@ const AddWarehouseForm = ({
               />
             </div>
           </div>
-          <div className="form-group mb-3">
+          <div className="form-group col-sm-6 mb-3">
             <label className="text-black font-w500">Country</label>
             <div className="contact-name">
               <input

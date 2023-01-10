@@ -50,11 +50,11 @@ const SideBar = () => {
     btn.addEventListener("click", toggleFunc);
 	
 	//sidebar icon Heart blast
-	var handleheartBlast = document.querySelector('.heart');
-        function heartBlast() {
-            return handleheartBlast.classList.toggle("heart-blast");
-        }
-        handleheartBlast.addEventListener('click', heartBlast);
+	// var handleheartBlast = document.querySelector('.heart');
+  //       function heartBlast() {
+  //           return handleheartBlast.classList.toggle("heart-blast");
+  //       }
+  //       handleheartBlast.addEventListener('click', heartBlast);
 	
   }, []);
   // For scroll
@@ -147,15 +147,21 @@ const SideBar = () => {
 	     "redux-wizard",    
        "todo",
     ],
-    widget = ["widget-basic"],
     orders = ["orders"],
     products = ["products"],
-    messages = ["messages"],
     payments = ["payments"],
     suppliers = ["suppliers"],
     clients = ["clients"],
     inventory = ["inventory"],
     myWarehouse = ["my-warehouse"],
+    settings = [
+      "account-app",
+      "user-permissions",
+      "billing-payments",
+      "integrations",
+      "notifications",
+      "upgrade",
+    ],
     forms = [
       "form-element",
       "form-wizard",
@@ -217,7 +223,7 @@ const SideBar = () => {
               </li>
               <li className={`${inventory.includes(path) ? "mm-active" : ""}`}>
                 <Link to="/inventory" className="ai-icon">
-                  <i class="fas fa-warehouse"></i>
+                  <i class="fas fa-box"></i>
                   <span className="nav-text">Inventory</span>
                 </Link>
               </li>
@@ -225,7 +231,7 @@ const SideBar = () => {
                 className={`${myWarehouse.includes(path) ? "mm-active" : ""}`}
               >
                 <Link to="/my-warehouse" className="ai-icon">
-                  <i class="fas fa-solid fa-store"></i>
+                  <i class="fas fa-warehouse"></i>
                   <span className="nav-text">My Warehouse</span>
                 </Link>
               </li>
@@ -233,7 +239,7 @@ const SideBar = () => {
           )}
           <li className={`${payments.includes(path) ? "mm-active" : ""}`}>
             <Link to="/payments" className="ai-icon">
-              <i className="fas fa-file-invoice"></i>
+              <i className="fas fa-money-bill"></i>
               <span className="nav-text">Payments</span>
             </Link>
           </li>
@@ -254,22 +260,23 @@ const SideBar = () => {
               </span>
             </Link>
           </li>
-          <li className={`${charts.includes(path) ? "mm-active" : ""}`}>
+          <li className={`${settings.includes(path) ? "mm-active" : ""}`}>
             <Link className="has-arrow ai-icon" to="#" >
-              <i className="fas fa-gear"></i>
+            <i class="fa fa-cog" aria-hidden="true"></i>
               <span className="nav-text">Settings</span>
             </Link>
             <ul >
-              <li><Link className={`${path === "chart-rechart" ? "mm-active" : ""}`} to="#">Security and Permissions</Link></li>
-              <li><Link className={`${path === "chart-chartjs" ? "mm-active" : ""}`} to="#">Billing and Payments</Link></li>
-              <li><Link className={`${path === "chart-chartist" ? "mm-active" : ""}`} to="#">Integrations</Link></li>
-              <li><Link className={`${path === "chart-sparkline" ? "mm-active" : ""}`} to="#">Notification Settings</Link></li>
-              <li><Link className={`${path === "chart-apexchart" ? "mm-active" : ""}`} to="#" >Upgrade</Link></li>
+              <li><Link className={`${path === "account-app" ? "mm-active" : ""}`} to="/account-app">Account & App</Link></li>
+              <li><Link className={`${path === "user-permissions" ? "mm-active" : ""}`} to="/user-permissions">User Permissions</Link></li>
+              <li><Link className={`${path === "billing-payments" ? "mm-active" : ""}`} to="/billing-payments">Billing & Payments</Link></li>
+              <li><Link className={`${path === "integrations" ? "mm-active" : ""}`} to="/integrations">Integrations</Link></li>
+              <li><Link className={`${path === "notifications" ? "mm-active" : ""}`} to="/notifications">Notification</Link></li>
+              <li><Link className={`${path === "upgrade" ? "mm-active" : ""}`} to="/upgrade" >Upgrade</Link></li>
             </ul>
           </li>
         </MM>
         <div className="copyright">
-          <p className="fs-12"><span className="heart"></span></p>
+          {/* <p className="fs-12"><span className="heart"></span></p> */}
         </div>
       </PerfectScrollbar>
     </div>
