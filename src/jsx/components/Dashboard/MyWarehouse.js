@@ -76,7 +76,7 @@ const MyWarehouse = () => {
 
   return (
     <>
-      <Modal className="modal fade" show={addCard} onHide={setAddCard}>
+      <Modal className="modal fade" show={addCard} onHide={setAddCard} size="lg">
         <div className="modal-header">
           <h4 className="modal-title fs-20">Add a Warehouse</h4>
           <button
@@ -122,12 +122,9 @@ const MyWarehouse = () => {
                 <div className="card contact-bx item-content">
                   <div className="card-body user-profile">
                     <div className="media-body user-meta-info item-card">
-                      <h4 className="fs-18 font-w600 my-1">
+                      <h4 className="fs-18 text-primary font-w600 my-1">
                         {warehouse.warehouseName}
                       </h4>
-                      <span className="d-block fs-14 mb-3 user-work">
-                        USA
-                      </span>
                       <h6>{warehouse.firstLine}</h6>
                       <h6>{warehouse.city}</h6>
                       <h6>{warehouse.county}</h6>
