@@ -80,6 +80,7 @@ const Products = () => {
         fastestShippingDays: addFormData.fastestShippingDays,
         shippingHandlingDays: addFormData.shippingHandlingDays,
         myWarehouseStock: addFormData.myWarehouseStock,
+        amazonIntegrated: false,
       };
       const newProducts = [...productsData, newProduct];
       setProducts(newProducts);
@@ -91,6 +92,8 @@ const Products = () => {
       swal("Oops", errorMsg, "error");
     }
   };
+
+  console.log("Products", products);
 
   //Edit Modal
   const [editModal, setEditModal] = useState(false);

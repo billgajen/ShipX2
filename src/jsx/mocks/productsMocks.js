@@ -28,6 +28,7 @@ export const productsData = [
     fastestShippingDays: "7",
     shippingHandlingDays: "2",
     myWarehouseStock: "2000",
+    amazonIntegrated: true,
   },
   {
     id: 2,
@@ -48,6 +49,7 @@ export const productsData = [
     fastestShippingDays: "7",
     shippingHandlingDays: "2",
     myWarehouseStock: "2000",
+    amazonIntegrated: true,
   },
   {
     id: 3,
@@ -68,6 +70,7 @@ export const productsData = [
     fastestShippingDays: "7",
     shippingHandlingDays: "2",
     myWarehouseStock: "2000",
+    amazonIntegrated: true,
   },
   {
     id: 4,
@@ -88,6 +91,7 @@ export const productsData = [
     fastestShippingDays: "7",
     shippingHandlingDays: "2",
     myWarehouseStock: "2000",
+    amazonIntegrated: true,
   },
   {
     id: 5,
@@ -108,6 +112,7 @@ export const productsData = [
     fastestShippingDays: "7",
     shippingHandlingDays: "2",
     myWarehouseStock: "2000",
+    amazonIntegrated: true,
   },
   {
     id: 6,
@@ -128,6 +133,7 @@ export const productsData = [
     fastestShippingDays: "7",
     shippingHandlingDays: "2",
     myWarehouseStock: "2000",
+    amazonIntegrated: true,
   },
   {
     id: 7,
@@ -148,6 +154,7 @@ export const productsData = [
     fastestShippingDays: "7",
     shippingHandlingDays: "2",
     myWarehouseStock: "2000",
+    amazonIntegrated: true,
   },
   {
     id: 8,
@@ -168,6 +175,7 @@ export const productsData = [
     fastestShippingDays: "7",
     shippingHandlingDays: "2",
     myWarehouseStock: "2000",
+    amazonIntegrated: true,
   },
   {
     id: 9,
@@ -188,5 +196,6 @@ export const productsData = [
     fastestShippingDays: "7",
     shippingHandlingDays: "2",
     myWarehouseStock: "2000",
+    amazonIntegrated: true,
   },
 ];

@@ -7,10 +7,13 @@ export const ordersData = [
   {
     id: "PO-000441429",
     orderDate: "Sep 7th, 2020",
-    productName: "Sea Moss Gummies",
-    productThumb: product1,
-    productSKU: "SKU 346722",
-    productASIN: "ASIN 462831",
+    productInfo: {
+      productName: "Sea Moss Gummies",
+      productThumb: product1,
+      productSKU: "SKU 346722",
+      productASIN: "ASIN 462831",
+      amazonIntegrated: true,
+    },
     supplierLogo: supplier1,
     supplierName: "Vigo World",
     orderUnits: 5000,
@@ -26,8 +29,8 @@ export const ordersData = [
     invoiceInfo: {
       id: "dsjsn_lFpMUcsOwWxeEVv",
       totalCost: "8000",
-      productSKU: "JHJGPUG",
-      invoice: {
+      invoiceNumber: "JHJGPUG",
+      invoiceFile: {
         lastModified: 1644413968296,
         lastModifiedDate: new Date(),
         name: "6002VB0001766001.pdf",
@@ -39,14 +42,22 @@ export const ordersData = [
         "blob:http://localhost:3000/19cd8ce0-40cb-4deb-8b1b-9b951a6fbef7",
       createdDate: new Date(),
     },
+    paymentInfo: [
+      { id: "1", amount: 1000, date: new Date() },
+      { id: "2", amount: 2500, date: new Date() },
+      { id: "3", amount: 1000, date: new Date() },
+    ],
   },
   {
     id: "PO-000441430",
     orderDate: "Dec 20th, 2020",
-    productName: "Blue Pea Powder",
-    productThumb: product1,
-    productSKU: "BL003 DRESS01",
-    productASIN: "B09ABC2327",
+    productInfo: {
+      productName: "Blue Pea Powder",
+      productThumb: product1,
+      productSKU: "BL003 DRESS01",
+      productASIN: "B09ABC2327",
+      amazonIntegrated: true,
+    },
     supplierLogo: supplier1,
     supplierName: "Augo Biotech",
     orderUnits: 6000,
@@ -62,8 +73,8 @@ export const ordersData = [
     invoiceInfo: {
       id: "dsjsn_lFpMUcsOwW7654",
       totalCost: "9000",
-      productSKU: "JHJGPUG",
-      invoice: {
+      invoiceNumber: "JHJGPUG",
+      invoiceFile: {
         lastModified: 1644413968296,
         lastModifiedDate: new Date(),
         name: "6002VB0001766001.pdf",
@@ -75,14 +86,21 @@ export const ordersData = [
         "blob:http://localhost:3000/19cd8ce0-40cb-4deb-8b1b-9b951a6fbef7",
       createdDate: new Date(),
     },
+    paymentInfo: [
+      { id: "1", amount: 1250, date: new Date() },
+      { id: "2", amount: 1250, date: new Date() },
+    ],
   },
   {
     id: "PO-000441431",
     orderDate: "Jan 9th, 2020",
-    productName: "Mullein capsules",
-    productThumb: product1,
-    productSKU: "BL003 DRESS04",
-    productASIN: "B09ABC2367",
+    productInfo: {
+      productName: "Mullein capsules",
+      productThumb: product1,
+      productSKU: "BL003 DRESS04",
+      productASIN: "B09ABC2367",
+      amazonIntegrated: true,
+    },
     supplierLogo: supplier1,
     supplierName: "Augo Biotech",
     orderUnits: 5000,
@@ -98,8 +116,8 @@ export const ordersData = [
     invoiceInfo: {
       id: "dsjsn_lFpMUcsOwW43121",
       totalCost: "12000",
-      productSKU: "JHJGPUG",
-      invoice: {
+      invoiceNumber: "JHJGPUG",
+      invoiceFile: {
         lastModified: 1644413968296,
         lastModifiedDate: new Date(),
         name: "6002VB0001766001.pdf",
@@ -111,14 +129,22 @@ export const ordersData = [
         "blob:http://localhost:3000/19cd8ce0-40cb-4deb-8b1b-9b951a6fbef7",
       createdDate: new Date(),
     },
+    paymentInfo: [
+      { id: "1", amount: 6000, date: new Date() },
+      { id: "2", amount: 1250, date: new Date() },
+      { id: "3", amount: 1750, date: new Date() },
+    ],
   },
   {
     id: "PO-000441490",
     orderDate: "Sep 11th, 2020",
-    productName: "Sea Moss Gummies",
-    productThumb: product1,
-    productSKU: "SKU 346722",
-    productASIN: "ASIN 462831",
+    productInfo: {
+      productName: "Sea Moss Gummies",
+      productThumb: product1,
+      productSKU: "SKU 346722",
+      productASIN: "ASIN 462831",
+      amazonIntegrated: true,
+    },
     supplierLogo: supplier1,
     supplierName: "Augo Biotech",
     orderUnits: 5000,
@@ -134,8 +160,8 @@ export const ordersData = [
     invoiceInfo: {
       id: "dsjsn_lFpMUcsOwW1234",
       totalCost: "8000",
-      productSKU: "JHJGPUG",
-      invoice: {
+      invoiceNumber: "JHJGPUG",
+      invoiceFile: {
         lastModified: 1644413968296,
         lastModifiedDate: new Date(),
         name: "6002VB0001766001.pdf",
@@ -147,5 +173,6 @@ export const ordersData = [
         "blob:http://localhost:3000/19cd8ce0-40cb-4deb-8b1b-9b951a6fbef7",
       createdDate: new Date(),
     },
+    paymentInfo: [{ id: "1", amount: 4500, date: new Date() }],
   },
 ];

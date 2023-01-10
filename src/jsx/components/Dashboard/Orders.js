@@ -128,6 +128,7 @@ const Orders = () => {
         fastestShippingDays: addProductFormData.fastestShippingDays,
         shippingHandlingDays: addProductFormData.shippingHandlingDays,
         myWarehouseStock: addProductFormData.myWarehouseStock,
+        amazonIntegrated: false,
       };
       const newProducts = [...productsData, newProduct];
       setProducts(newProducts);
@@ -146,10 +147,7 @@ const Orders = () => {
   //Add Order
   const [addFormData, setAddFormData] = useState({
     id: "",
-    productId: "",
-    productName: "",
-    productASIN: "",
-    productSKU: "",
+    productInfo: {},
     orderUnits: "",
     orderDate: "",
     shippingMode: "",
@@ -200,13 +198,9 @@ const Orders = () => {
       errorMsg = "Please select destination";
     }
     if (!error) {
-      const newProduct = {
+      const newOrder = {
         id: nanoid(),
-        productId: selectedOrderProduct.id,
-        productName: selectedOrderProduct.productName,
-        productThumb: selectedOrderProduct.productThumb,
-        productASIN: selectedOrderProduct.productASIN,
-        productSKU: selectedOrderProduct.productSKU,
+        productInfo: selectedOrderProduct,
         bpOrderID: addFormData.bpOrderID,
         orderUnits: addFormData.orderUnits,
         orderDate: formatDate(new Date()),
@@ -217,6 +211,7 @@ const Orders = () => {
         receivedUnits: 0,
         receivedPayment: 0,
         orderStatus: "PENDING",
+        paymentInfo: [],
       };
       setAddCard(false);
       swal("Good job!", "Successfully Added", "success");
@@ -224,7 +219,7 @@ const Orders = () => {
         addFormData.productSKU =
         addFormData.productThumb =
           "";
-      const newOrders = [newProduct, ...ordersDetails];
+      const newOrders = [newOrder, ...ordersDetails];
       setOrderDetails(newOrders);
       dispatch(setOrdersAction(newOrders));
     } else {
@@ -285,7 +280,7 @@ const Orders = () => {
       const newInvoice = {
         id: nanoid(),
         totalCost: addInvoiceFormData.totalCost,
-        productSKU: addInvoiceFormData.productSKU,
+        invoiceNumber: addInvoiceFormData.invoiceNumber,
         invoice: file,
         invoiceSRC: addInvoiceFormData.invoiceSRC,
         createdDate: new Date(),
@@ -293,7 +288,7 @@ const Orders = () => {
       setInvoiceModal(false);
       swal("Good job!", "Successfully Added", "success");
       addInvoiceFormData.totalCost =
-        addInvoiceFormData.productSKU =
+        addInvoiceFormData.invoiceNumber =
         addInvoiceFormData.invoiceSRC =
           "";
       const newInvoiceData = invoiceDetails.length
@@ -461,43 +456,51 @@ const Orders = () => {
           <div className="col-xl-12">
             <Tab.Content>
               <Tab.Pane eventKey={tabState}>
-                {ordersDetails.map((order) => (
-                  <OrderCard
-                    key={order.id}
-                    orderId={order.id}
-                    orderDate={order.orderDate}
-                    productThumb={order.productThumb}
-                    productName={order.productName}
-                    productSKU={order.productSKU}
-                    productASIN={order.productASIN}
-                    supplierLogo={order.supplierLogo}
-                    supplierName={order.supplierName}
-                    orderUnits={order.orderUnits}
-                    receivedUnits={order.receivedUnits}
-                    orderCost={order.invoiceInfo?.totalCost}
-                    receivedPayment={order.receivedPayment}
-                    onUploadInvoiceClick={() =>
-                      handleUploadInvoiceClick(order.id)
-                    }
-                    shipmentAgentLogo={order.shipmentAgentLogo}
-                    shipmentMasterTrackingID={order.shipmentMasterTrackingID}
-                    destinationLogo={order.destinationLogo}
-                    destinationShippingID={order.destinationShippingID}
-                    destinationType={order.destinationType}
-                    orderStatus={order.orderStatus}
-                    orderStatusColor={getStatus(order.orderStatus)}
-                    shippingMode={order.shippingMode}
-                    warehouseName={order.destinationAddress?.warehouseName}
-                    firstLine={order.destinationAddress?.firstLine}
-                    city={order.destinationAddress?.city}
-                    county={order.destinationAddress?.county}
-                    zipCode={order.destinationAddress?.zipCode}
-                    country={order.destinationAddress?.country}
-                    invoiceLink={order.invoiceInfo?.invoiceSRC}
-                    invoiceName={order.invoiceInfo?.invoice?.name}
-                    onClickOrder={() => handleSelectedOrderId(order.id)}
-                  />
-                ))}
+                {ordersDetails.map((order) => {
+                  const totalPayments = order.paymentInfo?.reduce(
+                    (accumulator, payment) => {
+                      return accumulator + parseFloat(payment.amount);
+                    },
+                    0
+                  );
+                  return (
+                    <OrderCard
+                      key={order.id}
+                      orderId={order.id}
+                      orderDate={order.orderDate}
+                      productThumb={order.productInfo.productThumb}
+                      productName={order.productInfo.productName}
+                      productSKU={order.productInfo.productSKU}
+                      productASIN={order.productInfo.productASIN}
+                      supplierLogo={order.supplierLogo}
+                      supplierName={order.supplierName}
+                      orderUnits={order.orderUnits}
+                      receivedUnits={order.receivedUnits}
+                      orderCost={order.invoiceInfo?.totalCost}
+                      receivedPayment={totalPayments}
+                      onUploadInvoiceClick={() =>
+                        handleUploadInvoiceClick(order.id)
+                      }
+                      shipmentAgentLogo={order.shipmentAgentLogo}
+                      shipmentMasterTrackingID={order.shipmentMasterTrackingID}
+                      destinationLogo={order.destinationLogo}
+                      destinationShippingID={order.destinationShippingID}
+                      destinationType={order.destinationType}
+                      orderStatus={order.orderStatus}
+                      orderStatusColor={getStatus(order.orderStatus)}
+                      shippingMode={order.shippingMode}
+                      warehouseName={order.destinationAddress?.warehouseName}
+                      firstLine={order.destinationAddress?.firstLine}
+                      city={order.destinationAddress?.city}
+                      county={order.destinationAddress?.county}
+                      zipCode={order.destinationAddress?.zipCode}
+                      country={order.destinationAddress?.country}
+                      invoiceLink={order.invoiceInfo?.invoiceSRC}
+                      invoiceName={order.invoiceInfo?.invoice?.name}
+                      onClickOrder={() => handleSelectedOrderId(order.id)}
+                    />
+                  );  
+                })}
               </Tab.Pane>
             </Tab.Content>
           </div>

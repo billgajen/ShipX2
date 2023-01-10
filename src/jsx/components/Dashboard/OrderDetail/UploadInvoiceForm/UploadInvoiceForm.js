@@ -3,7 +3,8 @@ import React from "react";
 const UploadInvoiceForm = ({
   onChangeFile,
   onTotalCostChange,
-  onProductSKUChange,
+  onShippingCostChange,
+  onInvoiceNumberChange,
   onClickSubmit,
   onClickCancel,
 }) => {
@@ -27,16 +28,30 @@ const UploadInvoiceForm = ({
             </div>
           </div>
           <div className="form-group mb-3">
-            <label className="text-black font-w500">Product SKU</label>
+            <label className="text-black font-w500">Shipping Cost</label>
             <div className="contact-name">
               <input
                 type="text"
                 className="form-control"
                 autoComplete="off"
-                name="productSKU"
+                name="shippingCost"
                 required="required"
-                onChange={onProductSKUChange}
-                placeholder="SKU"
+                onChange={onShippingCostChange}
+                placeholder="Shipping cost"
+              />
+            </div>
+          </div>
+          <div className="form-group mb-3">
+            <label className="text-black font-w500">Invoice Number</label>
+            <div className="contact-name">
+              <input
+                type="text"
+                className="form-control"
+                autoComplete="off"
+                name="invoiceNumber"
+                required="required"
+                onChange={onInvoiceNumberChange}
+                placeholder="Invoice number"
               />
             </div>
           </div>
@@ -46,7 +61,7 @@ const UploadInvoiceForm = ({
               <input
                 type="file"
                 className="form-file-input form-control"
-                accept=".pdf"
+                accept=".pdf, .docx, .doc"
                 onChange={onChangeFile}
               />
             </div>
