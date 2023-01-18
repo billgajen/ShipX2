@@ -93,8 +93,6 @@ const Products = () => {
     }
   };
 
-  console.log("Products", products);
-
   //Edit Modal
   const [editModal, setEditModal] = useState(false);
 

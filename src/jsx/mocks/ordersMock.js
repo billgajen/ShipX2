@@ -47,6 +47,8 @@ export const ordersData = [
       { id: "2", amount: 2500, date: new Date() },
       { id: "3", amount: 1000, date: new Date() },
     ],
+    imageInfo: [],
+    documentInfo: [],
   },
   {
     id: "PO-000441430",
@@ -90,6 +92,8 @@ export const ordersData = [
       { id: "1", amount: 1250, date: new Date() },
       { id: "2", amount: 1250, date: new Date() },
     ],
+    imageInfo: [],
+    documentInfo: [],
   },
   {
     id: "PO-000441431",
@@ -134,6 +138,8 @@ export const ordersData = [
       { id: "2", amount: 1250, date: new Date() },
       { id: "3", amount: 1750, date: new Date() },
     ],
+    imageInfo: [],
+    documentInfo: [],
   },
   {
     id: "PO-000441490",
@@ -174,5 +180,7 @@ export const ordersData = [
       createdDate: new Date(),
     },
     paymentInfo: [{ id: "1", amount: 4500, date: new Date() }],
+    imageInfo: [],
+    documentInfo: [],
   },
 ];

@@ -166,8 +166,9 @@ const OrderCard = ({
                 <div className="circle-icon circle-icon--medium me-2">
                   <a
                     className="ms-0 badge badge-outline-primary badge-circle"
+                    target="_blank"
                     href={invoiceLink}
-                    download={invoiceName}
+                    download={invoiceName} rel="noreferrer"
                   >
                     <i class="fs-22 fas fa-file-pdf"></i>
                   </a>

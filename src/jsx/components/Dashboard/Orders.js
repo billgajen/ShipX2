@@ -18,7 +18,7 @@ import {
 import { useDispatch } from "react-redux";
 import { formatDate } from "../utils/formatDate";
 import UploadInvoiceForm from "./OrderDetail/UploadInvoiceForm/UploadInvoiceForm";
-import { initialInvoiceFormState } from "../../components/Dashboard/OrderDetail/OrderDetail";
+import { initialInvoiceFormState } from "../../components/Dashboard/OrderDetail/initialState";
 
 const Orders = () => {
   const dispatch = useDispatch();
