@@ -11,15 +11,20 @@ const UploadImagesCard = ({ onClickUpload, images }) => {
             </div>
             <div className="card-body pt-3">
               <div class="final-badge">
-                {images && images.map(image => (
-                  <span key={image.id} class="badge text-black border">
-                    <i class="fas fa-image me-2"></i>{image.imageFile.name}
-                  </span>
-                  )
-                )}
+                {images &&
+                  images.map((image) => (
+                    <span key={image.id} class="badge text-black border">
+                      <i class="fas fa-image me-2"></i>
+                      {image.imageFile.name}
+                    </span>
+                  ))}
               </div>
               <div className="text-center mt-3">
-                <button type="button" class="me-2 btn btn-primary btn-rounded" onClick={onClickUpload}>
+                <button
+                  type="button"
+                  class="me-2 btn btn-primary btn-rounded"
+                  onClick={onClickUpload}
+                >
                   <span class="btn-icon-start text-primary">
                     <i className="fas fa-plus"></i>
                   </span>

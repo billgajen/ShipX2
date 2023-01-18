@@ -86,12 +86,12 @@ const OrderDetail = () => {
   const [trackingDetailsModal, setTrackingDetailsModal] = useState(false);
   const [createShipmentModal, setCreateShipmentModal] = useState(false);
 
-	const updatedOrderDispatch = () => {
-		const newOrders = [...ordersData];
+  const updatedOrderDispatch = () => {
+    const newOrders = [...ordersData];
     let itemIndex = newOrders.findIndex((item) => item.id === order.id);
     newOrders[itemIndex] = order;
     dispatch(setOrdersAction(newOrders));
-	};
+  };
 
   // delete data submit
   const handleDeleteSubmit = () => {

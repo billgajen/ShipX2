@@ -1,10 +1,6 @@
 import React from "react";
 
-const UploadImagesForm = ({
-  onChangeFile,
-  onClickSubmit,
-  onClickCancel,
-}) => {
+const UploadImagesForm = ({ onChangeFile, onClickSubmit, onClickCancel }) => {
   return (
     <div className="modal-body">
       <i className="flaticon-cancel-12 close"></i>

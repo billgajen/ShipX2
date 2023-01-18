@@ -499,7 +499,7 @@ const Orders = () => {
                       invoiceName={order.invoiceInfo?.invoice?.name}
                       onClickOrder={() => handleSelectedOrderId(order.id)}
                     />
-                  );  
+                  );
                 })}
               </Tab.Pane>
             </Tab.Content>
