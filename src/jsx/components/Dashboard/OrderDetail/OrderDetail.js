@@ -35,6 +35,7 @@ import {
   initialImageFormState,
   initialDocumentFormState,
   initialBatchInfoState,
+  initialShipmentInfoState,
 } from "./initialState";
 
 import bg1 from "./../../../../images/big/img1.jpg";
@@ -56,10 +57,9 @@ const OrderDetail = () => {
   const [order] = useState(selectedOrder[0]);
 
   //Add Order
-  const [createShipmentFormData, setCreateShipmentFormData] = useState({
-    id: "",
-    shipmentName: "",
-  });
+  const [createShipmentFormData, setCreateShipmentFormData] = useState(
+    initialShipmentInfoState
+  );
 
   const [deleteModal, setDeleteModal] = useState(false);
   const [invoiceModal, setInvoiceModal] = useState(false);
@@ -80,7 +80,11 @@ const OrderDetail = () => {
   const [imagesDetails, setImagesDetails] = useState(order.imagesInfo);
   const [documentsDetails, setDocumentsDetails] = useState(order.documentsInfo);
   const [, setBatchInfo] = useState(order.batchInfo);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(
+    order.batchInfo?.expiryDate
+      ? new Date(order.batchInfo?.expiryDate)
+      : new Date()
+  );
   const [paymentAmount, setPaymentAmount] = useState("");
   const [paymentInfo, setPaymentInfo] = useState(order.paymentInfo);
   const [trackingDetailsModal, setTrackingDetailsModal] = useState(false);

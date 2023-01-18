@@ -28,3 +28,8 @@ export const initialBatchInfoState = {
   type: "",
   size: "",
 };
+
+export const initialShipmentInfoState = {
+  id: "",
+  shipmentName: "",
+};
