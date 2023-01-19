@@ -18,7 +18,7 @@ import {
 import { useDispatch } from "react-redux";
 import { formatDate } from "../utils/formatDate";
 import UploadInvoiceForm from "./OrderDetail/UploadInvoiceForm/UploadInvoiceForm";
-import { initialInvoiceFormState } from "../../components/Dashboard/OrderDetail/OrderDetail";
+import { initialInvoiceFormState } from "../../components/Dashboard/OrderDetail/initialState";
 
 const Orders = () => {
   const dispatch = useDispatch();
@@ -499,7 +499,7 @@ const Orders = () => {
                       invoiceName={order.invoiceInfo?.invoice?.name}
                       onClickOrder={() => handleSelectedOrderId(order.id)}
                     />
-                  );  
+                  );
                 })}
               </Tab.Pane>
             </Tab.Content>
