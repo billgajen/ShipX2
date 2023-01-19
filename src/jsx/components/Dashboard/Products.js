@@ -80,6 +80,7 @@ const Products = () => {
         fastestShippingDays: addFormData.fastestShippingDays,
         shippingHandlingDays: addFormData.shippingHandlingDays,
         myWarehouseStock: addFormData.myWarehouseStock,
+        myAverageSales: addFormData.myAverageSales,
         amazonIntegrated: false,
       };
       const newProducts = [...productsData, newProduct];
@@ -124,6 +125,7 @@ const Products = () => {
       fastestShippingDays: product.fastestShippingDays,
       shippingHandlingDays: product.shippingHandlingDays,
       myWarehouseStock: product.myWarehouseStock,
+      myAverageSales: product.myAverageSales,
     };
     setEditFormData(formValues);
     setEditModal(true);
@@ -164,6 +166,7 @@ const Products = () => {
       fastestShippingDays: editFormData.fastestShippingDays,
       shippingHandlingDays: editFormData.shippingHandlingDays,
       myWarehouseStock: editFormData.myWarehouseStock,
+      myAverageSales: editFormData.myAverageSales,
     };
     const newProducts = [...productsData];
     const index = productsData.findIndex(
@@ -572,6 +575,24 @@ const Products = () => {
                                   </div>
                                 </div>
                               </div>
+                              <div className="form-group col-md-12 mb-4">
+                                <label className="text-blawhiteck font-w500">
+                                  My Average Sales(Non-Amazon)
+                                </label>
+                                <div className="contact-name">
+                                  <div className="input-group input-white">
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      autoComplete="off"
+                                      name="myAverageSales"
+                                      value={editFormData.myAverageSales}
+                                      onChange={handleEditFormChange}
+                                    />
+                                    <span class="input-group-text">Units</span>
+                                  </div>
+                                </div>
+                              </div>
                               <div className="form-group col-md-6 mb-4">
                                 <label className="text-blawhiteck font-w500">
                                   Manufacturing Time
@@ -642,88 +663,6 @@ const Products = () => {
                                     for="customCheckBox1"
                                   >
                                     Notify when to order
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="text-white bg-primary card card--form_element">
-                          <div class="card-header">
-                            <div class="text-white card-title h5">
-                              Order Settings
-                            </div>
-                          </div>
-                          <div class="mb-0 card-body">
-                            <p className="text-white">
-                              Turn on/off Required Fields
-                            </p>
-                            <div className="row">
-                              <div class="col-xl-4 col-xxl-6 col-6">
-                                <div class="form-check custom-checkbox mb-3 checkbox-success">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    id="customCheckBox1"
-                                    required=""
-                                    checked
-                                  />
-                                  <label
-                                    class="form-check-label"
-                                    for="customCheckBox1"
-                                  >
-                                    Expiry Date
-                                  </label>
-                                </div>
-                              </div>
-                              <div class="col-xl-4 col-xxl-6 col-6">
-                                <div class="form-check custom-checkbox mb-3 checkbox-success">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    id="customCheckBox1"
-                                    required=""
-                                    checked
-                                  />
-                                  <label
-                                    class="form-check-label"
-                                    for="customCheckBox1"
-                                  >
-                                    Expiry Date
-                                  </label>
-                                </div>
-                              </div>
-                              <div class="col-xl-4 col-xxl-6 col-6">
-                                <div class="form-check custom-checkbox mb-3 checkbox-success">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    id="customCheckBox1"
-                                    required=""
-                                    checked
-                                  />
-                                  <label
-                                    class="form-check-label"
-                                    for="customCheckBox1"
-                                  >
-                                    Expiry Date
-                                  </label>
-                                </div>
-                              </div>
-                              <div class="col-xl-4 col-xxl-6 col-6">
-                                <div class="form-check custom-checkbox mb-3 checkbox-success">
-                                  <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    id="customCheckBox1"
-                                    required=""
-                                    checked
-                                  />
-                                  <label
-                                    class="form-check-label"
-                                    for="customCheckBox1"
-                                  >
-                                    Expiry Date
                                   </label>
                                 </div>
                               </div>

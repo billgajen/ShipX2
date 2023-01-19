@@ -7,8 +7,8 @@ class CompletionApexChart extends React.Component {
 		this.state = {
 			series: [
 				{
-					name: 'Net Profit',
-					data: [20, 40, 80, 30, 50, 40, 120, 20, 40, 80, 30, 50],
+					name: 'Sales',
+					data: [200, 180, 160, 180, 120, 90, 120, 80, 105, 100, 96, 150],
 					//radius: 12,	
 				}, 
 			],
@@ -99,7 +99,7 @@ class CompletionApexChart extends React.Component {
 				tooltip: {
 					y: {
 						formatter: function (val) {
-						  return "$ " + val + " hundred"
+						  return "$ " + val + "K"
 						}
 					}
 				}			
