@@ -14,7 +14,7 @@ const UploadDocumentsCard = ({ onClickUpload, documents }) => {
                 {documents &&
                   documents.map((document) => (
                     <span key={document.id} class="badge text-black border">
-                      <i class="fas fa-image me-2"></i>
+                      <i class="fas fa-file-pdf me-2"></i>
                       {document.documentFile.name}
                     </span>
                   ))}

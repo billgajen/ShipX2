@@ -77,8 +77,8 @@ const OrderDetail = () => {
     initialBatchInfoState
   );
   const [invoiceDetails, setInvoiceDetails] = useState([]);
-  const [imagesDetails, setImagesDetails] = useState(order.imagesInfo);
-  const [documentsDetails, setDocumentsDetails] = useState(order.documentsInfo);
+  const [imagesDetails, setImagesDetails] = useState(order.imageInfo);
+  const [documentsDetails, setDocumentsDetails] = useState(order.documentInfo);
   const [, setBatchInfo] = useState(order.batchInfo);
   const [selectedDate, setSelectedDate] = useState(
     order.batchInfo?.expiryDate
@@ -186,10 +186,7 @@ const OrderDetail = () => {
 
     setPaymentInfo(newPayments);
     order.paymentInfo = newPayments;
-    const newOrders = [...ordersData];
-    let itemIndex = newOrders.findIndex((item) => item.id === order.id);
-    newOrders[itemIndex] = order;
-    dispatch(setOrdersAction(newOrders));
+    updatedOrderDispatch();
     setPaymentAmount("");
     setSelectedDate(new Date());
     swal("Good job!", "Successfully Added", "success");
@@ -201,10 +198,7 @@ const OrderDetail = () => {
     const updatedPayments = newPayments.filter((payment) => payment.id !== id);
     setPaymentInfo(updatedPayments);
     order.paymentInfo = updatedPayments;
-    const newOrders = [...ordersData];
-    let itemIndex = newOrders.findIndex((item) => item.id === order.id);
-    newOrders[itemIndex] = order;
-    dispatch(setOrdersAction(newOrders));
+    updatedOrderDispatch();
   };
 
   // Create shipment form change
@@ -274,14 +268,9 @@ const OrderDetail = () => {
         createdDate: new Date(),
       };
       addImageFormData.imageSRC = "";
-      if (Array.isArray(imagesDetails)) {
-        const newImages = imagesDetails.concat(newImage);
-        order.imageInfo = newImages;
-        setImagesDetails(newImages);
-      } else {
-        setImagesDetails([newImage]);
-        order.imageInfo = [newImage];
-      }
+			const newImages = [newImage, ...imagesDetails];
+			setImagesDetails(newImages);
+			order.imageInfo = newImages;
 
       updatedOrderDispatch();
       setImagesModal(false);
@@ -317,14 +306,9 @@ const OrderDetail = () => {
         createdDate: new Date(),
       };
       addDocumentFormData.documentSRC = "";
-      if (Array.isArray(documentsDetails)) {
-        const newDocuments = documentsDetails.concat(newDocument);
-        order.documentInfo = newDocuments;
-        setDocumentsDetails(newDocuments);
-      } else {
-        setDocumentsDetails([newDocument]);
-        order.documentInfo = [newDocument];
-      }
+			const newDocuments = [newDocument, ...documentsDetails];
+			order.documentInfo = newDocuments;
+			setDocumentsDetails(newDocuments);
 
       updatedOrderDispatch();
       setDocumentsModal(false);
