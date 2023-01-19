@@ -21,23 +21,27 @@ import PaymentInfoCard from "./PaymentInfoCard/PaymentInfoCard";
 import AddTrackingDetailsForm from "./AddTrackingDetailsForm/AddTrackingDetailsForm";
 import AmazonTrackingForm from "./AmazonTrackingForm/AmazonTrackingForm";
 import CreateShipmentForm from "./CreateShipementForm/CreateShipementForm";
+import UploadImagesCard from "./UploadImagesCard/UploadImagesCard";
+import UploadDocumentsCard from "./UploadDocumentsCard/UploadDocumentsCard";
+import UploadImagesForm from "./UploadImagesForm/UploadImagesForm";
+import UploadDocumentsForm from "./UploadDocumentsForm/UploadDocumentsForm";
+import BatchInformationCard from "./BatchInfomationCard/BatchInfomationCard";
+import UpdateBatchInfoForm from "./UpdateBatchInfoForm/UpdateBatchInfoForm";
 import swal from "sweetalert";
 import { nanoid } from "nanoid";
 import { formatDate } from "../../utils/formatDate";
+import {
+  initialInvoiceFormState,
+  initialImageFormState,
+  initialDocumentFormState,
+  initialBatchInfoState,
+  initialShipmentInfoState,
+} from "./initialState";
 
 import bg1 from "./../../../../images/big/img1.jpg";
 import avatar1 from "./../../../../images/avatar/1.jpg";
 
 import PerfectScrollbar from "react-perfect-scrollbar";
-
-export const initialInvoiceFormState = {
-  totalCost: "",
-  shippingCost: "",
-  invoiceNumber: "",
-  invoiceInfo: {},
-  invoiceSRC: "",
-  createdDate: "",
-};
 
 const OrderDetail = () => {
   const history = useHistory();
@@ -51,25 +55,47 @@ const OrderDetail = () => {
     (order) => order.id === orders.selectedOrderId
   );
   const [order] = useState(selectedOrder[0]);
+
   //Add Order
-  const [createShipmentFormData, setCreateShipmentFormData] = useState({
-    id: "",
-    shipmentName: "",
-  });
+  const [createShipmentFormData, setCreateShipmentFormData] = useState(
+    initialShipmentInfoState
+  );
 
   const [deleteModal, setDeleteModal] = useState(false);
   const [invoiceModal, setInvoiceModal] = useState(false);
   const [paymentModal, setPaymentModal] = useState(false);
+  const [imagesModal, setImagesModal] = useState(false);
+  const [documentsModal, setDocumentsModal] = useState(false);
+  const [batchInfoModal, setBatchInfoModal] = useState(false);
   const [file, setFile] = useState(null);
   const [addInvoiceFormData, setAddInvoiceFormData] = useState(
     initialInvoiceFormState
   );
+  const [addImageFormData] = useState(initialImageFormState);
+  const [addDocumentFormData] = useState(initialDocumentFormState);
+  const [addBatchInfoFormData, setAddBatchInfoFormData] = useState(
+    initialBatchInfoState
+  );
   const [invoiceDetails, setInvoiceDetails] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [imagesDetails, setImagesDetails] = useState(order.imageInfo);
+  const [documentsDetails, setDocumentsDetails] = useState(order.documentInfo);
+  const [, setBatchInfo] = useState(order.batchInfo);
+  const [selectedDate, setSelectedDate] = useState(
+    order.batchInfo?.expiryDate
+      ? new Date(order.batchInfo?.expiryDate)
+      : new Date()
+  );
   const [paymentAmount, setPaymentAmount] = useState("");
   const [paymentInfo, setPaymentInfo] = useState(order.paymentInfo);
   const [trackingDetailsModal, setTrackingDetailsModal] = useState(false);
   const [createShipmentModal, setCreateShipmentModal] = useState(false);
+
+  const updatedOrderDispatch = () => {
+    const newOrders = [...ordersData];
+    let itemIndex = newOrders.findIndex((item) => item.id === order.id);
+    newOrders[itemIndex] = order;
+    dispatch(setOrdersAction(newOrders));
+  };
 
   // delete data submit
   const handleDeleteSubmit = () => {
@@ -143,10 +169,7 @@ const OrderDetail = () => {
         : [newInvoice];
       setInvoiceDetails(newInvoiceData);
       order.invoiceInfo = newInvoice;
-      const newOrders = [...ordersData];
-      let itemIndex = newOrders.findIndex((item) => item.id === order.id);
-      newOrders[itemIndex] = order;
-      dispatch(setOrdersAction(newOrders));
+      updatedOrderDispatch();
     } else {
       swal("Oops", errorMsg, "error");
     }
@@ -163,10 +186,7 @@ const OrderDetail = () => {
 
     setPaymentInfo(newPayments);
     order.paymentInfo = newPayments;
-    const newOrders = [...ordersData];
-    let itemIndex = newOrders.findIndex((item) => item.id === order.id);
-    newOrders[itemIndex] = order;
-    dispatch(setOrdersAction(newOrders));
+    updatedOrderDispatch();
     setPaymentAmount("");
     setSelectedDate(new Date());
     swal("Good job!", "Successfully Added", "success");
@@ -176,13 +196,9 @@ const OrderDetail = () => {
   const handleDeletePayment = (id) => {
     const newPayments = [...paymentInfo];
     const updatedPayments = newPayments.filter((payment) => payment.id !== id);
-    console.log("updatedPayments", id);
     setPaymentInfo(updatedPayments);
     order.paymentInfo = updatedPayments;
-    const newOrders = [...ordersData];
-    let itemIndex = newOrders.findIndex((item) => item.id === order.id);
-    newOrders[itemIndex] = order;
-    dispatch(setOrdersAction(newOrders));
+    updatedOrderDispatch();
   };
 
   // Create shipment form change
@@ -212,10 +228,7 @@ const OrderDetail = () => {
       };
 
       order.shipmentInfo = newShipment;
-      const newOrders = [...ordersData];
-      let itemIndex = newOrders.findIndex((item) => item.id === order.id);
-      newOrders[itemIndex] = order;
-      dispatch(setOrdersAction(newOrders));
+      updatedOrderDispatch();
       createShipmentFormData.shipmentName = "";
       setCreateShipmentModal(false);
       swal("Good job!", "Successfully Added", "success");
@@ -224,14 +237,136 @@ const OrderDetail = () => {
     }
   };
 
-  console.log("All orders", orders);
-
   // Total payments made
   const totalPayments = order.paymentInfo?.reduce((accumulator, payment) => {
     return accumulator + parseFloat(payment.amount);
   }, 0);
 
-  // Add tracking details
+  // Handle add image change
+  const handleImageFileChange = (e) => {
+    setFile(e.target.files[0]);
+    setTimeout(() => {
+      let src = URL.createObjectURL(e.target.files[0]);
+      addImageFormData.imageSRC = src;
+    }, 200);
+  };
+
+  // Add image submit data
+  const handleAddImageSubmit = (event) => {
+    event.preventDefault();
+    let error = false;
+    let errorMsg = "";
+    if (addImageFormData.imageSRC === "") {
+      error = true;
+      errorMsg = "Please upload image";
+    }
+    if (!error) {
+      const newImage = {
+        id: nanoid(),
+        imageFile: file,
+        imageSRC: addImageFormData.imageSRC,
+        createdDate: new Date(),
+      };
+      addImageFormData.imageSRC = "";
+			const newImages = [newImage, ...imagesDetails];
+			setImagesDetails(newImages);
+			order.imageInfo = newImages;
+
+      updatedOrderDispatch();
+      setImagesModal(false);
+      swal("Good job!", "Successfully Added", "success");
+    } else {
+      swal("Oops", errorMsg, "error");
+    }
+  };
+
+  // Handle add document change
+  const handleDocumentFileChange = (e) => {
+    setFile(e.target.files[0]);
+    setTimeout(() => {
+      let src = URL.createObjectURL(e.target.files[0]);
+      addDocumentFormData.documentSRC = src;
+    }, 200);
+  };
+
+  // Add document submit data
+  const handleAddDocumentSubmit = (event) => {
+    event.preventDefault();
+    let error = false;
+    let errorMsg = "";
+    if (addDocumentFormData.documentSRC === "") {
+      error = true;
+      errorMsg = "Please upload document";
+    }
+    if (!error) {
+      const newDocument = {
+        id: nanoid(),
+        documentFile: file,
+        documentSRC: addDocumentFormData.documentSRC,
+        createdDate: new Date(),
+      };
+      addDocumentFormData.documentSRC = "";
+			const newDocuments = [newDocument, ...documentsDetails];
+			order.documentInfo = newDocuments;
+			setDocumentsDetails(newDocuments);
+
+      updatedOrderDispatch();
+      setDocumentsModal(false);
+      swal("Good job!", "Successfully Added", "success");
+    } else {
+      swal("Oops", errorMsg, "error");
+    }
+  };
+
+  // Update Batch information button click to edit
+  const handleUpdatebatchInfoClick = (event) => {
+    event.preventDefault();
+    const formValues = {
+      id: order.batchInfo?.id,
+      lotNumber: order.batchInfo?.lotNumber,
+      expiryDate: order.batchInfo?.expiryDate,
+      batchNumber: order.batchInfo?.batchNumber,
+      color: order.batchInfo?.color,
+      modelNumber: order.batchInfo?.modelNumber,
+      type: order.batchInfo?.type,
+      size: order.batchInfo?.size,
+    };
+    setAddBatchInfoFormData(formValues);
+    setBatchInfoModal(true);
+  };
+
+  // Update batch info change
+  const handleBatchInfoFormChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    setAddBatchInfoFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  // Update batch info submit
+  const handleBatchInfoFormSubmit = (event) => {
+    event.preventDefault();
+    const newBatch = {
+      lotNumber: addBatchInfoFormData.lotNumber,
+      expiryDate: formatDate(selectedDate),
+      batchNumber: addBatchInfoFormData.batchNumber,
+      color: addBatchInfoFormData.color,
+      modelNumber: addBatchInfoFormData.modelNumber,
+      type: addBatchInfoFormData.type,
+      size: addBatchInfoFormData.size,
+    };
+
+    const newBatchInfoData = newBatch;
+    setBatchInfo(newBatchInfoData);
+    order.batchInfo = newBatchInfoData;
+
+    updatedOrderDispatch();
+
+    setBatchInfoModal(false);
+    swal("Good job!", "Successfully Added", "success");
+  };
 
   return (
     <>
@@ -351,6 +486,68 @@ const OrderDetail = () => {
             onClickSubmit={handleShipmentFormSubmit}
           />
         </Modal>
+        <Modal className="modal fade" show={imagesModal}>
+          <UploadImagesForm
+            onClickCancel={() => setImagesModal(false)}
+            onChangeFile={handleImageFileChange}
+            onClickSubmit={handleAddImageSubmit}
+          />
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-light"
+              onClick={() => setImagesModal(false)}
+            >
+              Done
+            </button>
+          </div>
+        </Modal>
+        <Modal className="modal fade" show={documentsModal}>
+          <UploadDocumentsForm
+            onClickCancel={() => setDocumentsModal(false)}
+            onChangeFile={handleDocumentFileChange}
+            onClickSubmit={handleAddDocumentSubmit}
+          />
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-light"
+              onClick={() => setDocumentsModal(false)}
+            >
+              Done
+            </button>
+          </div>
+        </Modal>
+        <Modal className="modal fade" show={batchInfoModal}>
+          <UpdateBatchInfoForm
+            onClickCancel={() => setBatchInfoModal(false)}
+            onChangeFile={handleBatchInfoFormChange}
+            onClickSubmit={handleBatchInfoFormSubmit}
+            selectedDate={selectedDate}
+            onDateChange={(date) => setSelectedDate(date)}
+            onLOTNumberChange={handleBatchInfoFormChange}
+            onBatchNumberChange={handleBatchInfoFormChange}
+            onColorChange={handleBatchInfoFormChange}
+            onModelNumberChange={handleBatchInfoFormChange}
+            onTypeChange={handleBatchInfoFormChange}
+            onSizeChange={handleBatchInfoFormChange}
+            lotNumberValue={addBatchInfoFormData.lotNumber}
+            batchNumberValue={addBatchInfoFormData.batchNumber}
+            colorValue={addBatchInfoFormData.color}
+            modelNumberValue={addBatchInfoFormData.modelNumber}
+            typeValue={addBatchInfoFormData.type}
+            sizeValue={addBatchInfoFormData.size}
+          />
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-light"
+              onClick={() => setBatchInfoModal(false)}
+            >
+              Done
+            </button>
+          </div>
+        </Modal>
       </div>
       <div className="row">
         <div className="col-xl-12">
@@ -456,8 +653,8 @@ const OrderDetail = () => {
                   >
                     <i className="fa fa-plus me-3 scale3"></i>Tracking Details
                   </Button>
-                  {(order.destinationType === "AmazonFBA" &&
-                    order.productInfo.amazonIntegrated) && (
+                  {order.destinationType === "AmazonFBA" &&
+                    order.productInfo.amazonIntegrated && (
                       <Button
                         className="btn btn-xs btn-danger light btn-rounded me-2 mb-0"
                         onClick={() => setCreateShipmentModal(true)}
@@ -542,27 +739,10 @@ const OrderDetail = () => {
               </div>
             </div>
           )}
-          <div className="row">
-            <div className="col-sm-12">
-              <div className="card">
-                <div className="card-header">
-                  <div className="text-black card-title h5">
-                    Batch Information
-                  </div>
-                </div>
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item d-flex justify-content-between">
-                    <span className="mb-0">Product Expiry</span>{" "}
-                    <strong className="text-muted">Sep 12 2025</strong>
-                  </li>
-                  <li className="list-group-item d-flex justify-content-between">
-                    <span className="mb-0">LOT Number</span>{" "}
-                    <strong className="text-muted">ABC987654321</strong>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <BatchInformationCard
+            onClickUpdate={(event) => handleUpdatebatchInfoClick(event)}
+            info={order.batchInfo && order.batchInfo}
+          />
         </div>
         <div className="col-xl-8 col-lg-6 col-sm-12">
           <div className="row">
@@ -637,75 +817,14 @@ const OrderDetail = () => {
             </div>
           </div>
           <div className="row">
-            <div className="col-xl-6">
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="card">
-                    <div className="card-header border-0 pb-0">
-                      <h5 className="text-black ">Images</h5>
-                    </div>
-                    <div className="card-body pt-3">
-                      <div class="final-badge">
-                        <span class="badge text-black border">
-                          <i class="fas fa-image me-2"></i>Manufacturing.jpg
-                        </span>
-                        <span class="badge text-black border">
-                          <i class="fas fa-image me-2"></i>Pre-Shipment.jpg
-                        </span>
-                        <span class="badge text-black border">
-                          <i class="fas fa-image me-2"></i>Product.jpg
-                        </span>
-                      </div>
-                      <div className="text-center mt-3">
-                        <button
-                          type="button"
-                          class="me-2 btn btn-primary btn-rounded"
-                        >
-                          <span class="btn-icon-start text-primary">
-                            <i className="fas fa-plus"></i>
-                          </span>
-                          Upload Images
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-6">
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="card">
-                    <div className="card-header border-0 pb-0">
-                      <h5 className="text-black ">Documents</h5>
-                    </div>
-                    <div className="card-body pt-3">
-                      <div class="final-badge">
-                        <span class="badge text-black border">
-                          <i class="far fa-file-alt me-3"></i>
-                          Certificate_of_Analysis.pdf
-                        </span>
-                        <span class="badge text-black border">
-                          <i class="far fa-file-alt me-3"></i>
-                          Quality_Assurance.pdf
-                        </span>
-                      </div>
-                      <div className="text-center mt-3">
-                        <button
-                          type="button"
-                          class="me-2 btn btn-primary btn-rounded"
-                        >
-                          <span class="btn-icon-start text-primary">
-                            <i className="fas fa-plus"></i>
-                          </span>
-                          Upload Documents
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <UploadImagesCard
+              onClickUpload={() => setImagesModal(true)}
+              images={order.imageInfo}
+            />
+            <UploadDocumentsCard
+              onClickUpload={() => setDocumentsModal(true)}
+              documents={order.documentInfo}
+            />
           </div>
         </div>
       </div>
