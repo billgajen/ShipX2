@@ -246,11 +246,8 @@ const OrderDetail = () => {
   // Handle add image change
   const handleImageFileChange = (e) => {
     setFile(e.target.files[0]);
-		let src =
-			e.target.files[0]
-				? URL.createObjectURL(e.target.files[0])
-				: "";
-		addImageFormData.imageSRC = src;
+    let src = e.target.files[0] ? URL.createObjectURL(e.target.files[0]) : "";
+    addImageFormData.imageSRC = src;
   };
 
   // Add image submit data
@@ -294,11 +291,8 @@ const OrderDetail = () => {
   // Handle add document change
   const handleDocumentFileChange = (e) => {
     setFile(e.target.files[0]);
-    let src =
-        e.target.files[0]
-          ? URL.createObjectURL(e.target.files[0])
-          : "";
-      addDocumentFormData.documentSRC = src;
+    let src = e.target.files[0] ? URL.createObjectURL(e.target.files[0]) : "";
+    addDocumentFormData.documentSRC = src;
   };
 
   // Add document submit data
