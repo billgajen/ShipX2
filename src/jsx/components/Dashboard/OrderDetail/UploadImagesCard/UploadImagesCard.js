@@ -1,6 +1,6 @@
 import React from "react";
 
-const UploadImagesCard = ({ onClickUpload, images }) => {
+const UploadImagesCard = ({ onClickUpload, images, onDeleteImage }) => {
   return (
     <div className="col-xl-6">
       <div className="row">
@@ -13,10 +13,20 @@ const UploadImagesCard = ({ onClickUpload, images }) => {
               <div class="final-badge">
                 {images &&
                   images.map((image) => (
-                    <span key={image.id} class="badge text-black border">
-                      <i class="fas fa-image me-2"></i>
-                      {image.imageFile.name}
-                    </span>
+                    <div key={image.id}>
+                      <button
+                        type="button"
+                        className="btn"
+                        style={{ color: "#FC2E53", padding: 4 }}
+                        onClick={() => onDeleteImage(image.id)}
+                      >
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                      </button>
+                      <span class="badge text-black border">
+                        <i class="fas fa-image me-2"></i>
+                        {image.imageFile.name}
+                      </span>
+                    </div>
                   ))}
               </div>
               <div className="text-center mt-3">

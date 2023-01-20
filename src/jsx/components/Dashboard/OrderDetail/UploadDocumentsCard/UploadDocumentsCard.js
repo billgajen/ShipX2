@@ -1,6 +1,10 @@
 import React from "react";
 
-const UploadDocumentsCard = ({ onClickUpload, documents }) => {
+const UploadDocumentsCard = ({
+  onClickUpload,
+  documents,
+  onDeleteDocument,
+}) => {
   return (
     <div className="col-xl-6">
       <div className="row">
@@ -13,10 +17,20 @@ const UploadDocumentsCard = ({ onClickUpload, documents }) => {
               <div class="final-badge">
                 {documents &&
                   documents.map((document) => (
-                    <span key={document.id} class="badge text-black border">
-                      <i class="fas fa-file-pdf me-2"></i>
-                      {document.documentFile.name}
-                    </span>
+                    <div key={document.id}>
+                      <button
+                        type="button"
+                        className="btn"
+                        style={{ color: "#FC2E53", padding: 4 }}
+                        onClick={() => onDeleteDocument(document.id)}
+                      >
+                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                      </button>
+                      <span class="badge text-black border">
+                        <i class="fas fa-file-pdf me-2"></i>
+                        {document.documentFile.name}
+                      </span>
+                    </div>
                   ))}
               </div>
               <div className="text-center mt-3">
