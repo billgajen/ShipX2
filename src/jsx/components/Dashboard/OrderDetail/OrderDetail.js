@@ -37,6 +37,7 @@ import {
   initialBatchInfoState,
   initialShipmentInfoState,
 } from "./initialState";
+import { onDeleteSwal } from "../../utils/onDeleteSwal";
 
 import bg1 from "./../../../../images/big/img1.jpg";
 import avatar1 from "./../../../../images/avatar/1.jpg";
@@ -245,10 +246,8 @@ const OrderDetail = () => {
   // Handle add image change
   const handleImageFileChange = (e) => {
     setFile(e.target.files[0]);
-    setTimeout(() => {
-      let src = URL.createObjectURL(e.target.files[0]);
-      addImageFormData.imageSRC = src;
-    }, 200);
+    let src = e.target.files[0] ? URL.createObjectURL(e.target.files[0]) : "";
+    addImageFormData.imageSRC = src;
   };
 
   // Add image submit data
@@ -268,9 +267,9 @@ const OrderDetail = () => {
         createdDate: new Date(),
       };
       addImageFormData.imageSRC = "";
-			const newImages = [newImage, ...imagesDetails];
-			setImagesDetails(newImages);
-			order.imageInfo = newImages;
+      const newImages = [newImage, ...imagesDetails];
+      setImagesDetails(newImages);
+      order.imageInfo = newImages;
 
       updatedOrderDispatch();
       setImagesModal(false);
@@ -280,13 +279,20 @@ const OrderDetail = () => {
     }
   };
 
+  // Delete image
+  const handleDeleteImage = (id) => {
+    const newImages = [...imagesDetails];
+    const updatedImages = newImages.filter((image) => image.id !== id);
+    setImagesDetails(updatedImages);
+    order.imageInfo = updatedImages;
+    updatedOrderDispatch();
+  };
+
   // Handle add document change
   const handleDocumentFileChange = (e) => {
     setFile(e.target.files[0]);
-    setTimeout(() => {
-      let src = URL.createObjectURL(e.target.files[0]);
-      addDocumentFormData.documentSRC = src;
-    }, 200);
+    let src = e.target.files[0] ? URL.createObjectURL(e.target.files[0]) : "";
+    addDocumentFormData.documentSRC = src;
   };
 
   // Add document submit data
@@ -306,9 +312,9 @@ const OrderDetail = () => {
         createdDate: new Date(),
       };
       addDocumentFormData.documentSRC = "";
-			const newDocuments = [newDocument, ...documentsDetails];
-			order.documentInfo = newDocuments;
-			setDocumentsDetails(newDocuments);
+      const newDocuments = [newDocument, ...documentsDetails];
+      order.documentInfo = newDocuments;
+      setDocumentsDetails(newDocuments);
 
       updatedOrderDispatch();
       setDocumentsModal(false);
@@ -316,6 +322,17 @@ const OrderDetail = () => {
     } else {
       swal("Oops", errorMsg, "error");
     }
+  };
+
+  // Delete image
+  const handleDeleteDocument = (id) => {
+    const newDocuments = [...documentsDetails];
+    const updatedDocuments = newDocuments.filter(
+      (document) => document.id !== id
+    );
+    setDocumentsDetails(updatedDocuments);
+    order.documentInfo = updatedDocuments;
+    updatedOrderDispatch();
   };
 
   // Update Batch information button click to edit
@@ -437,7 +454,9 @@ const OrderDetail = () => {
             payments={order.paymentInfo}
             remainingCost={order.invoiceInfo?.totalCost - totalPayments}
             isDisabled={paymentAmount === ""}
-            onDeletePayment={(id) => handleDeletePayment(id)}
+            onDeletePayment={(id) =>
+              onDeleteSwal("payment detail", () => handleDeletePayment(id))
+            }
           />
           <div className="modal-footer">
             <button
@@ -492,15 +511,6 @@ const OrderDetail = () => {
             onChangeFile={handleImageFileChange}
             onClickSubmit={handleAddImageSubmit}
           />
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-light"
-              onClick={() => setImagesModal(false)}
-            >
-              Done
-            </button>
-          </div>
         </Modal>
         <Modal className="modal fade" show={documentsModal}>
           <UploadDocumentsForm
@@ -508,15 +518,6 @@ const OrderDetail = () => {
             onChangeFile={handleDocumentFileChange}
             onClickSubmit={handleAddDocumentSubmit}
           />
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-light"
-              onClick={() => setDocumentsModal(false)}
-            >
-              Done
-            </button>
-          </div>
         </Modal>
         <Modal className="modal fade" show={batchInfoModal}>
           <UpdateBatchInfoForm
@@ -820,10 +821,16 @@ const OrderDetail = () => {
             <UploadImagesCard
               onClickUpload={() => setImagesModal(true)}
               images={order.imageInfo}
+              onDeleteImage={(id) =>
+                onDeleteSwal("file", () => handleDeleteImage(id))
+              }
             />
             <UploadDocumentsCard
               onClickUpload={() => setDocumentsModal(true)}
               documents={order.documentInfo}
+              onDeleteDocument={(id) =>
+                onDeleteSwal("file", () => handleDeleteDocument(id))
+              }
             />
           </div>
         </div>
