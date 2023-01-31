@@ -15,6 +15,18 @@ const AccountApp = () => {
 							<div className="basic-form">
 								<form onSubmit={(e) => e.preventDefault()}>
 									<div className="mb-3 row">
+										<label className="col-sm-3 col-form-label" for="profile-image">Profile Image</label>
+										<div className="col-sm-9">
+											<input
+												type="text"
+												className="form-control"
+												placeholder=""
+												id="first-name"
+												name="first-name"
+											/>
+										</div>
+									</div>
+									<div className="mb-3 row">
 										<label className="col-sm-3 col-form-label" for="first-name">First Name</label>
 										<div className="col-sm-9">
 											<input

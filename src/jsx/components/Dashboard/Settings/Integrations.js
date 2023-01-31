@@ -18,7 +18,7 @@ const Integrations = () => {
 										<div className="card-body tryal row">
 											<div className="col-xl-7 col-sm-6">
 												<h2>Connect Your Seller Accounts</h2>
-												<span>Connect to Amazon and let [XXX] track your orders automatically with our best automated systems.</span>
+												<span>Connect to Amazon and let [KH234] track your orders automatically with our best automated systems.</span>
 												<Link to={"#"} className="btn btn-rounded  fs-18 font-w500">Connect</Link>
 											</div>
 											<div className="col-xl-5 col-sm-6">
