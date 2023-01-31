@@ -7,7 +7,13 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 /// Image
 import profile from "../../../images/user.jpg";
 import avatar from "../../../images/avatar/1.jpg";
-import { Dropdown } from "react-bootstrap";
+import amazonLogo from "../../../images/freight/amazon.png";
+
+import {
+	Dropdown,
+	ButtonGroup,
+	SplitButton,
+} from "react-bootstrap";
 import LogoutPage from './Logout';
 
 const Header = ({ onNote }) => {
@@ -57,14 +63,36 @@ const Header = ({ onNote }) => {
 						</div>
 						<ul className="navbar-nav header-right main-notification">
 							<li className="nav-item d-flex align-items-center">
-								<div className="input-group search-area">
-									<input type="text" 
-										className={`form-control ${searchBut ? "active" : ""}`}
-										placeholder="Search here..." 
-									/>
-									<span className="input-group-text" onClick={() => setSearchBut(!searchBut)}>
-										<Link to={"#"}><i className="flaticon-381-search-2"></i></Link>
-									</span>
+								<div className="input-group input-primary">
+									<SplitButton
+										as={ButtonGroup}
+										id="dropdown-button-drop-down"
+										drop="down"
+										variant="primary"
+										size="md"
+										title="EUROPE"
+										className=""
+									>
+										<Dropdown.Item href="#">US</Dropdown.Item>
+										<Dropdown.Item href="#">EUROPE</Dropdown.Item>
+										<Dropdown.Item href="#">ASIA</Dropdown.Item>
+									</SplitButton>
+								</div>
+							</li>
+							<li className="nav-item d-flex align-items-center">
+								<div className="basic-form">
+									<form onSubmit={(e) => e.preventDefault()}>
+										<div className="form-group">
+											<select
+												defaultValue={"option"}
+												className="form-control form-control-lg"
+											>
+												<option>amazon.com</option>
+												<option>amazon.ca</option>
+												<option>amazon.com.mx</option>
+											</select>
+										</div>
+									</form>
 								</div>
 							</li> 
 							<Dropdown
