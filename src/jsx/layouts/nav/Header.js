@@ -73,7 +73,7 @@ const Header = ({ onNote }) => {
 										title="EUROPE"
 										className=""
 									>
-										<Dropdown.Item href="#">US</Dropdown.Item>
+										<Dropdown.Item href="#">USA</Dropdown.Item>
 										<Dropdown.Item href="#">EUROPE</Dropdown.Item>
 										<Dropdown.Item href="#">ASIA</Dropdown.Item>
 									</SplitButton>
