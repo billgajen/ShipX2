@@ -1,7 +1,10 @@
 {
-  "name": "Fillow",
+  "name": "Bluudo",
   "version": "0.1.0",
-  "homepage": "https://fillow.dexignlab.com/react/demo",
+  "engines": {
+    "node": "18.12.1"
+  },
+  "homepage": "/",
   "private": true,
   "dependencies": {
     "@asseinfo/react-kanban": "^2.2.0",
@@ -66,6 +69,7 @@
     "recharts": "^2.1.8",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
+    "rimraf": "^4.1.2",
     "sass": "^1.49.9",
     "simple-react-lightbox": "^3.5.1",
     "slick-carousel": "^1.8.1",
